@@ -1,0 +1,12 @@
+﻿How to make new patterns:
+    1. Add new bullets to the pattern:
+        1. create a empty gameObject in the Hierarchy
+        2. Adjust the gameObject transform to set the desired angle and position from the center for the shot
+    2. combine the bullets into 1 gameObject
+        1. create a empty gameObject in the Hierarchy
+        2. drag all new bullets on top of the empty gameObject
+        3. name the gameObject a descriptive name
+    3. Drag the combined bullet object into the prefabs folder
+
+How to assign the pattern to an enemy:
+    1. Under the Hierarchy, find an instance of the enemy and drag the pattern on top of the enemy
