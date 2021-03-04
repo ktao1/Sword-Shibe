@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     GameObject player;
     public bool spinShot = false;
     public bool followShot = false;
+    public bool randomDir = false;
     public int maxDistance = 50;
 
     int curShot = 0;
@@ -44,8 +45,12 @@ public class Enemy : MonoBehaviour
                 {
                     spinShotFire();
                 }
-                else
+                else if(randomDir)
                 {
+                    randomDirFire();
+                }
+                else
+                {    
                     baseShotFire();
                 }
 
@@ -59,7 +64,7 @@ public class Enemy : MonoBehaviour
 
     void followShotFire()
     {
-                            if(transform.GetChild(0).childCount > 1)
+                    if(transform.GetChild(0).childCount > 1)
                     {
                         Transform ShotPattern = transform.GetChild(0);                    
 
@@ -111,6 +116,30 @@ public class Enemy : MonoBehaviour
             monster.Shot (shotPosition);
         }
     }
+    void randomDirFire()
+    {
+                    if(transform.GetChild(0).childCount > 1)
+                    {
+                        Transform ShotPattern = transform.GetChild(0);                    
 
+                        float rotationZ = Random.Range(0.0f,360.0f);
+
+                        for (int i = 0; i < ShotPattern.childCount; i++)    {
+                            Transform shotPosition = ShotPattern.GetChild(i);
+                            shotPosition.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+                            monster.Shot (shotPosition);
+                        }
+                    }
+                    else
+                    {
+                        Transform ShotPattern = transform.GetChild(0);                    
+
+                        float rotationZ = Random.Range(0.0f,360.0f);
+
+                            Transform shotPosition = ShotPattern.GetChild(0);
+                            shotPosition.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+                            monster.Shot (shotPosition);
+                    }
+    }
 }
 
