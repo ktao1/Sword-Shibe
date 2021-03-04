@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
     private int dashMulti = 3;      //When dashing, speed *= dashMulti
     public bool immortal = false;   //Is the game in betatesting mode (can't take damage)
     public int immuneLimit = 100;   //How long the invincibility frames are, timer counter limit
-    public int damageLimit = 10;
     public GameObject attack;       //Type of attack
     public Animator animator;       //Use when animating, set triggers, bools, ints, and floats for the animations
 
@@ -68,6 +67,7 @@ public class Player : MonoBehaviour
 
       if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)) && !dashing && canDash && !attacking)     //Set up dashing
       {
+        hurt = false;
         dashing = true;
         gameObject.layer = immortalLayer;
         dashTime = 0;
@@ -124,16 +124,9 @@ public class Player : MonoBehaviour
     
   public void manageTimers()
   {
-    if(hurt)
-    {
-        if(damageTime < damageLimit)        damageTime++;
-        else{
-          hurt = false;
-        }
-    }
     if(immune)
     {
-      gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+      gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
       if(immuneTime < immuneLimit)  immuneTime++;
       else
       {
@@ -145,6 +138,13 @@ public class Player : MonoBehaviour
         gameObject.layer = playerLayer;
         }
       } 
+    }
+    if(hurt)
+    {
+        if(damageTime < immuneLimit)        damageTime++;
+        else{
+          hurt = false;
+        }
     }
     if(dashing)
     {

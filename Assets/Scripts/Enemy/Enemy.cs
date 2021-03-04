@@ -38,7 +38,28 @@ public class Enemy : MonoBehaviour
             {
                 if(followShot)
                 {
-                    if(transform.GetChild(0).childCount > 1)
+                    followShotFire();
+                }
+                else if(spinShot)
+                {
+                    spinShotFire();
+                }
+                else
+                {
+                    baseShotFire();
+                }
+
+                timerShot = 0;
+            }
+            else{
+                timerShot += 1;
+            }
+        }
+    }
+
+    void followShotFire()
+    {
+                            if(transform.GetChild(0).childCount > 1)
                     {
                         Transform ShotPattern = transform.GetChild(0);                    
 
@@ -70,31 +91,24 @@ public class Enemy : MonoBehaviour
 
                         Destroy(playerPosition);        
                     }
-                }
-                else if(spinShot)
-                {
-                    Transform ShotPattern = transform.GetChild(0);
-                    Transform shotPosition = ShotPattern.GetChild(curShot);
-                    monster.Shot (shotPosition);
-                    curShot ++;
-                    if(curShot == ShotPattern.childCount)   {
-                        curShot = 0;
-                    }
-                }
-                else
-                {
-                    Transform ShotPattern = transform.GetChild(0);
-                    for (int i = 0; i < ShotPattern.childCount; i++)    {
-                        Transform shotPosition = ShotPattern.GetChild(i);
-                        monster.Shot (shotPosition);
-                    }
-                }
+    }
 
-                timerShot = 0;
-            }
-            else{
-                timerShot += 1;
-            }
+    void spinShotFire()
+    {
+        Transform ShotPattern = transform.GetChild(0);
+        Transform shotPosition = ShotPattern.GetChild(curShot);
+        monster.Shot (shotPosition);
+        curShot ++;
+        if(curShot == ShotPattern.childCount)   {
+            curShot = 0;
+        }
+    }
+    void baseShotFire()
+    {
+        Transform ShotPattern = transform.GetChild(0);
+        for (int i = 0; i < ShotPattern.childCount; i++)    {
+            Transform shotPosition = ShotPattern.GetChild(i);
+            monster.Shot (shotPosition);
         }
     }
 

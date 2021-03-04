@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     }
     void Update()
     {
+      
       Destroy(gameObject, lifelength);
     }
     void OnCollisionEnter2D(Collision2D c)
