@@ -284,25 +284,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4919319120025799260, guid: 4380f7aa18f32574c8f2cd5149c2d06f,
         type: 3}
-      propertyPath: spinShot
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919319120025799260, guid: 4380f7aa18f32574c8f2cd5149c2d06f,
-        type: 3}
       propertyPath: randomDir
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4919319120025799260, guid: 4380f7aa18f32574c8f2cd5149c2d06f,
-        type: 3}
-      propertyPath: maxDistance
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919319120025799261, guid: 4380f7aa18f32574c8f2cd5149c2d06f,
-        type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 1146885956717483965, guid: 78c33792b0f25434dbfec50ea5bd627c,
-        type: 3}
     - target: {fileID: 4919319120025799261, guid: 4380f7aa18f32574c8f2cd5149c2d06f,
         type: 3}
       propertyPath: shotDelay
@@ -1578,7 +1562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ceb7f955b5c5f4d9981112fc413dd1, type: 3}
---- !u!1001 &1569891057
+--- !u!1001 &1636901835
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
