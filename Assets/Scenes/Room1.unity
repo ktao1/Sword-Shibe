@@ -7220,7 +7220,8 @@ MonoBehaviour:
   attackLimit: 50
   dashLimit: 40
   immortal: 0
-  immuneLimit: 150
+  immuneLimit: 80
+  damageLimit: 7
   attack: {fileID: 7759383045867315639, guid: 58cf58090d149184c9b13be1f80aacc8, type: 3}
   animator: {fileID: 8966504415246639309}
 --- !u!50 &8966504415246639307
@@ -7258,7 +7259,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.18546486, y: 0.052371383}
+  m_Offset: {x: 0.027956009, y: 0.052371383}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7269,7 +7270,7 @@ BoxCollider2D:
     adaptiveTiling: 1
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2977791, y: 0.5855391}
+  m_Size: {x: 0.5552368, y: 0.5855391}
   m_EdgeRadius: 0
 --- !u!95 &8966504415246639309
 Animator:

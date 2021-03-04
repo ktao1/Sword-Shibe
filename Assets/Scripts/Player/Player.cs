@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     private int dashMulti = 3;      //When dashing, speed *= dashMulti
     public bool immortal = false;   //Is the game in betatesting mode (can't take damage)
     public int immuneLimit = 100;   //How long the invincibility frames are, timer counter limit
+    public int damageLimit = 10;
     public GameObject attack;       //Type of attack
     public Animator animator;       //Use when animating, set triggers, bools, ints, and floats for the animations
 
@@ -25,11 +27,15 @@ public class Player : MonoBehaviour
     bool dashing = false;    
     bool attacking = false;
     bool canAttack = true;
+    bool canDash = true;
+    bool hurt = false;
+    bool dead = false;
 
     //Timer counters                  How counters work: set them to 0 and count up to the limit
-    private int dashTime;   
-    private int immuneTime;
-    private int attackTime;
+    private int dashTime = 0;   
+    private int immuneTime = 0;
+    private int attackTime = 0;
+    private int damageTime = 0;
 
     void Start()
     {
@@ -43,10 +49,14 @@ public class Player : MonoBehaviour
 
     void Update ()    //Every frame...
     {
-      if(Time.timeScale != 0)   //not paused
+      if(!dead)   //not paused
       {
         manageTimers();     //Put all timer loop stuff in here
         moveAndAttack();    //Groups together move and attack into one function
+      }
+      else
+      {
+          animator.SetTrigger("Dead");
       }
     }
 
@@ -56,7 +66,7 @@ public class Player : MonoBehaviour
 	  	float y = Input.GetAxisRaw ("Vertical");    //Vertical input		
       attacking = false;
 
-      if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)) && !dashing)     //Set up dashing
+      if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)) && !dashing && canDash && !attacking)     //Set up dashing
       {
         dashing = true;
         gameObject.layer = immortalLayer;
@@ -67,12 +77,11 @@ public class Player : MonoBehaviour
 		  Vector2 direction = new Vector2 (x, y).normalized;		
 		  GetComponent<Rigidbody2D>().velocity = direction * speed;
 
-      animator.ResetTrigger("Attacking");
-      animator.ResetTrigger("Dashing");
-      animator.ResetTrigger("Damaged");
+
       animator.SetFloat("Horizontal", x);
       animator.SetFloat("Vertical", y);
-      animator.SetInteger("speed", (int)(Mathf.Abs(direction[0])+Mathf.Abs(direction[1])));
+
+        animator.SetInteger("speed", (int)(Mathf.Abs(direction[0])+Mathf.Abs(direction[1])));
 
         //Animation Setup 
         //      Motion: Prioritize up/down over left/right
@@ -85,6 +94,7 @@ public class Player : MonoBehaviour
             canAttack = false;
             attackTime = 0;
 
+            hurt = false;
             animator.SetTrigger("Attacking");
 
             Vector3 attackOffset = transform.position;
@@ -101,15 +111,26 @@ public class Player : MonoBehaviour
             Instantiate (attack, attackOffset, transform.rotation);
             source.PlayOneShot(swordSound, 1F);
         }
-        //  Attacking
-        if(dashing && !attacking)
+        else if(dashing && !attacking)
         {
+          hurt = false;
           animator.SetTrigger("Dashing");
+        }
+        else if(hurt)
+        {
+          animator.SetTrigger("Damaged");
         }
       }
     
   public void manageTimers()
   {
+    if(hurt)
+    {
+        if(damageTime < damageLimit)        damageTime++;
+        else{
+          hurt = false;
+        }
+    }
     if(immune)
     {
       gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
@@ -145,6 +166,14 @@ public class Player : MonoBehaviour
       {
         canAttack = true;
       }
+    }
+    if(!canDash)
+    {
+      if(dashTime < dashLimit) dashTime ++;
+      else
+      {
+        canDash = true;
+      }
 
     }
   }
@@ -153,12 +182,20 @@ public class Player : MonoBehaviour
     {
       if(!immune && !immortal)
       {
-        animator.SetTrigger("Damaged");
+        damageTime = 0;
+        hurt = true;
         health -= damage;
       
         if(health == 0)  
         {
-          Time.timeScale = 0;
+      animator.ResetTrigger("Attacking");
+      animator.ResetTrigger("Dashing");
+      animator.ResetTrigger("Damaged");
+      animator.SetInteger("speed", 0);
+      GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+          dead = true;
+          animator.SetTrigger("Dead");
+          SceneManager.LoadScene("DeadScreen");
         }
       
         immune = true;
