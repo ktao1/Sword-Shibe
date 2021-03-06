@@ -171,6 +171,7 @@ void OnTriggerEnter2D(Collider2D col)
 {
   if(col.gameObject.tag == "Portal")
   {    
+    Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
     GameObject.FindWithTag("Editor").SendMessage("nextStage");
   }
 }
