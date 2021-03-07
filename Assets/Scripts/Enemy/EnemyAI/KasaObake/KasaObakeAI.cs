@@ -39,7 +39,6 @@ public class KasaObakeAI : MonoBehaviour
     {
         // check distance between enemy 
         float distance = Vector2.Distance((Vector2)player.position, rb.position);
-
         // if in CD don't do anything
         
         if (inCD)
@@ -71,7 +70,10 @@ public class KasaObakeAI : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        if(col.name == "Player")
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
 }

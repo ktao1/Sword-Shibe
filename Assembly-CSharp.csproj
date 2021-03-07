@@ -68,10 +68,10 @@
     <Compile Include="Assets\Scripts\Assorted\pauseAndPlay.cs" />
     <Compile Include="Assets\Scripts\Assorted\setNextScene.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyAI\test\EnemyAI.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyAI\test\KasaObakaGFX.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyAI\test\KasaObake.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyAI\test\KasaObakeAI.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyAI\General\GFXTurning.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyAI\KasaObake\KasaObakeAI.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyAI\test\ShirimeAI.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyAI\test\ShirimeGFX.cs" />
     <Compile Include="Assets\Scripts\Enemy\Monster.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Weapon\Bullet.cs" />

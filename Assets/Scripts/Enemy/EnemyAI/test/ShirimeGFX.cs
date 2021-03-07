@@ -1,25 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
-public class KasaObakaGFX : MonoBehaviour
+public class ShirimeGFX : MonoBehaviour
 {
 
-    public AIPath aiPath;
-
+    private float oldPosition;
+    private void Start()
+    {
+        oldPosition = transform.position.x;
+    }
 
     // Update is called once per frame
     void Update()
     {
         // if monster move to the right
-        if(aiPath.desiredVelocity.x >= 1f)
+        if (transform.position.x > (oldPosition + .3f))
         {
+            oldPosition = transform.position.x;
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
         // if monster move to the left 
-        else if(aiPath.desiredVelocity.x <= 1f)
+        else if (transform.position.x < (oldPosition - .3f))
         {
+            oldPosition = transform.position.x;
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
     }
