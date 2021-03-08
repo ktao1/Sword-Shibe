@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /*
  * Class: Biome
@@ -11,31 +13,37 @@ using UnityEngine;
  * 
  * 
  */
-public class Biome
+public class Biome : MonoBehaviour
 {
 
     //Arrays that hold the biomes prefab tiles
-    private GameObject[] groundTiles;
-    private GameObject[] cornerTiles;
-    private GameObject[] edgeTiles;
-    private GameObject[] items;
-    private GameObject[] enemies;
+    public GameObject[] groundTiles;
+    public GameObject[] cornerTiles;
+    public GameObject[] edgeTiles;
+    public GameObject[] items;
+    public GameObject[] enemies;
 
     //Number of rooms this biome holds
-    private int numOfRooms;
+    public int numOfRooms;
 
     //List of generated rooms
     private List<Room> biomeRooms;
 
-    //Constructor for biome
-    public Biome(GameObject[] _groundTiles, GameObject[] _cornerTiles, GameObject[] _edgeTiles, GameObject[] _items, GameObject[] _enemies, int _rooms)
+    private Room[] frontier;
+    private List<Room> inRooms;
+
+    public int id;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        groundTiles = _groundTiles;
-        cornerTiles = _cornerTiles;
-        edgeTiles = _edgeTiles;
-        items = _items;
-        enemies = _enemies;
-        numOfRooms = Random.Range(_rooms / 2, _rooms);
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 
     /*
@@ -47,7 +55,7 @@ public class Biome
      * @maxRows Maximum number of rows allowed per room
      * @maxColumns Maximum number of columns allowed per room
      */
-    public void GenerateRooms(int maxRows, int maxColumns)
+    public void GenerateRooms(int maxRows, int maxColumns, int id)
     {
         for(int i = 0; i < numOfRooms; i++)
         {
@@ -65,6 +73,12 @@ public class Biome
      */
     public void LinkRooms()
     {
+        Room start = biomeRooms[Random.Range(0, biomeRooms.Count)];
+
+        inRooms.Add(start);
+        float distance = Vector3.Distance(new Vector3(0,1,2), new Vector3(0,40,3));
+        
+
 
     }
 

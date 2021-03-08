@@ -7,6 +7,9 @@ public class Room
     //Multiplier value to adjust for sprite size
     private float spriteMultiplier = 3.5f;
 
+    //x, y position of the room
+    private Vector2 point;
+
     //Number of rows of room
     private int rows;
 
@@ -17,7 +20,7 @@ public class Room
     private Transform board;
 
     //Room grid to place tiles
-    private List<Vector3> grid;
+    private Dictionary<Vector3, int> grid;
 
     public Room(int _rows, int _columns)
     {
@@ -48,7 +51,13 @@ public class Room
      */
      public void GenerateRoom()
     {
-
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < columns; j++)
+            {
+                grid.Add(new Vector3(i * spriteMultiplier, j * spriteMultiplier, 0f), 0);
+            }
+        }
     }
 
     /*
