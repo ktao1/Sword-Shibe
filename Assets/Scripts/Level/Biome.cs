@@ -74,9 +74,15 @@ public class Biome : MonoBehaviour
     /*
      * Function: LinkRooms()
      * 
-     * Description: Links all rooms within the biome
+     * Description: Links all rooms within the biome through validating
+     * the cardinal directions of each room 
      * 
      * NOTE: Use Delaunay Triangulation with minimum spanning tree
+     * 
+     * TODO:
+     * - Remove room in outer loop
+     * - If a rooms N passage is set, the corresponding rooms
+     * S passage should be set to the current rooms position vector
      * 
      */
     public void LinkRooms()

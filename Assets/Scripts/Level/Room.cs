@@ -91,6 +91,17 @@ public class Room
 
     }
 
+    /*
+     * Function: MarkN()
+     * 
+     * Description: Validates a given point if it's in the North
+     * direction and if it is the current closest point is set as
+     * the new N
+     * 
+     * @position Vector2 position of a given room (in our case, bottom-left 
+     * corner of room)
+     * 
+     */
     internal void MarkN(Vector2 position)
     {
         if (position.y - point.y > 0 &&
@@ -99,6 +110,16 @@ public class Room
             N = position;
     }
 
+    /*
+     * Function: MarkS()
+     * 
+     * Description: Validates a given point if it's in the South
+     * direction and if it is the current closest point is set as
+     * the new S
+     * 
+     * @position Vector2 position of a given room (in our case, bottom-left 
+     * corner of room)
+     */
     internal void MarkS(Vector2 position)
     {
         if (position.y - point.y < 0 && 
@@ -107,6 +128,16 @@ public class Room
             S = position;
     }
 
+    /*
+     * Function: MarkE()
+     * 
+     * Description: Validates a given point if it's in the East
+     * direction and if it is the current closest point is set as
+     * the new E
+     * 
+     * @position Vector2 position of a given room (in our case, bottom-left 
+     * corner of room)
+     */
     internal void MarkE(Vector2 position)
     {
         if (position.x - point.x > 0 &&
@@ -115,6 +146,16 @@ public class Room
             E = position;
     }
 
+    /*
+     * Function: MarkW()
+     * 
+     * Description: Validates a given point if it's in the West
+     * direction and if it is the current closest point is set as
+     * the new W
+     * 
+     * @position Vector2 position of a given room (in our case, bottom-left 
+     * corner of room)
+     */
     internal void MarkW(Vector2 position)
     {
         if (position.x - point.x < 0 && 
