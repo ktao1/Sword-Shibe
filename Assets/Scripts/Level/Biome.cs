@@ -27,10 +27,9 @@ public class Biome : MonoBehaviour
     public int numOfRooms;
 
     //List of generated rooms
-    private List<Room> biomeRooms;
+    //private List<Room> biomeRooms;
 
-    private Room[] frontier;
-    private List<Room> inRooms;
+    private Dictionary<Vector2, Room> biomeRooms;
 
     public int id;
 
@@ -59,8 +58,18 @@ public class Biome : MonoBehaviour
     {
         for(int i = 0; i < numOfRooms; i++)
         {
-            biomeRooms.Add(new Room(Random.Range(maxRows / 2, maxRows), Random.Range(maxColumns / 2, maxColumns)));
+            Vector2 randomPosition = new Vector2(Random.Range(0, maxRows * numOfRooms), Random.Range(0, maxColumns * numOfRooms));
+
+            while(biomeRooms.ContainsKey(randomPosition))
+            {
+                randomPosition = new Vector2(Random.Range(0, maxRows * numOfRooms), Random.Range(0, maxColumns * numOfRooms));
+            }
+
+            biomeRooms.Add(randomPosition, new Room(Random.Range(maxRows / 2, maxRows), Random.Range(maxColumns / 2, maxColumns), randomPosition));
+
+
         }
+        
     }
 
     /*
@@ -68,17 +77,11 @@ public class Biome : MonoBehaviour
      * 
      * Description: Links all rooms within the biome
      * 
-     * NOTE: Use Prim's or possibly Delaunay Triangulation
+     * NOTE: Use Delaunay Triangulation with minimum spanning tree
      * 
      */
     public void LinkRooms()
     {
-        Room start = biomeRooms[Random.Range(0, biomeRooms.Count)];
-
-        inRooms.Add(start);
-        float distance = Vector3.Distance(new Vector3(0,1,2), new Vector3(0,40,3));
-        
-
 
     }
 

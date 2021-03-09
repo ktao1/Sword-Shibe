@@ -22,10 +22,18 @@ public class Room
     //Room grid to place tiles
     private Dictionary<Vector3, int> grid;
 
-    public Room(int _rows, int _columns)
+    /*
+     * Constructor: Room
+     * 
+     * @_rows Number of rows in room
+     * @_columns Number of columns in room
+     * @_point x,y coordinates of room
+     */
+    public Room(int _rows, int _columns, Vector2 _point)
     {
         rows = _rows;
         columns = _columns;
+        point = _point;
     }
 
     /*
