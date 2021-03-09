@@ -66,8 +66,7 @@ public class Biome : MonoBehaviour
             }
 
             biomeRooms.Add(randomPosition, new Room(Random.Range(maxRows / 2, maxRows), Random.Range(maxColumns / 2, maxColumns), randomPosition));
-
-
+            
         }
         
     }
@@ -82,7 +81,16 @@ public class Biome : MonoBehaviour
      */
     public void LinkRooms()
     {
-
+        foreach(var room in biomeRooms)
+        {
+            foreach(var tempRoom in biomeRooms)
+            {
+                room.Value.MarkN(tempRoom.Value.point);
+                room.Value.MarkS(tempRoom.Value.point);
+                room.Value.MarkE(tempRoom.Value.point);
+                room.Value.MarkW(tempRoom.Value.point);
+            }
+        }
     }
 
     

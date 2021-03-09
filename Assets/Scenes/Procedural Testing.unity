@@ -131,6 +131,9 @@ GameObject:
   m_Component:
   - component: {fileID: 185810141}
   - component: {fileID: 185810140}
+  - component: {fileID: 185810144}
+  - component: {fileID: 185810143}
+  - component: {fileID: 185810142}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -162,6 +165,7 @@ MonoBehaviour:
   - {fileID: 4736382385368916755, guid: 8ba5bf58eeed67b48a90429189c848ee, type: 3}
   items: []
   enemies: []
+  seed: 0
 --- !u!4 &185810141
 Transform:
   m_ObjectHideFlags: 0
@@ -177,6 +181,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &185810142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185810139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef1aea4c390f4f4ebd5a23b3f2a6b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundTiles: []
+  cornerTiles: []
+  edgeTiles: []
+  items: []
+  enemies: []
+  numOfRooms: 0
+  id: 0
+--- !u!114 &185810143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185810139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef1aea4c390f4f4ebd5a23b3f2a6b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundTiles: []
+  cornerTiles: []
+  edgeTiles: []
+  items: []
+  enemies: []
+  numOfRooms: 0
+  id: 0
+--- !u!114 &185810144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185810139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717778d679c1b2948bccc7112f0cbaf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seed: 0
+  maxRows: 10
+  maxColumns: 10
+  roomsPerBiome: 2
 --- !u!1 &1528784217 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4818181438337094620, guid: 49632af7a24ba8a4c8f499fe95f18192,
