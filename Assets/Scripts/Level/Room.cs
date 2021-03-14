@@ -23,10 +23,11 @@ public class Room
     //Room grid to place tiles
     private Dictionary<Vector3, int> grid;
 
-    private Vector2 N { get; set; }
-    private Vector2 S { get; set; }
-    private Vector2 E { get; set; }
-    private Vector2 W { get; set; }
+
+    public Vector2 N = Vector2.negativeInfinity;
+    public Vector2 S = Vector2.negativeInfinity;
+    public Vector2 E = Vector2.negativeInfinity;
+    public Vector2 W = Vector2.negativeInfinity;
 
     /*
      * Constructor: Room
@@ -40,10 +41,7 @@ public class Room
         rows = _rows;
         columns = _columns;
         point = _point;
-        N = Vector2.negativeInfinity;
-        S = Vector2.negativeInfinity;
-        E = Vector2.negativeInfinity;
-        W = Vector2.negativeInfinity;
+        
     }
 
     /*
@@ -91,76 +89,65 @@ public class Room
 
     }
 
-    /*
-     * Function: MarkN()
-     * 
-     * Description: Validates a given point if it's in the North
-     * direction and if it is the current closest point is set as
-     * the new N
-     * 
-     * @position Vector2 position of a given room (in our case, bottom-left 
-     * corner of room)
-     * 
-     */
-    internal void MarkN(Vector2 position)
-    {
-        if (position.y - point.y > 0 &&
-            position.y - point.y >= position.x - point.x &&
-            Vector2.Distance(point, position) < Vector2.Distance(point, N))
-            N = position;
-    }
 
     /*
-     * Function: MarkS()
-     * 
-     * Description: Validates a given point if it's in the South
-     * direction and if it is the current closest point is set as
-     * the new S
-     * 
-     * @position Vector2 position of a given room (in our case, bottom-left 
-     * corner of room)
-     */
-    internal void MarkS(Vector2 position)
+    internal bool MarkN(Room position)
     {
-        if (position.y - point.y < 0 && 
-            position.y - point.y <= position.x - point.x && 
-            Vector2.Distance(point, position) < Vector2.Distance(point, S))
-            S = position;
+        if (position.point.y - point.y > 0 &&
+            position.point.y - point.y >= position.point.x - point.x &&
+            Vector2.Distance(point, position.point) < Vector2.Distance(point, N.point) &&
+            Vector2.Distance(point, position.point) < Vector2.Distance(position.point, position.S.point) && 
+            !isNeighbor(position))
+            return true;
+        return false;
     }
 
-    /*
-     * Function: MarkE()
-     * 
-     * Description: Validates a given point if it's in the East
-     * direction and if it is the current closest point is set as
-     * the new E
-     * 
-     * @position Vector2 position of a given room (in our case, bottom-left 
-     * corner of room)
-     */
-    internal void MarkE(Vector2 position)
+    
+    internal bool MarkS(Room position)
     {
-        if (position.x - point.x > 0 &&
-            position.x - point.x >= position.y - point.y &&
-            Vector2.Distance(point, position) < Vector2.Distance(point, E))
-            E = position;
+        if (position.point.y - point.y < 0 &&
+            position.point.y - point.y <= position.point.x - point.x &&
+            Vector2.Distance(point, position.point) < Vector2.Distance(point, S.point) &&
+            Vector2.Distance(point, position.point) < Vector2.Distance(position.point, position.N.point) && 
+            !isNeighbor(position))
+            return true;
+        return false;
     }
 
-    /*
-     * Function: MarkW()
-     * 
-     * Description: Validates a given point if it's in the West
-     * direction and if it is the current closest point is set as
-     * the new W
-     * 
-     * @position Vector2 position of a given room (in our case, bottom-left 
-     * corner of room)
-     */
-    internal void MarkW(Vector2 position)
+    
+    internal bool MarkE(Room position)
     {
-        if (position.x - point.x < 0 && 
-            position.x - point.x <= position.y - point.y && 
-            Vector2.Distance(point, position) < Vector2.Distance(point, W))
-            W = position;
+        if (position.point.x - point.x > 0 &&
+            position.point.x - point.x >= position.point.y - point.y &&
+            Vector2.Distance(point, position.point) < Vector2.Distance(point, E.point) &&
+            Vector2.Distance(point, position.point) < Vector2.Distance(position.point, position.W.point) && 
+            !isNeighbor(position))
+            return true;
+        return false;
+    }
+
+    internal bool MarkW(Room position)
+    {
+        if (position.point.x - point.x < 0 &&
+            position.point.x - point.x <= position.point.y - point.y &&
+            Vector2.Distance(point, position.point) < Vector2.Distance(point, W.point) &&
+            Vector2.Distance(point, position.point) < Vector2.Distance(position.point, position.E.point) && 
+            !isNeighbor(position))
+            return true;
+        return false;
+    }*/
+
+    internal void DisplayNeighbors()
+    {
+        Debug.Log("Room " + point + " Neighbors\n");
+        Debug.Log("N: " + N.ToString() + " S: " + S.ToString() + " W: " + W.ToString() + " E: " + E.ToString());
+    }
+
+    public bool isNeighbor(Vector2 position)
+    {
+        if (position == N || position == S ||
+            position == E || position == W)
+            return true;
+        return false;
     }
 }

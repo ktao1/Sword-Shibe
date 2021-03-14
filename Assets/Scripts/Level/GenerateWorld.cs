@@ -18,14 +18,13 @@ public class GenerateWorld : MonoBehaviour
     public int roomsPerBiome = 2;
 
     //List of biomes on map
-    private List<Biome> biomes;
+    private List<Biome> biomes = new List<Biome>();
     
 
     // Start is called before the first frame update
     void Start()
     {
         LoadBiomes();
-        ConnectBiomes();
 
         for(int i = 0; i < biomes.Count; i++)
         {
@@ -34,6 +33,9 @@ public class GenerateWorld : MonoBehaviour
             else
                 biomes[i].GenerateRooms(maxRows, maxColumns, 0);
         }
+
+        biomes[0].LinkRooms();
+        biomes[0].DisplayRooms();
     }
 
     // Update is called once per frame
@@ -42,29 +44,14 @@ public class GenerateWorld : MonoBehaviour
         
     }
 
+    
+
     /*
-     *  Function: ConnectBiomes()
+     * Function: LoadBiomes()
      * 
-     *  Description: Uses a specified list of Biomes and
-     *  connects them together as a path
-     *  
+     * Description: Loads biomes stored as components into a usable list
      * 
      */
-    private void ConnectBiomes()
-    {
-        List<Biome> temp = new List<Biome>(); 
-
-        while(biomes.Count > 0)
-        {
-            int index = Random.Range(0, biomes.Count);
-            temp.Add(biomes[index]);
-            biomes.RemoveAt(index);
-        }
-
-        biomes = temp;
-
-    }
-
     private void LoadBiomes()
     {
         Biome[] biomeList = GetComponents<Biome>();
@@ -73,6 +60,8 @@ public class GenerateWorld : MonoBehaviour
         {
             biomes.Add(biomeList[i]);
         }
+
+        Debug.Log(biomes.Count);
 
     }
 
