@@ -87,10 +87,8 @@ public class Biome : MonoBehaviour
      */
     public void LinkRooms()
     {
-        Debug.Log("Linking Rooms");
         foreach(var room in biomeRooms)
         {
-            Debug.Log("Linking for Room: " + room.Value.point);
             foreach(var tempRoom in biomeRooms)
             {
                 if (tempRoom.Key == room.Key)
@@ -98,39 +96,75 @@ public class Biome : MonoBehaviour
                 if(MarkN(room.Value, tempRoom.Value))
                 {
                     Debug.Log("Linking North Exit");
+                    Debug.Log("Room: " + room.Value.point);
+                    room.Value.DisplayNeighbors();
+                    Debug.Log("Neighbor: " + tempRoom.Value.point);
+                    tempRoom.Value.DisplayNeighbors();
+                    if (!GetRoom(room.Value.N).point.Equals(Vector2.negativeInfinity))
+                        Reestablish(GetRoom(room.Value.N), "S");
                     room.Value.N = tempRoom.Value.point;
                     if(!GetRoom(tempRoom.Value.S).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(tempRoom.Value.S), "N");
-                    Debug.Log("Finished Linking North");
                     tempRoom.Value.S = room.Value.point;
+                    Debug.Log("Room: " + room.Value.point);
+                    room.Value.DisplayNeighbors();
+                    Debug.Log("Neighbor: " + tempRoom.Value.point);
+                    tempRoom.Value.DisplayNeighbors();
 
                 }
                 if(MarkS(room.Value, tempRoom.Value))
                 {
                     Debug.Log("Linking South Exit");
+                    Debug.Log("Room: " + room.Value.point);
+                    room.Value.DisplayNeighbors();
+                    Debug.Log("Neighbor: " + tempRoom.Value.point);
+                    tempRoom.Value.DisplayNeighbors();
+                    if (!GetRoom(room.Value.S).point.Equals(Vector2.negativeInfinity))
+                        Reestablish(GetRoom(room.Value.S), "N");
                     room.Value.S = tempRoom.Value.point;
                     if (!GetRoom(tempRoom.Value.N).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(tempRoom.Value.N), "S");
-                    Debug.Log("Finished Linking South");
                     tempRoom.Value.N = room.Value.point;
+                    Debug.Log("Room: " + room.Value.point);
+                    room.Value.DisplayNeighbors();
+                    Debug.Log("Neighbor: " + tempRoom.Value.point);
+                    tempRoom.Value.DisplayNeighbors();
                 }
                 if(MarkE(room.Value, tempRoom.Value))
                 {
                     Debug.Log("Linking East Exit");
+                    Debug.Log("Room: " + room.Value.point);
+                    room.Value.DisplayNeighbors();
+                    Debug.Log("Neighbor: " + tempRoom.Value.point);
+                    tempRoom.Value.DisplayNeighbors();
+                    if (!GetRoom(room.Value.E).point.Equals(Vector2.negativeInfinity))
+                        Reestablish(GetRoom(room.Value.E), "W");
                     room.Value.E = tempRoom.Value.point;
                     if (!GetRoom(tempRoom.Value.W).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(tempRoom.Value.W), "E");
-                    Debug.Log("Finished Linking East");
                     tempRoom.Value.W = room.Value.point;
+                    Debug.Log("Room: " + room.Value.point);
+                    room.Value.DisplayNeighbors();
+                    Debug.Log("Neighbor: " + tempRoom.Value.point);
+                    tempRoom.Value.DisplayNeighbors();
                 }
                 if(MarkW(room.Value, tempRoom.Value))
                 {
                     Debug.Log("Linking West Exit");
+                    Debug.Log("Room: " + room.Value.point);
+                    room.Value.DisplayNeighbors();
+                    Debug.Log("Neighbor: " + tempRoom.Value.point);
+                    tempRoom.Value.DisplayNeighbors();
+                    if (!GetRoom(room.Value.W).point.Equals(Vector2.negativeInfinity))
+                        Reestablish(GetRoom(room.Value.W), "E");
                     room.Value.W = tempRoom.Value.point;
                     if (!GetRoom(tempRoom.Value.E).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(tempRoom.Value.E), "W");
-                    Debug.Log("Finished Linking West");
                     tempRoom.Value.E = room.Value.point;
+                    Debug.Log("Room: " + room.Value.point);
+                    room.Value.DisplayNeighbors();
+                    Debug.Log("Neighbor: " + tempRoom.Value.point);
+                    tempRoom.Value.DisplayNeighbors();
                 }
             }
         }
@@ -178,6 +212,7 @@ public class Biome : MonoBehaviour
 
     public void DisplayRooms()
     {
+        Debug.Log("End of Run, Displaying Rooms");
         foreach(var room in biomeRooms)
         {
             room.Value.DisplayNeighbors();
@@ -271,7 +306,6 @@ public class Biome : MonoBehaviour
 
     private Room GetRoom(Vector2 position)
     {
-        Debug.Log("Grabbing Room : " + position.x);
         if (position.Equals(Vector2.negativeInfinity))
         {
             return new Room(0, 0, Vector2.negativeInfinity);
