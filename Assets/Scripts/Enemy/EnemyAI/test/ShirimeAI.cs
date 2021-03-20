@@ -6,44 +6,58 @@ using Pathfinding;
 public class ShirimeAI : MonoBehaviour
 {
 
+    // get player transform
     public Transform player;
-
+    // get Player Class use for doing damage
+    public Player _player;
+    // get animator
+    public Animator animator;
     private Rigidbody2D rb;
 
+    // upadteTimer and updateSpees: how often should upadte the path
     float upadteTimer;
     public float updateSpeed = 2f;
 
+    // chargeTimer and ChargeSpeed: how often should enemy attack
     float chargeTimer;
     public float chargeSpeed = 2f;
-
     public bool canAttack;
 
-    public float detectDistance = 10.0f;
-    public float attackRange = 5f;
+    public float attackSpeed = .5f;
+    public float attackTimer;
 
+    public float attackCD = 1f;
+    public float attackCDTimer;
+
+    public bool transformed = false;
+
+    // enemry attack's damge
+    public int damage = 1;
+
+    // how far enemy can see the player
+    public float detectDistance = 7.0f;
+    public float attackRange = 5.0f;
+
+    // Enemy AI 
     private enum State
     {
         Romaing,
         ChaseTarget,
-
+        Charging,
+        Shooting,
     }
-
     private State state;
 
-    private void Awake()
-    {
-        RoamPath();
-        state = State.Romaing;
-    }
-
-
+    //A* path finding asset
     private Seeker seeker;
     public Path path;
-    public float speed = 3;
+    // Enemy Movement speed
+    public float speed = 1;
+    // Enemy movmen determines the distance to the point the AI will move to
     public float nextWaypointDistance = 3;
     private int currentWaypoint = 0;
     public bool reachedEndOfPath;
-    public bool canMove;
+    public bool canMove = true;
 
     private Vector2 startingPosition;
 
@@ -57,35 +71,36 @@ public class ShirimeAI : MonoBehaviour
         // Get a reference to the Seeker component we added earlier
         seeker = GetComponent<Seeker>();
 
-        // Start to calculate a new path to the targetPosition object, return the result to the OnPathComplete method.
-        // Path requests are asynchronous, so when the OnPathComplete method is called depends on how long it
-        // takes to calculate the path. Usually it is called the next frame.
-
         RoamPath();
-        // InvokeRepeating("UpdatePath", 0f, 0.5f);
 
     }
 
     // Update is called once per frame
+    // Use state to do the enemy AI
     void FixedUpdate()
     {
-
         switch (state)
         {
             default:
             case State.Romaing:
+                // enemy start roaming and try to find the player.
                 RoamPath();
                 findTarget();
                 break;
+            // if enemy find the player, start chase player.
             case State.ChaseTarget:
+                ShirimeTransform();
                 ChasePlayer();
-                attack();
+                findTarget();
+                break;
+            case State.Charging:
+                charging();
                 break;
         }
-            Move();
-
+        Move();
     }
 
+    // Callback function for UpdatePath(Vector2 position)
     public void OnPathComplete(Path p)
     {
         if (!p.error)
@@ -96,6 +111,8 @@ public class ShirimeAI : MonoBehaviour
         }
     }
 
+    // find the path that where AI should go.
+    // Parameter vector position: where AI should go
     void UpdatePath(Vector2 position)
     {
         upadteTimer += Time.deltaTime;
@@ -107,17 +124,20 @@ public class ShirimeAI : MonoBehaviour
         }
     }
 
+    // update Roaming path
     private void RoamPath()
     {
         Vector2 roamPosition = startingPosition + new Vector2(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f));
         UpdatePath(roamPosition);
     }
 
+    // update Chasing path
     private void ChasePlayer()
     {
         UpdatePath(player.position);
     }
 
+    // Try to find the target
     private void findTarget()
     {
         if (Vector2.Distance(transform.position, player.position) < detectDistance)
@@ -125,33 +145,55 @@ public class ShirimeAI : MonoBehaviour
             updateSpeed = 0.5f;
             state = State.ChaseTarget;
         }
-    }
 
-    private void attack()
-    {
         if (Vector2.Distance(transform.position, player.position) < attackRange)
         {
-            canMove = false;
-            canAttack = true;
+            state = State.Charging;
         }
-        // stop and do attack animation;
+    }
 
-        if (canAttack)
+    private void ShirimeTransform()
+    {
+        animator.SetBool("canTransform", true);
+        speed = 1.5f;
+    }
+
+    private void shooting()
+    {
+        if (attackTimer < attackSpeed)
         {
-            chargeTimer += Time.deltaTime;
-            if (chargeTimer > chargeSpeed)
+            speed = 5f;
+            attackTimer += Time.deltaTime;
+            // attacking
+        }
+        else
+        {
+            attackCDTimer += Time.deltaTime;
+            canMove = false;
+            if (attackCDTimer > attackCD)
             {
-                // doing attack
-                chargeTimer = 0;
+                speed = 3f;
+                attackTimer = 0;
+                attackCDTimer = 0;
                 canMove = true;
-                canAttack = false;
+                state = State.ChaseTarget;
             }
         }
     }
 
+    private IEnumerator charging()
+    {
+        canMove = false;
+        animator.SetBool("canAttack", true);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length + animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+
+    }
+
+    // after find the path, Move() actually move the Enemy base on the path
     private void Move()
     {
-        if (!canMove) {
+        if (!canMove)
+        {
             return;
         }
 
@@ -207,6 +249,22 @@ public class ShirimeAI : MonoBehaviour
         transform.position += velocity * Time.deltaTime;
     }
 
-    
-    
+
+    // Use collider to do the attack or be attacked. 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            Debug.Log("Hit player");
+            _player.takeDamage(damage);
+        }
+        /*
+        if (col.gameObject.name == "Swpie")
+        {
+            Destroy(gameObject);
+        }
+        */
+    }
+
+
 }

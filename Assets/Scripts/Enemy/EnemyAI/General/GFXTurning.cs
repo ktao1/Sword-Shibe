@@ -5,7 +5,7 @@ using Pathfinding;
 
 public class GFXTurning : MonoBehaviour
 {
-
+    public float offSet = .3f;
     private float oldPosition;
     private void Start()
     {
@@ -16,13 +16,13 @@ public class GFXTurning : MonoBehaviour
     void Update()
     {
         // if monster move to the right
-        if (transform.position.x > (oldPosition + .3f))
+        if (transform.position.x > (oldPosition + offSet))
         {
             oldPosition = transform.position.x;
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
         // if monster move to the left 
-        else if (transform.position.x < (oldPosition - .3f))
+        else if (transform.position.x < (oldPosition - offSet))
         {
             oldPosition = transform.position.x;
             transform.localScale = new Vector3(-1f, 1f, 1f);
