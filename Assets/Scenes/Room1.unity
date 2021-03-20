@@ -1888,7 +1888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &563917874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5213,8 +5213,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1741997063}
   - component: {fileID: 1741997062}
-  - component: {fileID: 1741997061}
-  - component: {fileID: 1741997064}
   - component: {fileID: 1741997065}
   - component: {fileID: 1741997066}
   - component: {fileID: 1741997067}
@@ -5224,43 +5222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1741997061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741997060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 2
-  radius: 1.7
-  height: 2
-  repathRate: 1
-  canSearch: 1
-  canMove: 1
-  maxSpeed: 2
-  gravity: {x: 0, y: 0, z: 0}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  centerOffsetCompatibility: NaN
-  orientation: 1
-  enableRotation: 0
-  targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
-  rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 1
-  endReachedDistance: 0
-  alwaysDrawGizmos: 1
-  slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
-  constrainInsideGraph: 0
+  m_IsActive: 1
 --- !u!114 &1741997062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5304,20 +5266,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1741997064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741997060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  target: {fileID: 8966504415246639311}
 --- !u!61 &1741997065
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5331,7 +5279,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08073902, y: -0.05488676}
+  m_Offset: {x: 0.046898946, y: -0.10226259}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5342,7 +5290,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.3260665, y: 2.6562304}
+  m_Size: {x: 0.87096477, y: 0.7206319}
   m_EdgeRadius: 0
 --- !u!114 &1741997066
 MonoBehaviour:
@@ -5356,10 +5304,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35f524e21adaae46bd705d22676224f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aipath: {fileID: 1741997061}
-  speed: 100
-  CD: 2
   player: {fileID: 8966504415246639311}
+  _player: {fileID: 8966504415246639306}
+  animator: {fileID: 2094683205}
+  updateSpeed: 2
+  chargeSpeed: 2
+  canAttack: 0
+  attackSpeed: 0.5
+  attackTimer: 0
+  attackCD: 1
+  attackCDTimer: 0
+  damage: 1
+  detectDistance: 5
+  attackRange: 2
+  speed: 3
+  nextWaypointDistance: 3
+  reachedEndOfPath: 0
+  canMove: 1
 --- !u!50 &1741997067
 Rigidbody2D:
   serializedVersion: 4
@@ -6438,6 +6399,7 @@ GameObject:
   - component: {fileID: 2094683202}
   - component: {fileID: 2094683203}
   - component: {fileID: 2094683204}
+  - component: {fileID: 2094683205}
   m_Layer: 10
   m_Name: KasaObakeGFX
   m_TagString: Enemy
@@ -6498,7 +6460,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b3fd8a6ea14212647a251a7625b599ff, type: 3}
+  m_Sprite: {fileID: 2251713686351099209, guid: a6696d302f7de04459f01442fc571e7e,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6521,7 +6484,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb529a2dbc5c5841933c5760acac824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aiPath: {fileID: 0}
+--- !u!95 &2094683205
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094683201}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ca88781db4b0dca4f9a11020e1b1fc4f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &2100953378 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7695555567854968142, guid: 5af8e07aed19d2b449ec8178762e24ab,
