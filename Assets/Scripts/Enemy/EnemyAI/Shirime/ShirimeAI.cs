@@ -15,7 +15,7 @@ public class ShirimeAI : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject shirimeBullet;
 
-    public float bulletForce = 20f;
+    public float bulletForce = 10f;
 
     // upadteTimer and updateSpees: how often should upadte the path
     float upadteTimer;
