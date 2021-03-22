@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
 
     void attackPlayer()
     {
-        float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);;
+        float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
 
         if( distanceFromPlayer < maxDistance)
         {
