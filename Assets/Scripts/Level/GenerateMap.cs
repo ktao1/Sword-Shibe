@@ -239,20 +239,25 @@ public class GenerateMap : MonoBehaviour
                     
                     if(Random.Range(0f, 1f) <= obstacleProbability)
                     {
-                        /*
-                        if(Random.Range(0, 1) <= 0.55)
+                        GameObject obstacleTile;
+                        if(Random.Range(0f, 1f) <= 0.55f)
                         {
                             
-                            GameObject enemyTile = Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(i, j, 0f), Quaternion.identity);
+                            obstacleTile = Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(i, j, 0f), Quaternion.identity);
 
-                            enemyTile.transform.SetParent(board);
+                            obstacleTile.transform.SetParent(board);
                           
                             numOfObstacles = numOfObstacles - 1;
                         }
-                        */
-                            GameObject obstacleTile = Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(i, j, 0f), Quaternion.identity);
-                            obstacleTile.transform.SetParent(board);
+                        else
+                        {
+                            obstacleTile = Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(i, j, 0f), Quaternion.identity);
+                            
+                        }
+
+                        obstacleTile.transform.SetParent(board);
                         obstacleCount = obstacleCount - 1;
+
                     }
 
                     tileInstance.transform.SetParent(board);

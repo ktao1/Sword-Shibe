@@ -95,10 +95,6 @@ public class Biome : MonoBehaviour
                     break;
                 if(MarkN(room.Value, tempRoom.Value))
                 {
-                    Debug.Log("Linking North Exit");
-                    Debug.Log("Room: " + room.Value.point);
-                    room.Value.DisplayNeighbors();
-                    Debug.Log("Neighbor: " + tempRoom.Value.point);
                     tempRoom.Value.DisplayNeighbors();
                     if (!GetRoom(room.Value.N).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(room.Value.N), "S");
@@ -106,18 +102,10 @@ public class Biome : MonoBehaviour
                     if(!GetRoom(tempRoom.Value.S).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(tempRoom.Value.S), "N");
                     tempRoom.Value.S = room.Value.point;
-                    Debug.Log("Room: " + room.Value.point);
-                    room.Value.DisplayNeighbors();
-                    Debug.Log("Neighbor: " + tempRoom.Value.point);
-                    tempRoom.Value.DisplayNeighbors();
 
                 }
                 if(MarkS(room.Value, tempRoom.Value))
                 {
-                    Debug.Log("Linking South Exit");
-                    Debug.Log("Room: " + room.Value.point);
-                    room.Value.DisplayNeighbors();
-                    Debug.Log("Neighbor: " + tempRoom.Value.point);
                     tempRoom.Value.DisplayNeighbors();
                     if (!GetRoom(room.Value.S).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(room.Value.S), "N");
@@ -125,17 +113,9 @@ public class Biome : MonoBehaviour
                     if (!GetRoom(tempRoom.Value.N).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(tempRoom.Value.N), "S");
                     tempRoom.Value.N = room.Value.point;
-                    Debug.Log("Room: " + room.Value.point);
-                    room.Value.DisplayNeighbors();
-                    Debug.Log("Neighbor: " + tempRoom.Value.point);
-                    tempRoom.Value.DisplayNeighbors();
                 }
                 if(MarkE(room.Value, tempRoom.Value))
                 {
-                    Debug.Log("Linking East Exit");
-                    Debug.Log("Room: " + room.Value.point);
-                    room.Value.DisplayNeighbors();
-                    Debug.Log("Neighbor: " + tempRoom.Value.point);
                     tempRoom.Value.DisplayNeighbors();
                     if (!GetRoom(room.Value.E).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(room.Value.E), "W");
@@ -143,17 +123,9 @@ public class Biome : MonoBehaviour
                     if (!GetRoom(tempRoom.Value.W).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(tempRoom.Value.W), "E");
                     tempRoom.Value.W = room.Value.point;
-                    Debug.Log("Room: " + room.Value.point);
-                    room.Value.DisplayNeighbors();
-                    Debug.Log("Neighbor: " + tempRoom.Value.point);
-                    tempRoom.Value.DisplayNeighbors();
                 }
                 if(MarkW(room.Value, tempRoom.Value))
                 {
-                    Debug.Log("Linking West Exit");
-                    Debug.Log("Room: " + room.Value.point);
-                    room.Value.DisplayNeighbors();
-                    Debug.Log("Neighbor: " + tempRoom.Value.point);
                     tempRoom.Value.DisplayNeighbors();
                     if (!GetRoom(room.Value.W).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(room.Value.W), "E");
@@ -161,10 +133,6 @@ public class Biome : MonoBehaviour
                     if (!GetRoom(tempRoom.Value.E).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(tempRoom.Value.E), "W");
                     tempRoom.Value.E = room.Value.point;
-                    Debug.Log("Room: " + room.Value.point);
-                    room.Value.DisplayNeighbors();
-                    Debug.Log("Neighbor: " + tempRoom.Value.point);
-                    tempRoom.Value.DisplayNeighbors();
                 }
             }
         }

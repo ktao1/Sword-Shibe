@@ -148,7 +148,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185810139}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7970c364e89d3b54591ece81dc6ec8ae, type: 3}
   m_Name: 
@@ -166,7 +166,10 @@ MonoBehaviour:
   edgeTiles:
   - {fileID: 4736382385368916755, guid: 8ba5bf58eeed67b48a90429189c848ee, type: 3}
   items: []
-  enemies: []
+  enemies:
+  - {fileID: 158036453907044805, guid: 15e8b7ecab459874da0386e2903b98ed, type: 3}
+  - {fileID: 8463508463731890565, guid: 6c55330d3a1bde14f9ab5c4a928cd446, type: 3}
+  - {fileID: 549863052911209529, guid: a7a931e8e9f77b34f84e785626261c1b, type: 3}
   obstacles:
   - {fileID: 8168421874421567664, guid: 0fa5195a744638c449e9c01bb0e2addd, type: 3}
   - {fileID: 4602618769101742261, guid: ae5a0e9843e81734fb7f480b7ebcd0c7, type: 3}
@@ -222,7 +225,7 @@ MonoBehaviour:
   edgeTiles: []
   items: []
   enemies: []
-  numOfRooms: 0
+  numOfRooms: 5
   id: 0
 --- !u!114 &185810144
 MonoBehaviour:
