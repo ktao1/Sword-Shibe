@@ -41,19 +41,31 @@ public class GenerateMap : MonoBehaviour
 
     //Array of objects holding items to be placed onto tiles
     public GameObject[] items;
+
     //Array of objects holding enemies to be placed onto tiles
     public GameObject[] enemies;
+    public GameObject[] obstacles;
+
+    public GameObject portal;
 
     public int seed = 0;
 
     private Transform board;
     private List<Vector3> grid = new List<Vector3>();
+    private int numOfPortals;
+    private int numOfObstacles;
+    private int numOfOpenTiles;
+
+    private float obstacleProbability = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
         LoadMapGrid();
-        InstantiateTiles();
+        numOfPortals = 1;
+        numOfObstacles = Random.Range(5, 20);
+        numOfOpenTiles = rows * columns - (rows * 2 + ((columns - 2) * 2));
+        InstantiateTiles(numOfObstacles, numOfOpenTiles);
 
     }
 
@@ -63,8 +75,18 @@ public class GenerateMap : MonoBehaviour
 
     }
 
+    private void NextLevel()
+    {
+        foreach(Transform child in board)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
 
-  
+        GameObject.Destroy(board.gameObject);
+        numOfObstacles = Random.Range(5, 20);
+        numOfOpenTiles = rows * columns - (rows * 2 + ((columns - 2) * 2));
+        InstantiateTiles(numOfObstacles, numOfOpenTiles);
+    }
 
     private void LoadMapGrid()
     {
@@ -92,9 +114,12 @@ public class GenerateMap : MonoBehaviour
      *  - During loop decide to place decoration pieces (Grass, Trees, Water)
      * 
      */
-    void InstantiateTiles()
+    void InstantiateTiles(int obstacleCount, int tileCount)
     {
         board = new GameObject("Board").transform;
+        board.SetParent(gameObject.transform);
+
+        obstacleProbability = ((float)numOfObstacles) / numOfOpenTiles;
 
         float i = 0f;
         while(i < (columns + 1) * 3.5f)
@@ -150,6 +175,7 @@ public class GenerateMap : MonoBehaviour
                 //Edge tiles, left-edge
                 else if (i == 0)
                 {
+
                     selectedTile = edgeTiles[Random.Range(0, edgeTiles.Length)];
 
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
@@ -159,6 +185,7 @@ public class GenerateMap : MonoBehaviour
                 //180-degree Z rotation edge tiles, right-edge
                 else if (i == columns * 3.5)
                 {
+
                     selectedTile = edgeTiles[Random.Range(0, edgeTiles.Length)];
 
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
@@ -169,6 +196,16 @@ public class GenerateMap : MonoBehaviour
                 //90-degree Z rotation edge tiles, bottom-edge
                 else if (j == 0)
                 {
+
+                    if (i == columns * 3.5 / 2)
+                    {
+
+                        GameObject playerInstance = Instantiate(player, new Vector3(i, j, 0f), Quaternion.identity);
+
+                        playerInstance.transform.SetParent(board);
+
+                    }
+
                     selectedTile = edgeTiles[Random.Range(0, edgeTiles.Length)];
 
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
@@ -179,6 +216,15 @@ public class GenerateMap : MonoBehaviour
                 //-90-degree Z rotation edge tiles, top-edge
                 else if (j == rows * 3.5)
                 {
+
+                    if (i == columns * 3.5 / 2)
+                    {
+                        //Place portal
+                        GameObject portalInstance = Instantiate(portal, new Vector3(i, j, 0f), Quaternion.identity);
+
+                        portalInstance.transform.SetParent(board);
+                    }
+
                     selectedTile = edgeTiles[Random.Range(0, edgeTiles.Length)];
 
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
@@ -190,12 +236,33 @@ public class GenerateMap : MonoBehaviour
                 else
                 {
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
+                    
+                    if(Random.Range(0f, 1f) <= obstacleProbability)
+                    {
+                        /*
+                        if(Random.Range(0, 1) <= 0.55)
+                        {
+                            
+                            GameObject enemyTile = Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(i, j, 0f), Quaternion.identity);
+
+                            enemyTile.transform.SetParent(board);
+                          
+                            numOfObstacles = numOfObstacles - 1;
+                        }
+                        */
+                            GameObject obstacleTile = Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(i, j, 0f), Quaternion.identity);
+                            obstacleTile.transform.SetParent(board);
+                        obstacleCount = obstacleCount - 1;
+                    }
 
                     tileInstance.transform.SetParent(board);
+                    tileCount = tileCount - 1;
                 }
                 j += 3.5f;
             }
             i += 3.5f;
+            if(tileCount != 0)
+                obstacleProbability = ((float)obstacleCount) / tileCount;
         }
 
        
