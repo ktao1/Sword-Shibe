@@ -199,10 +199,9 @@ public class GenerateMap : MonoBehaviour
 
                     if (i == columns * 3.5 / 2)
                     {
-
-                        GameObject playerInstance = Instantiate(player, new Vector3(i, j, 0f), Quaternion.identity);
-
-                        playerInstance.transform.SetParent(board);
+       
+                        GameObject playerInstance = GameObject.FindWithTag("Player");
+                        playerInstance.transform.position = new Vector3(i, j, 0f);
 
                     }
 
