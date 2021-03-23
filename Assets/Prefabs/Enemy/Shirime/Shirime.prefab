@@ -26,8 +26,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 8463508463731890565}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+=======
+  m_GameObject: {fileID: 7123392312757660881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+>>>>>>> Stashed changes
   m_LocalPosition: {x: -5, y: 2, z: 0}
   m_LocalScale: {x: 0.62071043, y: 0.77589834, z: 1}
   m_Children:
@@ -106,7 +111,7 @@ MonoBehaviour:
   animator: {fileID: 8463508464776486962}
   shirimeBullet: {fileID: 4490800969554547647, guid: 1ba2b68a7e6eee244a03e2c9b43585e5,
     type: 3}
-  bulletForce: 20
+  bulletForce: 10
   updateSpeed: 2
   chargeSpeed: 2
   canAttack: 0
