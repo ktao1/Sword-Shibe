@@ -6,9 +6,9 @@ using Pathfinding;
 public class KasaObakeAI : MonoBehaviour
 {
     // get player transform
-    public Transform player;
+    Transform player;
     // get Player Class use for doing damage
-    public Player _player;
+    Player _player;
     // get animator
     public Animator animator;
     private Rigidbody2D rb;
@@ -60,6 +60,7 @@ public class KasaObakeAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player").transform;
         startingPosition = transform.position;
         // roamPosition.position = GetRoamPosition();
         rb = GetComponent<Rigidbody2D>();
@@ -237,6 +238,7 @@ public class KasaObakeAI : MonoBehaviour
     // Use collider to do the attack or be attacked. 
     void OnTriggerEnter2D(Collider2D col)
     {
+        /*
         if (col.gameObject.tag == "Player")
         {
             Debug.Log("Hit player");
