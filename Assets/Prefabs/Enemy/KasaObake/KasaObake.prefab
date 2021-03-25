@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549863052911209529}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 2, z: 0}
   m_LocalScale: {x: 0.62071043, y: 0.77589834, z: 1}
   m_Children:
@@ -101,8 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35f524e21adaae46bd705d22676224f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  _player: {fileID: 0}
   animator: {fileID: 549863053264223352}
   updateSpeed: 2
   chargeSpeed: 2
@@ -113,7 +111,7 @@ MonoBehaviour:
   attackCDTimer: 0
   damage: 1
   detectDistance: 5
-  attackRange: 2
+  attackRange: 3
   speed: 3
   nextWaypointDistance: 3
   reachedEndOfPath: 0

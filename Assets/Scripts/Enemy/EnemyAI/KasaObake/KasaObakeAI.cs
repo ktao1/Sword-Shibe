@@ -145,6 +145,7 @@ public class KasaObakeAI : MonoBehaviour
 
         if (Vector2.Distance(transform.position, player.position) < attackRange)
         {
+            ChasePlayer();
             state = State.Attack;
         }
     }
@@ -153,7 +154,7 @@ public class KasaObakeAI : MonoBehaviour
     {
         if(attackTimer < attackSpeed)
         {
-            speed = 5f;
+            speed = 7f;
             animator.SetBool("attack", true);
             attackTimer += Time.deltaTime;
             // attacking

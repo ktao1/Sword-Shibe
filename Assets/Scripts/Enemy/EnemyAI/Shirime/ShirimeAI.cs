@@ -23,14 +23,11 @@ public class ShirimeAI : MonoBehaviour
 
 
 
-
     // chargeTimer and ChargeSpeed: how often should enemy attack
-    float chargeTimer;
-    public float chargeSpeed = 2f;
+    float NextFire;
+    public float FireRate = 1f;
     public bool canAttack;
 
-    public float attackSpeed = .5f;
-    public float attackTimer;
 
     /*
     public float attackCD = 1f;
@@ -216,8 +213,9 @@ public class ShirimeAI : MonoBehaviour
     {
         canMove = false;
         animator.SetBool("canAttack", true);
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Shirime Charging"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Shirime Charging")  && Time.time > NextFire)
         {
+            NextFire = Time.time + FireRate;
             state = State.Shooting;
             canAttack = true;
         }
