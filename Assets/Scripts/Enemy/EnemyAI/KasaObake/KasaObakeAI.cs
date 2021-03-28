@@ -237,20 +237,12 @@ public class KasaObakeAI : MonoBehaviour
 
 
     // Use collider to do the attack or be attacked. 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D c)
     {
-        /*
-        if (col.gameObject.tag == "Player")
+        if (c.gameObject.tag == "Player" && c.gameObject.layer != 13)
         {
-            Debug.Log("Hit player");
-            _player.takeDamage(damage);
+            c.gameObject.SendMessage("takeDamage", damage);
         }
-        /*
-        if (col.gameObject.name == "Swpie")
-        {
-            Destroy(gameObject);
-        }
-        */
     }
 
 }
