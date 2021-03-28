@@ -116,12 +116,19 @@ public class Room : MonoBehaviour
                 exitInstance.transform.SetParent(roomBoard);
 
                 //Add component to exit and modify to define neighbor
-
+                Navigator nav = exitInstance.AddComponent<Navigator>();
+                nav.currentRoom = point;
+                nav.nextRoom = N;
             }
             else
             {
                 GameObject exitInstance = Instantiate(exit, new Vector3((columns * spriteMultiplier / 2), rows * spriteMultiplier, 0f), Quaternion.identity);
                 exitInstance.transform.SetParent(roomBoard);
+
+                //Add component to exit and modify to define neighbor
+                Navigator nav = exitInstance.AddComponent<Navigator>();
+                nav.currentRoom = point;
+                nav.nextRoom = N;
             }
 
         }
@@ -134,30 +141,45 @@ public class Room : MonoBehaviour
                 exitInstance.transform.SetParent(roomBoard);
 
                 //Add component to exit and modify to define neighbor
-
+                Navigator nav = exitInstance.AddComponent<Navigator>();
+                nav.currentRoom = point;
+                nav.nextRoom = S;
             }
             else
             {
                 GameObject exitInstance = Instantiate(exit, new Vector3((columns * spriteMultiplier / 2), 0f, 0f), Quaternion.identity);
                 exitInstance.transform.SetParent(roomBoard);
+
+                //Add component to exit and modify to define neighbor
+                Navigator nav = exitInstance.AddComponent<Navigator>();
+                nav.currentRoom = point;
+                nav.nextRoom = S;
             }
 
         }
 
         if(!E.Equals(Vector2.negativeInfinity))
         {
+            //Sets the E exit
             if (rows % 2 == 1)
             {
                 GameObject exitInstance = Instantiate(exit, new Vector3(columns * spriteMultiplier, (rows * spriteMultiplier / 2) + 1.75f, 0f), Quaternion.identity);
                 exitInstance.transform.SetParent(roomBoard);
 
                 //Add component to exit and modify to define neighbor
-
+                Navigator nav = exitInstance.AddComponent<Navigator>();
+                nav.currentRoom = point;
+                nav.nextRoom = E;
             }
             else
             {
                 GameObject exitInstance = Instantiate(exit, new Vector3(columns * spriteMultiplier, (rows * spriteMultiplier / 2), 0f), Quaternion.identity);
                 exitInstance.transform.SetParent(roomBoard);
+
+                //Add component to exit and modify to define neighbor
+                Navigator nav = exitInstance.AddComponent<Navigator>();
+                nav.currentRoom = point;
+                nav.nextRoom = E;
             }
 
         }
@@ -170,12 +192,19 @@ public class Room : MonoBehaviour
                 exitInstance.transform.SetParent(roomBoard);
 
                 //Add component to exit and modify to define neighbor
-
+                Navigator nav = exitInstance.AddComponent<Navigator>();
+                nav.currentRoom = point;
+                nav.nextRoom = W;
             }
             else
             {
                 GameObject exitInstance = Instantiate(exit, new Vector3(0f, (rows * spriteMultiplier / 2), 0f), Quaternion.identity);
                 exitInstance.transform.SetParent(roomBoard);
+
+                //Add component to exit and modify to define neighbor
+                Navigator nav = exitInstance.AddComponent<Navigator>();
+                nav.currentRoom = point;
+                nav.nextRoom = W;
             }
 
         }

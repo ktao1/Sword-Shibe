@@ -55,6 +55,13 @@ public class Biome : MonoBehaviour
         ActivateRoom(startRoom);
     }
 
+    public void TravelNextRoom(List<Vector2> rooms)
+    {
+        DeactivateRoom(GetRoom(rooms[0]));
+        GameObject.FindWithTag("Player").transform.position = new Vector3(0f, 0f, 0f);
+        ActivateRoom(GetRoom(rooms[1]));
+    }
+
     /*
      * Function: GenerateRooms()
      * 
@@ -315,7 +322,7 @@ public class Biome : MonoBehaviour
 
     public void DeactivateRoom(Room room)
     {
-
+        room.Deactivate();
     }
 
     //Loads the premade boss level
