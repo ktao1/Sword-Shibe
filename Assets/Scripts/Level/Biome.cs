@@ -22,16 +22,14 @@ public class Biome : MonoBehaviour
     public GameObject[] edgeTiles;
     public GameObject[] items;
     public GameObject[] enemies;
-    public GameObject[] obstacles;
-    public GameObject exit;
 
     //Number of rooms this biome holds
     public int numOfRooms;
 
+    //List of generated rooms
+    //private List<Room> biomeRooms;
+
     private Dictionary<Vector2, Room> biomeRooms = new Dictionary<Vector2, Room>();
-    private Room startRoom;
-    private Room bossRoom;
-    private Transform biomeBoard;
 
     public int id;
 
@@ -45,21 +43,6 @@ public class Biome : MonoBehaviour
     void Update()
     {
 
-    }
-
-    internal void StartFirstLevel()
-    {
-        biomeBoard = new GameObject("BiomeBoard").transform;
-        biomeBoard.SetParent(gameObject.transform);
-        GameObject.FindWithTag("Player").transform.position = new Vector3(0f, 0f, 0f);
-        ActivateRoom(startRoom);
-    }
-
-    public void TravelNextRoom(List<Vector2> rooms)
-    {
-        DeactivateRoom(GetRoom(rooms[0]));
-        GameObject.FindWithTag("Player").transform.position = new Vector3(0f, 0f, 0f);
-        ActivateRoom(GetRoom(rooms[1]));
     }
 
     /*
@@ -85,9 +68,6 @@ public class Biome : MonoBehaviour
             biomeRooms.Add(randomPosition, new Room(Random.Range(maxRows / 2, maxRows), Random.Range(maxColumns / 2, maxColumns), randomPosition));
             
         }
-
-        SetBeginEnd();
-        
        
     }
 
@@ -96,6 +76,13 @@ public class Biome : MonoBehaviour
      * 
      * Description: Links all rooms within the biome through validating
      * the cardinal directions of each room 
+     * 
+     * NOTE: Use Delaunay Triangulation with minimum spanning tree
+     * 
+     * TODO:
+     * - Remove room in outer loop
+     * - If a rooms N passage is set, the corresponding rooms
+     * S passage should be set to the current rooms position vector
      * 
      */
     public void LinkRooms()
@@ -108,6 +95,7 @@ public class Biome : MonoBehaviour
                     break;
                 if(MarkN(room.Value, tempRoom.Value))
                 {
+                    tempRoom.Value.DisplayNeighbors();
                     if (!GetRoom(room.Value.N).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(room.Value.N), "S");
                     room.Value.N = tempRoom.Value.point;
@@ -118,6 +106,7 @@ public class Biome : MonoBehaviour
                 }
                 if(MarkS(room.Value, tempRoom.Value))
                 {
+                    tempRoom.Value.DisplayNeighbors();
                     if (!GetRoom(room.Value.S).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(room.Value.S), "N");
                     room.Value.S = tempRoom.Value.point;
@@ -127,6 +116,7 @@ public class Biome : MonoBehaviour
                 }
                 if(MarkE(room.Value, tempRoom.Value))
                 {
+                    tempRoom.Value.DisplayNeighbors();
                     if (!GetRoom(room.Value.E).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(room.Value.E), "W");
                     room.Value.E = tempRoom.Value.point;
@@ -136,6 +126,7 @@ public class Biome : MonoBehaviour
                 }
                 if(MarkW(room.Value, tempRoom.Value))
                 {
+                    tempRoom.Value.DisplayNeighbors();
                     if (!GetRoom(room.Value.W).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(room.Value.W), "E");
                     room.Value.W = tempRoom.Value.point;
@@ -157,22 +148,30 @@ public class Biome : MonoBehaviour
             {
                 if(neighbor.Equals("N"))
                 {
+                    broken.DisplayNeighbors();
                     broken.N = Vector2.negativeInfinity;
+                    broken.DisplayNeighbors();
                     MarkN(broken, room.Value);
                 }
                 else if(neighbor.Equals("S"))
                 {
+                    broken.DisplayNeighbors();
                     broken.S = Vector2.negativeInfinity;
+                    broken.DisplayNeighbors();
                     MarkS(broken, room.Value);
                 }
                 else if(neighbor.Equals("E"))
                 {
+                    broken.DisplayNeighbors();
                     broken.E = Vector2.negativeInfinity;
+                    broken.DisplayNeighbors();
                     MarkE(broken, room.Value);
                 }
                 else if(neighbor.Equals("W"))
                 {
+                    broken.DisplayNeighbors();
                     broken.W = Vector2.negativeInfinity;
+                    broken.DisplayNeighbors();
                     MarkW(broken, room.Value);
                 }
             }
@@ -273,14 +272,6 @@ public class Biome : MonoBehaviour
         return false;
     }
 
-    /*
-     * Function: GetRoom()
-     * 
-     * Description: Returns a room based on specified
-     * room location
-     * 
-     * @position Location of room
-     */
     private Room GetRoom(Vector2 position)
     {
         if (position.Equals(Vector2.negativeInfinity))
@@ -289,47 +280,5 @@ public class Biome : MonoBehaviour
         }
         return biomeRooms[position];
     }
-
-    public void SetBeginEnd()
-    {
-        float farthest = 0f;
-
-        foreach(var room1 in biomeRooms)
-        {
-            foreach(var room2 in biomeRooms)
-            {
-                if(farthest < Vector2.Distance(room1.Value.point, room2.Value.point))
-                {
-                    farthest = Vector2.Distance(room1.Value.point, room2.Value.point);
-                    startRoom = room1.Value;
-                    bossRoom = room2.Value;
-                }
-            }
-        }
-    }
-
-    public void ActivateRoom(Room room)
-    {
-        if(room.isInstantiated)
-        {
-            room.Activate();
-        }
-        else
-        {
-            room.InstantiateRoom(groundTiles, cornerTiles, edgeTiles, enemies, obstacles, exit);
-        }
-    }
-
-    public void DeactivateRoom(Room room)
-    {
-        room.Deactivate();
-    }
-
-    //Loads the premade boss level
-    public void ProduceBossLevel()
-    {
-
-    }
-
     
 }
