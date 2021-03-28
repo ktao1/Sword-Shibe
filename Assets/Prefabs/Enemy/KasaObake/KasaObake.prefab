@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 549863052911209524}
   - component: {fileID: 549863052911209527}
   - component: {fileID: 549863052911209526}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: KasaObake
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.046898946, y: -0.10226259}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 549863053264223358}
   - component: {fileID: 549863053264223353}
   - component: {fileID: 549863053264223352}
-  m_Layer: 10
+  m_Layer: 15
   m_Name: KasaObakeGFX
   m_TagString: Enemy
   m_Icon: {fileID: 0}

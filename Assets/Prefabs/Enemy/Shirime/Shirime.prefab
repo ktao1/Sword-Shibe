@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8463508463731890566}
   - component: {fileID: 8463508463731890567}
   - component: {fileID: 8463508463731890564}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: Shirime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00018970668, y: -0.18764853}
+  m_Offset: {x: 0.015296042, y: -0.2992517}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -87,7 +87,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.83957183, y: 1.2128575}
+  m_Size: {x: 1.7841848, y: 1.2126381}
   m_EdgeRadius: 0
 --- !u!114 &8463508463731890567
 MonoBehaviour:
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 8463508464776486963}
   - component: {fileID: 8463508464776486960}
   - component: {fileID: 8463508464776486962}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: ShirimeGFX
   m_TagString: Enemy
   m_Icon: {fileID: 0}
