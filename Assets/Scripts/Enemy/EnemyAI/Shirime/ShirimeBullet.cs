@@ -12,9 +12,10 @@ public class ShirimeBullet : MonoBehaviour
         if (collision.gameObject.tag == "Player" && collision.gameObject.layer != 13)
         {
             collision.gameObject.SendMessage("takeDamage", damage);
-            Destroy(gameObject);
         }
 
+        Destroy(gameObject);
+       
         /*
         if (col.gameObject.tag == "Player")
         {

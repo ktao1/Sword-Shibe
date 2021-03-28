@@ -177,6 +177,7 @@ public class ShirimeAI : MonoBehaviour
             float angle = Mathf.Atan2(firDir.y, firDir.x) * Mathf.Rad2Deg;     
             Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             GameObject bullet = Instantiate(shirimeBullet, rb.position, rotation);
+            bullet.transform.SetParent(gameObject.transform);
             Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
             Vector2 dir = (player.position - transform.position).normalized;
             bulletRb.AddForce(dir * bulletForce, ForceMode2D.Impulse);

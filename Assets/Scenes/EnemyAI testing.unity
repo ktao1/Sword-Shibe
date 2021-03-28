@@ -1664,32 +1664,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2092217323}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &538544259 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4818181438337094620, guid: 49632af7a24ba8a4c8f499fe95f18192,
-    type: 3}
-  m_PrefabInstance: {fileID: 4517939732172894996}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &538544260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 538544259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4531cbd4b4f9274a8d6ec201e0f7fef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 3
-  numOfHearts: 3
-  hearts:
-  - {fileID: 835812416}
-  - {fileID: 292758317}
-  - {fileID: 1907737478}
-  fullHeart: {fileID: 21300000, guid: 3d689fe9125826a4b9b5f4531e3a8f28, type: 3}
-  breakedHeart: {fileID: 21300000, guid: f80ebbc375a6be94aa6d1f54725934cf, type: 3}
 --- !u!4 &539190214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1868405568007181329, guid: 18ceb7f955b5c5f4d9981112fc413dd1,
@@ -6155,7 +6129,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 45141381
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1972543291
@@ -6921,6 +6895,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 538544260, guid: 49632af7a24ba8a4c8f499fe95f18192, type: 3}
+      propertyPath: hearts.Array.data[0]
+      value: 
+      objectReference: {fileID: 835812416}
+    - target: {fileID: 538544260, guid: 49632af7a24ba8a4c8f499fe95f18192, type: 3}
+      propertyPath: hearts.Array.data[1]
+      value: 
+      objectReference: {fileID: 292758317}
+    - target: {fileID: 538544260, guid: 49632af7a24ba8a4c8f499fe95f18192, type: 3}
+      propertyPath: hearts.Array.data[2]
+      value: 
+      objectReference: {fileID: 1907737478}
+    - target: {fileID: 538544260, guid: 49632af7a24ba8a4c8f499fe95f18192, type: 3}
+      propertyPath: hearts.Array.data[3]
+      value: 
+      objectReference: {fileID: 1392413268}
+    - target: {fileID: 538544260, guid: 49632af7a24ba8a4c8f499fe95f18192, type: 3}
+      propertyPath: hearts.Array.data[4]
+      value: 
+      objectReference: {fileID: 1700341911}
+    - target: {fileID: 538544260, guid: 49632af7a24ba8a4c8f499fe95f18192, type: 3}
+      propertyPath: hearts.Array.data[5]
+      value: 
+      objectReference: {fileID: 1743142256}
+    - target: {fileID: 538544260, guid: 49632af7a24ba8a4c8f499fe95f18192, type: 3}
+      propertyPath: hearts.Array.data[6]
+      value: 
+      objectReference: {fileID: 921241944}
     - target: {fileID: 4818181438337094619, guid: 49632af7a24ba8a4c8f499fe95f18192,
         type: 3}
       propertyPath: m_RootOrder
@@ -6980,11 +6982,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4818181438337094622, guid: 49632af7a24ba8a4c8f499fe95f18192,
-        type: 3}
-      propertyPath: immortal
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49632af7a24ba8a4c8f499fe95f18192, type: 3}
