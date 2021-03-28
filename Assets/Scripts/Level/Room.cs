@@ -81,11 +81,11 @@ public class Room : MonoBehaviour
      * 
      * 
      */
-     public void GenerateRoom()
+    public void GenerateRoom()
     {
-        for(int i = 0; i < rows; i++)
+        for (int i = 0; i < rows; i++)
         {
-            for(int j = 0; j < columns; j++)
+            for (int j = 0; j < columns; j++)
             {
                 grid.Add(new Vector3(i * spriteMultiplier, j * spriteMultiplier, 0f), 0);
             }
@@ -100,7 +100,7 @@ public class Room : MonoBehaviour
      * tile type
      * 
      */
-     public void InstantiateRoom(GameObject[] groundTiles, GameObject[] cornerTiles, GameObject[] edgeTiles, GameObject[] enemies, GameObject[] obstacles, GameObject exit)
+    public void InstantiateRoom(GameObject[] groundTiles, GameObject[] cornerTiles, GameObject[] edgeTiles, GameObject[] enemies, GameObject[] obstacles, GameObject exit)
     {
         //Unique name for current room. This allows us to save room data
         roomBoard = new GameObject(point.ToString()).transform;
@@ -108,9 +108,9 @@ public class Room : MonoBehaviour
 
 
         //Following statements place exits at each direction to next room
-        if(!N.Equals(Vector2.negativeInfinity))
+        if (!N.Equals(Vector2.negativeInfinity))
         {
-            if(columns % 2 == 1)
+            if (columns % 2 == 1)
             {
                 GameObject exitInstance = Instantiate(exit, new Vector3((columns * spriteMultiplier / 2) + 1.75f, rows * spriteMultiplier, 0f), Quaternion.identity);
                 exitInstance.transform.SetParent(roomBoard);
@@ -133,7 +133,7 @@ public class Room : MonoBehaviour
 
         }
 
-        if(!S.Equals(Vector2.negativeInfinity))
+        if (!S.Equals(Vector2.negativeInfinity))
         {
             if (columns % 2 == 1)
             {
@@ -158,7 +158,7 @@ public class Room : MonoBehaviour
 
         }
 
-        if(!E.Equals(Vector2.negativeInfinity))
+        if (!E.Equals(Vector2.negativeInfinity))
         {
             //Sets the E exit
             if (rows % 2 == 1)
@@ -184,7 +184,7 @@ public class Room : MonoBehaviour
 
         }
 
-        if(!W.Equals(Vector2.negativeInfinity))
+        if (!W.Equals(Vector2.negativeInfinity))
         {
             if (rows % 2 == 1)
             {
@@ -361,7 +361,7 @@ public class Room : MonoBehaviour
         //Set room board to inactive state
         roomBoard.gameObject.SetActive(false);
     }
-    
+
     internal void DisplayNeighbors()
     {
         Debug.Log("Room " + point + " Neighbors\n");

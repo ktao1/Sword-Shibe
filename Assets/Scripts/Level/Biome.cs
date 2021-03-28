@@ -73,22 +73,22 @@ public class Biome : MonoBehaviour
      */
     public void GenerateRooms(int maxRows, int maxColumns, int id)
     {
-        for(int i = 0; i < numOfRooms; i++)
+        for (int i = 0; i < numOfRooms; i++)
         {
             Vector2 randomPosition = new Vector2(Random.Range(0, maxRows * numOfRooms), Random.Range(0, maxColumns * numOfRooms));
 
-            while(biomeRooms.ContainsKey(randomPosition))
+            while (biomeRooms.ContainsKey(randomPosition))
             {
                 randomPosition = new Vector2(Random.Range(0, maxRows * numOfRooms), Random.Range(0, maxColumns * numOfRooms));
             }
 
             biomeRooms.Add(randomPosition, new Room(Random.Range(maxRows / 2, maxRows), Random.Range(maxColumns / 2, maxColumns), randomPosition));
-            
+
         }
 
         SetBeginEnd();
-        
-       
+
+
     }
 
     /*
@@ -100,23 +100,23 @@ public class Biome : MonoBehaviour
      */
     public void LinkRooms()
     {
-        foreach(var room in biomeRooms)
+        foreach (var room in biomeRooms)
         {
-            foreach(var tempRoom in biomeRooms)
+            foreach (var tempRoom in biomeRooms)
             {
                 if (tempRoom.Key == room.Key)
                     break;
-                if(MarkN(room.Value, tempRoom.Value))
+                if (MarkN(room.Value, tempRoom.Value))
                 {
                     if (!GetRoom(room.Value.N).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(room.Value.N), "S");
                     room.Value.N = tempRoom.Value.point;
-                    if(!GetRoom(tempRoom.Value.S).point.Equals(Vector2.negativeInfinity))
+                    if (!GetRoom(tempRoom.Value.S).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(tempRoom.Value.S), "N");
                     tempRoom.Value.S = room.Value.point;
 
                 }
-                if(MarkS(room.Value, tempRoom.Value))
+                if (MarkS(room.Value, tempRoom.Value))
                 {
                     if (!GetRoom(room.Value.S).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(room.Value.S), "N");
@@ -125,7 +125,7 @@ public class Biome : MonoBehaviour
                         Reestablish(GetRoom(tempRoom.Value.N), "S");
                     tempRoom.Value.N = room.Value.point;
                 }
-                if(MarkE(room.Value, tempRoom.Value))
+                if (MarkE(room.Value, tempRoom.Value))
                 {
                     if (!GetRoom(room.Value.E).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(room.Value.E), "W");
@@ -134,7 +134,7 @@ public class Biome : MonoBehaviour
                         Reestablish(GetRoom(tempRoom.Value.W), "E");
                     tempRoom.Value.W = room.Value.point;
                 }
-                if(MarkW(room.Value, tempRoom.Value))
+                if (MarkW(room.Value, tempRoom.Value))
                 {
                     if (!GetRoom(room.Value.W).point.Equals(Vector2.negativeInfinity))
                         Reestablish(GetRoom(room.Value.W), "E");
@@ -151,26 +151,26 @@ public class Biome : MonoBehaviour
     public void Reestablish(Room broken, string neighbor)
     {
         Debug.Log("Reestablishing Neighbor");
-        foreach(var room in biomeRooms)
+        foreach (var room in biomeRooms)
         {
             if (room.Key != broken.point)
             {
-                if(neighbor.Equals("N"))
+                if (neighbor.Equals("N"))
                 {
                     broken.N = Vector2.negativeInfinity;
                     MarkN(broken, room.Value);
                 }
-                else if(neighbor.Equals("S"))
+                else if (neighbor.Equals("S"))
                 {
                     broken.S = Vector2.negativeInfinity;
                     MarkS(broken, room.Value);
                 }
-                else if(neighbor.Equals("E"))
+                else if (neighbor.Equals("E"))
                 {
                     broken.E = Vector2.negativeInfinity;
                     MarkE(broken, room.Value);
                 }
-                else if(neighbor.Equals("W"))
+                else if (neighbor.Equals("W"))
                 {
                     broken.W = Vector2.negativeInfinity;
                     MarkW(broken, room.Value);
@@ -182,7 +182,7 @@ public class Biome : MonoBehaviour
     public void DisplayRooms()
     {
         Debug.Log("End of Run, Displaying Rooms");
-        foreach(var room in biomeRooms)
+        foreach (var room in biomeRooms)
         {
             room.Value.DisplayNeighbors();
         }
@@ -294,11 +294,11 @@ public class Biome : MonoBehaviour
     {
         float farthest = 0f;
 
-        foreach(var room1 in biomeRooms)
+        foreach (var room1 in biomeRooms)
         {
-            foreach(var room2 in biomeRooms)
+            foreach (var room2 in biomeRooms)
             {
-                if(farthest < Vector2.Distance(room1.Value.point, room2.Value.point))
+                if (farthest < Vector2.Distance(room1.Value.point, room2.Value.point))
                 {
                     farthest = Vector2.Distance(room1.Value.point, room2.Value.point);
                     startRoom = room1.Value;
@@ -310,7 +310,7 @@ public class Biome : MonoBehaviour
 
     public void ActivateRoom(Room room)
     {
-        if(room.isInstantiated)
+        if (room.isInstantiated)
         {
             room.Activate();
         }
@@ -331,5 +331,5 @@ public class Biome : MonoBehaviour
 
     }
 
-    
+
 }

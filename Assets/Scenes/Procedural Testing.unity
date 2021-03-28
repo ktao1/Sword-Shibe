@@ -232,8 +232,8 @@ MonoBehaviour:
   - {fileID: 4736382385368916755, guid: 8ba5bf58eeed67b48a90429189c848ee, type: 3}
   items: []
   enemies:
-  - {fileID: 549863052911209529, guid: a7a931e8e9f77b34f84e785626261c1b, type: 3}
   - {fileID: 8463508463731890565, guid: 6c55330d3a1bde14f9ab5c4a928cd446, type: 3}
+  - {fileID: 549863052911209529, guid: a7a931e8e9f77b34f84e785626261c1b, type: 3}
   - {fileID: 158036453907044805, guid: 15e8b7ecab459874da0386e2903b98ed, type: 3}
   obstacles:
   - {fileID: 4602618769101742261, guid: ae5a0e9843e81734fb7f480b7ebcd0c7, type: 3}
@@ -254,8 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seed: 0
-  maxRows: 15
-  maxColumns: 17
+  maxRows: 12
+  maxColumns: 12
   roomsPerBiome: 2
 --- !u!1001 &859573094
 PrefabInstance:
