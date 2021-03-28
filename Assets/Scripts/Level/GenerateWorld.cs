@@ -19,14 +19,16 @@ public class GenerateWorld : MonoBehaviour
 
     //List of biomes on map
     private List<Biome> biomes = new List<Biome>();
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
+        //Load all biome data
         LoadBiomes();
 
-        for(int i = 0; i < biomes.Count; i++)
+        //Generate rooms for each biome
+        for (int i = 0; i < biomes.Count; i++)
         {
             if (i < biomes.Count - 1)
                 biomes[i].GenerateRooms(maxRows, maxColumns, biomes[i + 1].id);
@@ -34,17 +36,22 @@ public class GenerateWorld : MonoBehaviour
                 biomes[i].GenerateRooms(maxRows, maxColumns, 0);
         }
 
+        //Link each biomes rooms together
         biomes[0].LinkRooms();
         biomes[0].DisplayRooms();
+
+        //Instantiate first biomes starting room
+        biomes[0].StartFirstLevel();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    
+
 
     /*
      * Function: LoadBiomes()
@@ -56,12 +63,18 @@ public class GenerateWorld : MonoBehaviour
     {
         Biome[] biomeList = GetComponents<Biome>();
 
-        for(int i = 0; i < biomeList.Length; i++)
+        for (int i = 0; i < biomeList.Length; i++)
         {
             biomes.Add(biomeList[i]);
         }
 
         Debug.Log(biomes.Count);
+
+    }
+
+    //Loads the next biome once a boss is defeated, if no more biomes, game is over
+    public void NextLevel()
+    {
 
     }
 
