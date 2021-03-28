@@ -24,8 +24,10 @@ public class GenerateWorld : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Load all biome data
         LoadBiomes();
 
+        //Generate rooms for each biome
         for(int i = 0; i < biomes.Count; i++)
         {
             if (i < biomes.Count - 1)
@@ -34,8 +36,13 @@ public class GenerateWorld : MonoBehaviour
                 biomes[i].GenerateRooms(maxRows, maxColumns, 0);
         }
 
+        //Link each biomes rooms together
         biomes[0].LinkRooms();
         biomes[0].DisplayRooms();
+
+        //Instantiate first biomes starting room
+        biomes[0].StartFirstLevel();
+
     }
 
     // Update is called once per frame
@@ -62,6 +69,12 @@ public class GenerateWorld : MonoBehaviour
         }
 
         Debug.Log(biomes.Count);
+
+    }
+
+    //Loads the next biome once a boss is defeated, if no more biomes, game is over
+    public void NextLevel()
+    {
 
     }
 
