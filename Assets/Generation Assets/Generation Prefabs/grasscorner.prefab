@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 353618454088964312}
   - component: {fileID: -6285598665866283846}
   - component: {fileID: 843065156684475258}
+  - component: {fileID: 6411723829747741145}
   m_Layer: 0
   m_Name: grasscorner
   m_TagString: Untagged
@@ -135,3 +136,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8663702, y: 3.5}
   m_EdgeRadius: 0
+--- !u!114 &6411723829747741145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3927737114218809293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd868f0ad5c2f7a438c1c81aabc1a56d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  N: 0
+  S: 1
+  E: 1
+  W: 2
