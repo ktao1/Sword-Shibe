@@ -110,6 +110,8 @@ MonoBehaviour:
   attackCD: 1
   attackCDTimer: 0
   damage: 1
+  health: 3
+  XP: 50
   detectDistance: 5
   attackRange: 3
   speed: 3

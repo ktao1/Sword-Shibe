@@ -39,6 +39,11 @@ public class ShirimeAI : MonoBehaviour
     // enemry attack's damge
     public int damage = 1;
 
+    // enemy health
+    public int health = 1;
+    // enemy XP
+    public int XP = 50;
+
     // how far enemy can see the player
     public float detectDistance = 7.0f;
     public float attackRange = 5.0f;
@@ -72,6 +77,7 @@ public class ShirimeAI : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").transform;
+        _player = player.GetComponent<Player>();
         startingPosition = transform.position;
         // roamPosition.position = GetRoamPosition();
         rb = GetComponent<Rigidbody2D>();
@@ -87,6 +93,12 @@ public class ShirimeAI : MonoBehaviour
     // Use state to do the enemy AI
     void FixedUpdate()
     {
+        if (health < 1)
+        {
+            _player.levelSystem.AddXP(XP);
+            Destroy(gameObject);
+        }
+
         switch (state)
         {
             default:
@@ -283,6 +295,10 @@ public class ShirimeAI : MonoBehaviour
         transform.position += velocity * Time.deltaTime;
     }
 
+    public void takeDamage(int damage)
+    {
+        health -= damage;
+    }
 
     // Use collider to do the attack or be attacked. 
     void OnTriggerEnter2D(Collider2D col)

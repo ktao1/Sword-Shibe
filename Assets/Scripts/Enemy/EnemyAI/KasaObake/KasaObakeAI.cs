@@ -13,6 +13,7 @@ public class KasaObakeAI : MonoBehaviour
     public Animator animator;
     private Rigidbody2D rb;
 
+
     // upadteTimer and updateSpees: how often should upadte the path
     float upadteTimer;
     public float updateSpeed = 2f;
@@ -28,8 +29,12 @@ public class KasaObakeAI : MonoBehaviour
     public float attackCD = 1f;
     public float attackCDTimer;
 
-    // enemry attack's damge
+    // enemy attack's damge
     public int damage = 1;
+    // enemy health
+    public int health = 1;
+    // enemy XP
+    public int XP = 50;
 
     // how far enemy can see the player
     public float detectDistance = 5.0f;
@@ -61,6 +66,7 @@ public class KasaObakeAI : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").transform;
+        _player = player.GetComponent<Player>();
         startingPosition = transform.position;
         // roamPosition.position = GetRoamPosition();
         rb = GetComponent<Rigidbody2D>();
@@ -76,6 +82,12 @@ public class KasaObakeAI : MonoBehaviour
     // Use state to do the enemy AI
     void FixedUpdate()
     {
+        if (health < 1)
+        {
+            _player.levelSystem.AddXP(XP);
+            Destroy(gameObject);
+        }
+
         switch (state)
         {
             default:
@@ -235,14 +247,20 @@ public class KasaObakeAI : MonoBehaviour
         transform.position += velocity * Time.deltaTime;
     }
 
+    public void takeDamage(int damage)
+    {
+        health -= damage;
+    }
 
     // Use collider to do the attack or be attacked. 
     void OnCollisionEnter2D(Collision2D c)
     {
+        
         if (c.gameObject.tag == "Player" && c.gameObject.layer != 13)
         {
             c.gameObject.SendMessage("takeDamage", damage);
         }
+        
     }
 
 }

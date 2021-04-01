@@ -110,6 +110,8 @@ MonoBehaviour:
   canAttack: 0
   transformed: 0
   damage: 1
+  health: 1
+  XP: 50
   detectDistance: 7
   attackRange: 5
   speed: 1

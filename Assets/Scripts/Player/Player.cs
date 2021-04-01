@@ -2,10 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public int health = 3;  
+    // Health System
+    #region HealthSystem
+    public int health = 3;
+    public int numOfHearts;
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite breakedHeart;
+    #endregion
+
+    public LevelSystem levelSystem;
+
     public float speed = 5; 
     public int immortalLayer = 13;  //The layer where the player can't take damage
     public int playerLayer = 12;    //The layer where the player can collide with things the player should collide with
@@ -36,9 +47,19 @@ public class Player : MonoBehaviour
     private int attackTime = 0;
     private int damageTime = 0;
 
+
+
+    private LevelSystemUI levelSystemUI;
+
     void Start()
     {
-      source = GetComponent<AudioSource>();
+        // get the levelSystem
+        levelSystem = new LevelSystem();
+        levelSystemUI = GameObject.Find("LevelSystem").GetComponent<LevelSystemUI>();
+        levelSystemUI.SetLevelSystem(levelSystem);
+
+
+        source = GetComponent<AudioSource>();
 
       if(immortal)
       {
@@ -50,6 +71,7 @@ public class Player : MonoBehaviour
     {
       if(!dead)   //not paused
       {
+        UpdateHealth();     //Update player's health
         manageTimers();     //Put all timer loop stuff in here
         moveAndAttack();    //Groups together move and attack into one function
       }
@@ -121,8 +143,53 @@ public class Player : MonoBehaviour
           animator.SetTrigger("Damaged");
         }
       }
-    
-  public void manageTimers()
+
+    // function that update player's health
+    #region HealthSystem
+    public void UpdateHealth()
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (health > numOfHearts)
+            {
+                health = numOfHearts;
+            }
+
+            if (i < health)
+            {
+                hearts[i].sprite = fullHeart;
+            }
+            else
+            {
+                hearts[i].sprite = breakedHeart;
+            }
+            if (i < numOfHearts)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
+            }
+        }
+    }
+    #endregion
+
+    // level up system
+    #region LevelSystem
+    public void SetLevelSystem(LevelSystem levelSystem)
+    {
+        this.levelSystem = levelSystem;
+        levelSystem.OnLevelChanged += LevelSystem_OnLevelChanged;
+    }
+
+    private void LevelSystem_OnLevelChanged(object sender, System.EventArgs e)
+    {
+        // play animation here
+    }
+    #endregion
+
+    public void manageTimers()
   {
     if(immune)
     {
