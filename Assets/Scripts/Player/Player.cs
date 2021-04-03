@@ -142,11 +142,31 @@ else
 
             if(x != 0)
             {
-            attackOffset[0] += x;
+            attackOffset[0] += 1;
             }
             if(y != 0)
             {
-              attackOffset[1] += y;
+              attackOffset[1] += 1;
+            }
+
+            if(x == 0 && y == 0)
+            {
+              if(curDir == (float)dir.up)
+              {
+                attackOffset[1] +=1;
+              }
+              if(curDir == (float)dir.down)
+              {
+                attackOffset[1] -=1;
+              }
+              if(curDir == (float)dir.left)
+              {
+                attackOffset[0] -= 1;
+              }
+              if(curDir == (float)dir.right)
+              {
+                attackOffset[0] += 1;
+              }
             }
 
             Instantiate (attack, attackOffset, transform.rotation);
