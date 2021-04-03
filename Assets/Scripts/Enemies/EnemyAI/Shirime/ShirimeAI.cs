@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class KasaObakeAI : MonoBehaviour
+public class ShirimeAI : MonoBehaviour
 {
+
     // get player transform
     Transform player;
     // get Player Class use for doing damage
@@ -12,40 +13,50 @@ public class KasaObakeAI : MonoBehaviour
     // get animator
     public Animator animator;
     private Rigidbody2D rb;
+    public GameObject shirimeBullet;
 
+    public float bulletForce = 10f;
 
     // upadteTimer and updateSpees: how often should upadte the path
     float upadteTimer;
     public float updateSpeed = 2f;
 
+
+
     // chargeTimer and ChargeSpeed: how often should enemy attack
-    float chargeTimer;
-    public float chargeSpeed = 2f;
+    float NextFire;
+    public float FireRate = 1f;
     public bool canAttack;
 
-    public float attackSpeed = .5f;
-    public float attackTimer;
 
+    /*
     public float attackCD = 1f;
     public float attackCDTimer;
+    */
 
-    // enemy attack's damge
+    public bool transformed = false;
+
+    // enemry attack's damge
     public int damage = 1;
+
     // enemy health
     public int health = 1;
     // enemy XP
     public int XP = 50;
 
     // how far enemy can see the player
-    public float detectDistance = 5.0f;
-    public float attackRange = 3.0f;
+    public float detectDistance = 7.0f;
+    public float attackRange = 5.0f;
+
+
 
     // Enemy AI 
     private enum State
     {
         Romaing,
         ChaseTarget,
-        Attack,
+        Charging,
+        Shooting,
     }
     private State state;
 
@@ -53,7 +64,7 @@ public class KasaObakeAI : MonoBehaviour
     private Seeker seeker;
     public Path path;
     // Enemy Movement speed
-    public float speed = 3;
+    public float speed = 1;
     // Enemy movmen determines the distance to the point the AI will move to
     public float nextWaypointDistance = 3;
     private int currentWaypoint = 0;
@@ -74,7 +85,7 @@ public class KasaObakeAI : MonoBehaviour
         // Get a reference to the Seeker component we added earlier
         seeker = GetComponent<Seeker>();
 
-        RoamPath();
+        state = State.Romaing;
 
     }
 
@@ -98,12 +109,15 @@ public class KasaObakeAI : MonoBehaviour
                 break;
             // if enemy find the player, start chase player.
             case State.ChaseTarget:
+                ShirimeTransform();
                 ChasePlayer();
                 findTarget();
                 break;
-            case State.Attack:
-                attack();
-                ChasePlayer();
+            case State.Charging:
+                charging();
+                break;
+            case State.Shooting:
+                shooting();
                 break;
         }
         Move();
@@ -149,34 +163,58 @@ public class KasaObakeAI : MonoBehaviour
     // Try to find the target
     private void findTarget()
     {
-        if (Vector2.Distance(transform.position, player.position) < detectDistance)
+        
+        if (Vector2.Distance(transform.position, player.position) < attackRange)
+        {
+            state = State.Charging;
+        }
+        else if (Vector2.Distance(transform.position, player.position) < detectDistance)
         {
             updateSpeed = 0.5f;
             state = State.ChaseTarget;
         }
-
-        if (Vector2.Distance(transform.position, player.position) < attackRange)
+        else
         {
-            ChasePlayer();
-            state = State.Attack;
+            state = State.Romaing;
         }
     }
 
-    private void attack()
+    private void ShirimeTransform()
     {
-        if(attackTimer < attackSpeed)
+        animator.SetBool("canTransform", true);
+        speed = 1.5f;
+    }
+
+    private void shooting()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Shirime Firing"))
         {
-            speed = 7f;
-            animator.SetBool("attack", true);
+            Vector2 firDir = transform.position - player.position;
+            float angle = Mathf.Atan2(firDir.y, firDir.x) * Mathf.Rad2Deg;     
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            GameObject bullet = Instantiate(shirimeBullet, rb.position, rotation);
+            bullet.transform.SetParent(gameObject.transform);
+            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+            Vector2 dir = (player.position - transform.position).normalized;
+            bulletRb.AddForce(dir * bulletForce, ForceMode2D.Impulse);
+            canMove = true;
+            animator.SetBool("canAttack", false);
+            state = State.ChaseTarget;
+        }
+        
+        
+        /*
+        if (attackTimer < attackSpeed)
+        {
+            speed = 5f;
             attackTimer += Time.deltaTime;
             // attacking
         }
         else
         {
-            animator.SetBool("attack", false);
             attackCDTimer += Time.deltaTime;
             canMove = false;
-            if(attackCDTimer > attackCD)
+            if (attackCDTimer > attackCD)
             {
                 speed = 3f;
                 attackTimer = 0;
@@ -185,6 +223,20 @@ public class KasaObakeAI : MonoBehaviour
                 state = State.ChaseTarget;
             }
         }
+        */
+    }
+
+    private void charging()
+    {
+        canMove = false;
+        animator.SetBool("canAttack", true);
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Shirime Charging")  && Time.time > NextFire)
+        {
+            NextFire = Time.time + FireRate;
+            state = State.Shooting;
+            canAttack = true;
+        }
+
     }
 
     // after find the path, Move() actually move the Enemy base on the path
@@ -253,14 +305,21 @@ public class KasaObakeAI : MonoBehaviour
     }
 
     // Use collider to do the attack or be attacked. 
-    void OnCollisionEnter2D(Collision2D c)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        
-        if (c.gameObject.tag == "Player" && c.gameObject.layer != 13)
+        /*
+        if (col.gameObject.tag == "Player")
         {
-            c.gameObject.SendMessage("takeDamage", damage);
+            Debug.Log("Hit player");
+            _player.takeDamage(damage);
         }
-        
+        /*
+        if (col.gameObject.name == "Swpie")
+        {
+            Destroy(gameObject);
+        }
+        */
     }
+
 
 }
