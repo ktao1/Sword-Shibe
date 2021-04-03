@@ -10,7 +10,6 @@ public class GeneralMovement : MonoBehaviour
     // get player transform
     public Transform player;
     // get Player Class use for doing damage
-    public Player _player;
     private Rigidbody2D rb;
 
     // upadteTimer and updateSpees: how often should upadte the path
@@ -56,6 +55,7 @@ public class GeneralMovement : MonoBehaviour
         // roamPosition.position = GetRoamPosition();
         rb = GetComponent<Rigidbody2D>();
 
+    player = GameObject.FindGameObjectWithTag("Player").transform;
         // Get a reference to the Seeker component we added earlier
         seeker = GetComponent<Seeker>();
 
@@ -192,19 +192,4 @@ public class GeneralMovement : MonoBehaviour
     }
 
 
-    // Use collider to do the attack or be attacked. 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "Player")
-        {
-            Debug.Log("Hit player");
-            _player.takeDamage(damage);
-        }
-        /*
-        if (col.gameObject.name == "Swpie")
-        {
-            Destroy(gameObject);
-        }
-        */
-    }
 }

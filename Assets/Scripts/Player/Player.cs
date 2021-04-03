@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
     public GameObject attack;       //Type of attack
     public Animator animator;       //Use when animating, set triggers, bools, ints, and floats for the animations
 
-
     //Status bools
     private bool immune = false;
     bool dashing = false;    
@@ -47,6 +46,15 @@ public class Player : MonoBehaviour
     private int attackTime = 0;
     private int damageTime = 0;
 
+enum dir
+{
+  up,
+  down,
+  left,
+  right
+}
+
+float curDir = 1;
 
 
     private LevelSystemUI levelSystemUI;
@@ -100,9 +108,20 @@ public class Player : MonoBehaviour
 		  GetComponent<Rigidbody2D>().velocity = direction * speed;
 
 
+if(x == 0 && y == 0)
+{
+  animator.SetFloat("curDir", curDir);
+}
+else
+{
       animator.SetFloat("Horizontal", x);
       animator.SetFloat("Vertical", y);
+      if(x == 0 && y > 0) curDir = (float)dir.up;
+      if(x == 0 && y < 0) curDir = (float)dir.down;
+      if(x < 0 && y == 0) curDir = (float)dir.left;
+      if(x > 0 && y == 0) curDir = (float)dir.right;
 
+}
         animator.SetInteger("speed", (int)(Mathf.Abs(direction[0])+Mathf.Abs(direction[1])));
 
         //Animation Setup 
