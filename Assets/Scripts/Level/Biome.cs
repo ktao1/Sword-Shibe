@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pathfinding;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -310,6 +311,11 @@ public class Biome : MonoBehaviour
 
     public void ActivateRoom(Room room)
     {
+        AstarData data = AstarPath.active.data;
+        GridGraph gg = data.gridGraph;
+        gg.center = new Vector3((float)room.rows * 3.5f / 2, (float)room.columns * 3.5f / 2, 0f);
+        AstarPath.active.Scan();
+        
         if (room.isInstantiated)
         {
             room.Activate();

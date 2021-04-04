@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pathfinding;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,10 @@ public class Room : MonoBehaviour
     public Vector2 point;
 
     //Number of rows of room
-    private int rows;
+    public int rows;
 
     //Number of columns of room
-    private int columns;
+    public int columns;
 
     //Parent asset of room for readability/debugging
     private Transform roomBoard;
@@ -58,6 +59,7 @@ public class Room : MonoBehaviour
         point = _point;
         numOfObstacles = Random.Range(5, 20);
         numOfOpenTiles = rows * columns - (rows * 2 + ((columns - 2) * 2));
+
     }
 
     /*

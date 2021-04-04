@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae6f8355c54eaf4f96a2a9b01fce720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   updateSpeed: 2
   chargeSpeed: 2
   canAttack: 0
@@ -137,10 +138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b16bdefb3ce72044b21037cb9ce673f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 3
   spinShot: 0
   followShot: 0
   randomDir: 0
   maxDistance: 50
+  animator: {fileID: 2817736837301116298}
 --- !u!61 &342616448832315870
 BoxCollider2D:
   m_ObjectHideFlags: 0
