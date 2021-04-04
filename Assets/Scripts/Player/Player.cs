@@ -2,10 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public int health = 3;  
+    // Health System
+    #region HealthSystem
+    public int health = 3;
+    public int numOfHearts;
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite breakedHeart;
+    #endregion
+
+    public LevelSystem levelSystem;
+
     public float speed = 5; 
     public int immortalLayer = 13;  //The layer where the player can't take damage
     public int playerLayer = 12;    //The layer where the player can collide with things the player should collide with
@@ -19,7 +30,6 @@ public class Player : MonoBehaviour
     public int immuneLimit = 100;   //How long the invincibility frames are, timer counter limit
     public GameObject attack;       //Type of attack
     public Animator animator;       //Use when animating, set triggers, bools, ints, and floats for the animations
-
 
     //Status bools
     private bool immune = false;
@@ -36,9 +46,28 @@ public class Player : MonoBehaviour
     private int attackTime = 0;
     private int damageTime = 0;
 
+enum dir
+{
+  up,
+  down,
+  left,
+  right
+}
+
+float curDir = 1;
+
+
+    private LevelSystemUI levelSystemUI;
+
     void Start()
     {
-      source = GetComponent<AudioSource>();
+        // get the levelSystem
+        levelSystem = new LevelSystem();
+        levelSystemUI = GameObject.Find("LevelSystem").GetComponent<LevelSystemUI>();
+        levelSystemUI.SetLevelSystem(levelSystem);
+
+
+        source = GetComponent<AudioSource>();
 
       if(immortal)
       {
@@ -50,6 +79,7 @@ public class Player : MonoBehaviour
     {
       if(!dead)   //not paused
       {
+        UpdateHealth();     //Update player's health
         manageTimers();     //Put all timer loop stuff in here
         moveAndAttack();    //Groups together move and attack into one function
       }
@@ -78,9 +108,20 @@ public class Player : MonoBehaviour
 		  GetComponent<Rigidbody2D>().velocity = direction * speed;
 
 
+if(x == 0 && y == 0)
+{
+  animator.SetFloat("curDir", curDir);
+}
+else
+{
       animator.SetFloat("Horizontal", x);
       animator.SetFloat("Vertical", y);
+      if(x == 0 && y > 0) curDir = (float)dir.up;
+      if(x == 0 && y < 0) curDir = (float)dir.down;
+      if(x < 0 && y == 0) curDir = (float)dir.left;
+      if(x > 0 && y == 0) curDir = (float)dir.right;
 
+}
         animator.SetInteger("speed", (int)(Mathf.Abs(direction[0])+Mathf.Abs(direction[1])));
 
         //Animation Setup 
@@ -101,11 +142,31 @@ public class Player : MonoBehaviour
 
             if(x != 0)
             {
-            attackOffset[0] += x;
+            attackOffset[0] += 1;
             }
             if(y != 0)
             {
-              attackOffset[1] += y;
+              attackOffset[1] += 1;
+            }
+
+            if(x == 0 && y == 0)
+            {
+              if(curDir == (float)dir.up)
+              {
+                attackOffset[1] +=1;
+              }
+              if(curDir == (float)dir.down)
+              {
+                attackOffset[1] -=1;
+              }
+              if(curDir == (float)dir.left)
+              {
+                attackOffset[0] -= 1;
+              }
+              if(curDir == (float)dir.right)
+              {
+                attackOffset[0] += 1;
+              }
             }
 
             Instantiate (attack, attackOffset, transform.rotation);
@@ -121,8 +182,53 @@ public class Player : MonoBehaviour
           animator.SetTrigger("Damaged");
         }
       }
-    
-  public void manageTimers()
+
+    // function that update player's health
+    #region HealthSystem
+    public void UpdateHealth()
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (health > numOfHearts)
+            {
+                health = numOfHearts;
+            }
+
+            if (i < health)
+            {
+                hearts[i].sprite = fullHeart;
+            }
+            else
+            {
+                hearts[i].sprite = breakedHeart;
+            }
+            if (i < numOfHearts)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
+            }
+        }
+    }
+    #endregion
+
+    // level up system
+    #region LevelSystem
+    public void SetLevelSystem(LevelSystem levelSystem)
+    {
+        this.levelSystem = levelSystem;
+        levelSystem.OnLevelChanged += LevelSystem_OnLevelChanged;
+    }
+
+    private void LevelSystem_OnLevelChanged(object sender, System.EventArgs e)
+    {
+        // play animation here
+    }
+    #endregion
+
+    public void manageTimers()
   {
     if(immune)
     {

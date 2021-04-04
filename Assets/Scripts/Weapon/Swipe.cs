@@ -7,6 +7,14 @@ public class Swipe : MonoBehaviour
     public int damage = 1;
     public float lifelength = .3f;
 
+    GameObject player;
+    Player thePlayer;
+
+    private void Start()
+    {
+        player = GameObject.Find("Player");
+        thePlayer = player.GetComponent<Player>();
+    }
 
     void Update()
     {
@@ -17,8 +25,8 @@ public class Swipe : MonoBehaviour
     {
         if (c.gameObject.tag == "Enemy")
         {
-            Destroy (c.gameObject);
-            Destroy(gameObject);
+            c.gameObject.SendMessage("takeDamage", damage);
         }
+        
     }
 }
