@@ -233,13 +233,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTiles:
-  - {fileID: 2963492607894389795, guid: da32ab2680ad3e84d978f614546c1588, type: 3}
-  - {fileID: 5869561941199541883, guid: 954cbc3cc0327fe4b9537a1e309ed087, type: 3}
-  - {fileID: 401287840899789847, guid: 5e69d9f6187375c42ab10632ea7adb42, type: 3}
+  - {fileID: 2483367767447085681, guid: 5af01d134084fe242a1ecbace3ab43d2, type: 3}
+  - {fileID: 2811299489344764727, guid: bd4a5c65121ee8b4dbc59520228a5d7f, type: 3}
+  - {fileID: 2277827130783706228, guid: fd8f34505df727d4cb50c580358835fa, type: 3}
+  - {fileID: 8872208647351948790, guid: 236ff33bab75dad4d8157f694bb54d09, type: 3}
+  - {fileID: 4624983794806703532, guid: 6c7688c54e6c39046816a1782e24fefc, type: 3}
+  - {fileID: 6065178903988709167, guid: 1616ce3cac23b5a488548fbbf153d5ec, type: 3}
+  - {fileID: 536173840803020418, guid: 286a8315ac831344ea3cf869b6587aac, type: 3}
+  - {fileID: 589412048553338585, guid: 0c79b8e4bcfec6f40b2bd85458745fb3, type: 3}
+  - {fileID: 8953454622268293632, guid: 9075daaf857cba94985986d40306daa7, type: 3}
+  - {fileID: 3167982481611601279, guid: 30a87926e7608364c9c823869115b6d5, type: 3}
+  - {fileID: 7140184144014265774, guid: 2ba9cd71eda1db241a59c659b5b224ab, type: 3}
+  - {fileID: 5389638823000748555, guid: 2afa52ddf6a31bc4e92c462d10ecc0b9, type: 3}
   cornerTiles:
-  - {fileID: 3927737114218809293, guid: 6eb784d43d4052842a9f55541187e251, type: 3}
+  - {fileID: 8953454622268293632, guid: 3b61a12aabdd5a84cbb2cff73e5b38c3, type: 3}
   edgeTiles:
-  - {fileID: 4736382385368916755, guid: 8ba5bf58eeed67b48a90429189c848ee, type: 3}
+  - {fileID: 7702639776871055652, guid: 03accaa6f99181e4c86ef5546a501a24, type: 3}
   items: []
   enemies:
   - {fileID: 8463508463731890565, guid: 6c55330d3a1bde14f9ab5c4a928cd446, type: 3}
