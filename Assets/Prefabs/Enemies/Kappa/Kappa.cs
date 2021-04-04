@@ -31,6 +31,10 @@ public class Kappa : MonoBehaviour
         if(Time.timeScale != 0)
         {
             attackPlayer();
+            if(health < 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -59,6 +63,5 @@ public class Kappa : MonoBehaviour
     void takeDamage(int amount)
     {
         health -= amount;
-        
     }
 }

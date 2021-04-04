@@ -140,11 +140,20 @@ else
 
             Vector3 attackOffset = transform.position;
 
-            if(x != 0)
+            if(x < 0)
+            {
+            attackOffset[0] -= 1;
+            }
+            if(x > 0)
             {
             attackOffset[0] += 1;
             }
-            if(y != 0)
+
+            if(y < 0)
+            {
+              attackOffset[1] -= 1;
+            }
+            if(y > 0)
             {
               attackOffset[1] += 1;
             }

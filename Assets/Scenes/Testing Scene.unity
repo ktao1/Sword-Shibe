@@ -841,6 +841,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kappa
       objectReference: {fileID: 0}
+    - target: {fileID: 4649361288683292797, guid: 186bf3ec8a87e03429e5418daae3090f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 186bf3ec8a87e03429e5418daae3090f, type: 3}
 --- !u!1001 &656269780
@@ -1142,6 +1147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shirime
+      objectReference: {fileID: 0}
+    - target: {fileID: 8463508463731890565, guid: 6c55330d3a1bde14f9ab5c4a928cd446,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8463508463731890584, guid: 6c55330d3a1bde14f9ab5c4a928cd446,
         type: 3}
@@ -1888,10 +1898,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8648549752315731908, guid: e565d9ed2c1a9724bb0c7a6d8c4eafb2,
+        type: 3}
+      propertyPath: maxHide
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8648549752315731908, guid: e565d9ed2c1a9724bb0c7a6d8c4eafb2,
+        type: 3}
+      propertyPath: maxAttack
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 9003709334094499170, guid: e565d9ed2c1a9724bb0c7a6d8c4eafb2,
         type: 3}
       propertyPath: m_Name
       value: Tanuki
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003709334094499170, guid: e565d9ed2c1a9724bb0c7a6d8c4eafb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9003709334094499198, guid: e565d9ed2c1a9724bb0c7a6d8c4eafb2,
         type: 3}
