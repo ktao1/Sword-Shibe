@@ -79,6 +79,8 @@ public class GenerateWorld : MonoBehaviour
     public void NextLevel()
     {
         currentBiome += 1;
+        if (currentBiome == biomes.Count)
+            EndGame();
 
         //Link each biomes rooms together
         biomes[currentBiome].LinkRooms();
@@ -88,4 +90,17 @@ public class GenerateWorld : MonoBehaviour
         biomes[currentBiome].StartFirstLevel();
     }
 
+    //Quit the game
+    private void EndGame()
+    {
+        /*
+         * TODO:
+         * - Setup ending scenes
+         * - Add option to replay
+         * - Or quit out
+         */
+
+        //Exit the game
+        Application.Quit();
+    }
 }

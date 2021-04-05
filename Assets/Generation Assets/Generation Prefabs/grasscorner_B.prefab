@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4715274143576043191}
   - component: {fileID: 1312846883890508820}
   m_Layer: 0
-  m_Name: grasscorner 1
+  m_Name: grasscorner_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -741637663
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b79220d684a97534d968a91d94ad8404, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
