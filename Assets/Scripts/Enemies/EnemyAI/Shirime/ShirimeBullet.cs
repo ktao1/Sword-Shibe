@@ -4,8 +4,29 @@ using UnityEngine;
 
 public class ShirimeBullet : MonoBehaviour
 {
-    public Player player;
-    public int damage = 1;
+    public int damage;
+    public float speed;
+    public float lifelength;
+    Vector3 dir;
+    public void setDir(Vector3 dir)
+    {
+        this.dir = dir;
+        transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(dir));
+    }
+
+    public static float GetAngleFromVectorFloat(Vector3 dir)
+    {
+        dir = dir.normalized;
+        float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        if (n < 0) 
+            n += 360;
+        return n;
+    }
+    private void Update()
+    {
+        transform.position += dir *speed * Time.deltaTime;
+        Destroy(gameObject, lifelength);
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -15,14 +36,6 @@ public class ShirimeBullet : MonoBehaviour
         }
 
         Destroy(gameObject);
-       
-        /*
-        if (col.gameObject.tag == "Player")
-        {
-            Debug.Log("Hit player");
-            _player.takeDamage(damage);
-        }
-        */
     }
 
 }

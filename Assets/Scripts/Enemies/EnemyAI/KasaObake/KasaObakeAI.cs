@@ -25,7 +25,7 @@ public class KasaObakeAI : MonoBehaviour
     #endregion
 
     // Enemy Status
-    #region EnemyStatis
+    #region EnemyStatus
     // enemy health
     public int health;
     // enemy XP
@@ -35,6 +35,7 @@ public class KasaObakeAI : MonoBehaviour
 
     bool canAttack = true;
     bool canHurt = true;
+    bool canDamage = true;
     public float attackCD;
     public float recoveryCD;
     public float flashDuration;
@@ -57,7 +58,7 @@ public class KasaObakeAI : MonoBehaviour
     #endregion
 
     // Animation State
-    #region
+    #region Animation State
     string currentState = "hopping";
     const string HOPPING = "hopping";
     const string ATTACKING = "attacking";
@@ -65,7 +66,7 @@ public class KasaObakeAI : MonoBehaviour
     #endregion
 
     //A* path finding asset
-    #region
+    #region Astar Asset
     // upadteTimer and updateSpees: how often should upadte the path
     float upadteTimer;
     public float updateSpeed = 2f;
@@ -85,35 +86,15 @@ public class KasaObakeAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // find player gameObject
-        player = GameObject.Find("Player").transform;
-        _player = player.GetComponent<Player>();
-        startingPosition = transform.position;
-
-        // Get a reference to the Seeker component we added earlier
-        seeker = GetComponent<Seeker>();
-
-        // set material
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalMaterial = spriteRenderer.material;
-
-        // start the AI;
-        RoamPath();
-
+        defaultSetting();
     }
 
     /*
        Update is called once per frame
        Use state to do the enemy AI
     */
-    void FixedUpdate()
+    void Update()
     {
-        // if enemy health drop to 0 destory the enemy
-        if (health < 1)
-        {
-            _player.levelSystem.AddXP(XP);
-            Destroy(gameObject);
-        }
         switch (state)
         {
             default:
@@ -136,6 +117,24 @@ public class KasaObakeAI : MonoBehaviour
         Move();
     }
 
+    // Default setting
+    void defaultSetting()
+    {
+        // find player gameObject
+        player = GameObject.Find("Player").transform;
+        _player = player.GetComponent<Player>();
+        startingPosition = transform.position;
+
+        // Get a reference to the Seeker component we added earlier
+        seeker = GetComponent<Seeker>();
+
+        // set material
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = spriteRenderer.material;
+
+        // start the AI;
+        RoamPath();
+    }
     // Astar Movement
     #region AstartPathMovement
     // Callback function for UpdatePath(Vector2 position)
@@ -270,11 +269,11 @@ public class KasaObakeAI : MonoBehaviour
         {
             canAttack = false;
             speed = 7f;
-            UpdatePath(player.position);
             ChangeAnimationState(ATTACKING);
             attackDelay = animator.GetCurrentAnimatorStateInfo(0).length;
             Invoke("attackComplete", attackDelay);
         }
+        ChasePlayer();
     }
 
     // check attack is totally complete
@@ -294,10 +293,13 @@ public class KasaObakeAI : MonoBehaviour
     // AI hurt
     #region take damage
     // function that take the damage
-    public void takeDamage(int damage)
+    void takeDamage(int damage)
     {
-        health -= damage;
-        state = State.Hurt;
+        if (canDamage)
+        {
+            health -= damage;
+            state = State.Hurt;
+        }
     }
 
     // function that set hurt animaion
@@ -306,8 +308,9 @@ public class KasaObakeAI : MonoBehaviour
         if (canHurt)
         {
             canHurt = false;
-            ChangeAnimationState(HURT);
-            canMove = false; 
+            canMove = false;
+            canDamage = false;
+            ChangeAnimationState(HURT);    
             flash();
             Invoke("recovery", recoveryCD);
         }
@@ -316,9 +319,11 @@ public class KasaObakeAI : MonoBehaviour
     // hurt animation CD
     void recovery()
     {
-        ChangeAnimationState(HOPPING);
         canMove = true;
         canHurt = true;
+        canDamage = true;
+        ChangeAnimationState(HOPPING);
+        isDeath();
         findTarget();
     }
 
@@ -332,13 +337,10 @@ public class KasaObakeAI : MonoBehaviour
 
         flashRoutine = StartCoroutine(FlashRoutine());
     }
-
     IEnumerator FlashRoutine()
     {
         // Swap to the fflashMaterial
         spriteRenderer.material = flashMaterial;
-
-        Debug.Log("test");
         // pause the execution of this function for "flashDuration" seconds
         yield return new WaitForSeconds(flashDuration);
 
@@ -348,6 +350,19 @@ public class KasaObakeAI : MonoBehaviour
         // set the routine to null, signaling that it's finished
         flashRoutine = null;
     }
+
+    // function detect enemy death
+    void isDeath()
+    {
+        // if enemy health drop to 0 destory the enemy
+        if (health < 1)
+        {
+            _player.levelSystem.AddXP(XP);
+            Destroy(gameObject);
+        }
+    }
+
+   
 
     #endregion
 
