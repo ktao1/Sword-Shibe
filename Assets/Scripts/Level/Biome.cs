@@ -311,11 +311,7 @@ public class Biome : MonoBehaviour
 
     public void ActivateRoom(Room room)
     {
-        AstarData data = AstarPath.active.data;
-        GridGraph gg = data.gridGraph;
-        gg.center = new Vector3((float)room.rows * 3.5f / 2, (float)room.columns * 3.5f / 2, 0f);
-        AstarPath.active.Scan();
-        
+                
         if (room.isInstantiated)
         {
             room.Activate();
@@ -324,6 +320,11 @@ public class Biome : MonoBehaviour
         {
             room.InstantiateRoom(groundTiles, cornerTiles, edgeTiles, enemies, obstacles, exit);
         }
+
+        AstarData data = AstarPath.active.data;
+        GridGraph gg = data.gridGraph;
+        gg.center = new Vector3((float)room.rows * 3.5f / 2, (float)room.columns * 3.5f / 2, 0f);
+        AstarPath.active.Scan();
     }
 
     public void DeactivateRoom(Room room)
