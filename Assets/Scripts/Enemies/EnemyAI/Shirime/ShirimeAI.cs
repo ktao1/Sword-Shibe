@@ -201,29 +201,6 @@ public class ShirimeAI : MonoBehaviour
             animator.SetBool("canAttack", false);
             state = State.ChaseTarget;
         }
-        
-        
-        /*
-        if (attackTimer < attackSpeed)
-        {
-            speed = 5f;
-            attackTimer += Time.deltaTime;
-            // attacking
-        }
-        else
-        {
-            attackCDTimer += Time.deltaTime;
-            canMove = false;
-            if (attackCDTimer > attackCD)
-            {
-                speed = 3f;
-                attackTimer = 0;
-                attackCDTimer = 0;
-                canMove = true;
-                state = State.ChaseTarget;
-            }
-        }
-        */
     }
 
     private void charging()

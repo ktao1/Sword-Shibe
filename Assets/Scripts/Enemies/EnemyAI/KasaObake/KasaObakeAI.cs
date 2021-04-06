@@ -5,112 +5,141 @@ using Pathfinding;
 
 public class KasaObakeAI : MonoBehaviour
 {
+    // get gameobject
+    #region GameObject
     // get player transform
     Transform player;
     // get Player Class use for doing damage
     Player _player;
     // get animator
     public Animator animator;
-    private Rigidbody2D rb;
+    #endregion
 
+    // get spirte shader
+    #region Material
+    SpriteRenderer spriteRenderer;
+    Material originalMaterial;
+    [SerializeField]
+    Material flashMaterial;
+    Coroutine flashRoutine;
+    #endregion
 
-    // upadteTimer and updateSpees: how often should upadte the path
-    float upadteTimer;
-    public float updateSpeed = 2f;
-
-    // chargeTimer and ChargeSpeed: how often should enemy attack
-    float chargeTimer;
-    public float chargeSpeed = 2f;
-    public bool canAttack;
-
-    public float attackSpeed = .5f;
-    public float attackTimer;
-
-    public float attackCD = 1f;
-    public float attackCDTimer;
-
-    // enemy attack's damge
-    public int damage = 1;
+    // Enemy Status
+    #region EnemyStatis
     // enemy health
-    public int health = 1;
+    public int health;
     // enemy XP
-    public int XP = 50;
+    public int XP;
+    // enemy attack's damge
+    public int damage;
 
+    bool canAttack = true;
+    bool canHurt = true;
+    public float attackCD;
+    public float recoveryCD;
+    public float flashDuration;
     // how far enemy can see the player
-    public float detectDistance = 5.0f;
-    public float attackRange = 3.0f;
+    public float detectDistance;
+    public float attackRange;
+    float attackDelay;
+    #endregion
 
-    // Enemy AI 
+    // AI State 
+    #region AI State
     private enum State
     {
         Romaing,
         ChaseTarget,
         Attack,
+        Hurt,
     }
     private State state;
+    #endregion
+
+    // Animation State
+    #region
+    string currentState = "hopping";
+    const string HOPPING = "hopping";
+    const string ATTACKING = "attacking";
+    const string HURT = "hurt";
+    #endregion
 
     //A* path finding asset
-    private Seeker seeker;
+    #region
+    // upadteTimer and updateSpees: how often should upadte the path
+    float upadteTimer;
+    public float updateSpeed = 2f;
+
+    Seeker seeker;
     public Path path;
     // Enemy Movement speed
     public float speed = 3;
     // Enemy movmen determines the distance to the point the AI will move to
-    public float nextWaypointDistance = 3;
-    private int currentWaypoint = 0;
+    public float nextWaypointDistance;
+    int currentWaypoint = 0;
     public bool reachedEndOfPath;
     public bool canMove = true;
-
     private Vector2 startingPosition;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
+        // find player gameObject
         player = GameObject.Find("Player").transform;
         _player = player.GetComponent<Player>();
         startingPosition = transform.position;
-        // roamPosition.position = GetRoamPosition();
-        rb = GetComponent<Rigidbody2D>();
 
         // Get a reference to the Seeker component we added earlier
         seeker = GetComponent<Seeker>();
 
+        // set material
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = spriteRenderer.material;
+
+        // start the AI;
         RoamPath();
 
     }
 
-    // Update is called once per frame
-    // Use state to do the enemy AI
+    /*
+       Update is called once per frame
+       Use state to do the enemy AI
+    */
     void FixedUpdate()
     {
+        // if enemy health drop to 0 destory the enemy
         if (health < 1)
         {
             _player.levelSystem.AddXP(XP);
             Destroy(gameObject);
         }
-
         switch (state)
         {
             default:
             case State.Romaing:
                 // enemy start roaming and try to find the player.
                 RoamPath();
-                findTarget();
                 break;
             // if enemy find the player, start chase player.
             case State.ChaseTarget:
                 ChasePlayer();
-                findTarget();
                 break;
             case State.Attack:
                 attack();
-                ChasePlayer();
+                break;
+            case State.Hurt:
+                hurt();
                 break;
         }
+        findTarget();
         Move();
     }
 
+    // Astar Movement
+    #region AstartPathMovement
     // Callback function for UpdatePath(Vector2 position)
-    public void OnPathComplete(Path p)
+    void OnPathComplete(Path p)
     {
         if (!p.error)
         {
@@ -134,64 +163,45 @@ public class KasaObakeAI : MonoBehaviour
     }
 
     // update Roaming path
-    private void RoamPath()
+    void RoamPath()
     {
         Vector2 roamPosition = startingPosition + new Vector2(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f));
         UpdatePath(roamPosition);
     }
 
     // update Chasing path
-    private void ChasePlayer()
+    void ChasePlayer()
     {
         UpdatePath(player.position);
     }
 
     // Try to find the target
-    private void findTarget()
+    void findTarget()
     {
-        if (Vector2.Distance(transform.position, player.position) < attackRange)
-        {
-            ChasePlayer();
-            state = State.Attack;
-        }
-        else if (Vector2.Distance(transform.position, player.position) < detectDistance)
-        {
-            updateSpeed = 0.5f;
-            state = State.ChaseTarget;
-        }
-        else
-        {
-            state = State.Romaing;
-        }
-    }
 
-    private void attack()
-    {
-        if(attackTimer < attackSpeed)
+        if (canMove)
         {
-            speed = 7f;
-            animator.SetBool("attack", true);
-            attackTimer += Time.deltaTime;
-            // attacking
-        }
-        else
-        {
-            animator.SetBool("attack", false);
-            attackCDTimer += Time.deltaTime;
-            canMove = false;
-            if(attackCDTimer > attackCD)
+            if (Vector2.Distance(transform.position, player.position) < attackRange)
             {
-                speed = 3f;
-                attackTimer = 0;
-                attackCDTimer = 0;
-                canMove = true;
+                updateSpeed = 0.1f;
+                state = State.Attack;
+            }
+            else if (Vector2.Distance(transform.position, player.position) < detectDistance)
+            {
+                updateSpeed = 0.5f;
                 state = State.ChaseTarget;
             }
+            else
+            {
+                updateSpeed = 1f;
+                state = State.Romaing;
+            }
         }
+
     }
 
-    // after find the path, Move() actually move the Enemy base on the path
-    private void Move()
+    // AI move
+    void Move()
     {
         if (!canMove)
         {
@@ -249,21 +259,118 @@ public class KasaObakeAI : MonoBehaviour
         // If you are writing a 2D game you should remove the CharacterController code above and instead move the transform directly by uncommenting the next line
         transform.position += velocity * Time.deltaTime;
     }
+    #endregion
 
+    // AI attack
+    #region Attack
+    // function that doing attack
+    void attack()
+    {
+        if (canAttack)
+        {
+            canAttack = false;
+            speed = 7f;
+            UpdatePath(player.position);
+            ChangeAnimationState(ATTACKING);
+            attackDelay = animator.GetCurrentAnimatorStateInfo(0).length;
+            Invoke("attackComplete", attackDelay);
+        }
+    }
+
+    // check attack is totally complete
+    void attackComplete()
+    {
+        speed = 3f;
+        ChangeAnimationState(HOPPING);
+        Invoke("waitForCD", attackCD);
+    }
+    // attack CD
+    void waitForCD()
+    {
+        canAttack = true;
+    }
+    #endregion
+
+    // AI hurt
+    #region take damage
+    // function that take the damage
     public void takeDamage(int damage)
     {
         health -= damage;
+        state = State.Hurt;
     }
 
-    // Use collider to do the attack or be attacked. 
+    // function that set hurt animaion
+    void hurt()
+    {
+        if (canHurt)
+        {
+            canHurt = false;
+            ChangeAnimationState(HURT);
+            canMove = false; 
+            flash();
+            Invoke("recovery", recoveryCD);
+        }
+    }
+
+    // hurt animation CD
+    void recovery()
+    {
+        ChangeAnimationState(HOPPING);
+        canMove = true;
+        canHurt = true;
+        findTarget();
+    }
+
+    // function that makes sprite flash
+    void flash()
+    {
+        if (flashRoutine != null)
+        {
+            StopCoroutine(flashRoutine);
+        }
+
+        flashRoutine = StartCoroutine(FlashRoutine());
+    }
+
+    IEnumerator FlashRoutine()
+    {
+        // Swap to the fflashMaterial
+        spriteRenderer.material = flashMaterial;
+
+        Debug.Log("test");
+        // pause the execution of this function for "flashDuration" seconds
+        yield return new WaitForSeconds(flashDuration);
+
+        // after pause, swap back to original material
+        spriteRenderer.material = originalMaterial;
+
+        // set the routine to null, signaling that it's finished
+        flashRoutine = null;
+    }
+
+    #endregion
+
+    // function that changes animation
+    void ChangeAnimationState(string newState)
+    {
+        // stop same animation interuuping each other
+        if (currentState == newState)
+            return;
+        // play new animation 
+        animator.Play(newState);
+        // set the current state
+        currentState = newState;
+    }
+
+    // Use collider to do the attack
     void OnCollisionEnter2D(Collision2D c)
     {
-        
         if (c.gameObject.tag == "Player" && c.gameObject.layer != 13)
         {
             c.gameObject.SendMessage("takeDamage", damage);
         }
-        
     }
+
 
 }

@@ -20,13 +20,13 @@ public class Swipe : MonoBehaviour
     {
       Destroy(gameObject, lifelength);
     }
-    
+
     void OnCollisionEnter2D(Collision2D c)
     {
+        Debug.LogError(c.gameObject.tag);
         if (c.gameObject.tag == "Enemy")
         {
             c.gameObject.SendMessage("takeDamage", damage);
         }
-        
     }
 }
