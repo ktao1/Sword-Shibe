@@ -177,7 +177,7 @@ MonoBehaviour:
   health: 3
   XP: 50
   damage: 1
-  attackCD: 3
+  attackCD: 1.5
   recoveryCD: 0.5
   flashDuration: 0.1
   detectDistance: 7

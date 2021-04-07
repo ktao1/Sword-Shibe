@@ -177,7 +177,7 @@ MonoBehaviour:
     type: 3}
   flashMaterial: {fileID: 2100000, guid: 9c156d9eed0e1f647bd097ac963b161e, type: 2}
   damage: 1
-  health: 30
+  health: 2
   XP: 50
   attackCD: 1
   recoveryCD: 0.5

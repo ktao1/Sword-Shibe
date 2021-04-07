@@ -319,9 +319,13 @@ public class KasaObakeAI : MonoBehaviour
     // hurt animation CD
     void recovery()
     {
+        CancelInvoke();
         canMove = true;
         canHurt = true;
         canDamage = true;
+        speed = 3f;
+        if (!canAttack)
+            Invoke("waitForCD", attackCD);
         ChangeAnimationState(HOPPING);
         isDeath();
         findTarget();

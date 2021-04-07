@@ -208,7 +208,6 @@ public class ShirimeAI : MonoBehaviour
                 state = State.Romaing;
             }
         }
-        Debug.Log(state);
     }
 
     // after find the path, Move() actually move the Enemy base on the path
