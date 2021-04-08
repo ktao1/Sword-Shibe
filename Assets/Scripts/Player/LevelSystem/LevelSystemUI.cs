@@ -9,13 +9,12 @@ public class LevelSystemUI : MonoBehaviour
     private Text levelText;
     private Image XPBarImage;
     private LevelSystem levelSystem;
+    private LevelSystemAnimator levelSystemAnimator;
+
     private void Awake()
     {
         levelText = transform.Find("LevelText").GetComponent<Text>();
         XPBarImage = transform.Find("XPBar").Find("XP").GetComponent<Image>();
-
-        SetXPBarSize(.1f);
-        SetLevelNum(7);
     }
 
     private void SetXPBarSize(float XPNormalized)
@@ -30,25 +29,30 @@ public class LevelSystemUI : MonoBehaviour
 
     public void SetLevelSystem(LevelSystem levelSystem)
     {
-        // set the levelsystem object
         this.levelSystem = levelSystem;
+    }
+
+    public void SetLevelSystemAnimator(LevelSystemAnimator levelSystemAnimator)
+    {
+        // set the levelsystem object
+        this.levelSystemAnimator = levelSystemAnimator;
 
         // update the starting values;
-        SetLevelNum(levelSystem.getLevel());
-        SetXPBarSize(levelSystem.GetXPNormalized());
+        SetLevelNum(levelSystemAnimator.getLevel());
+        SetXPBarSize(levelSystemAnimator.GetXPNormalized());
 
         // subscribe to the changed events
-        levelSystem.OnXPChanged += levelSystem_OnXPChanged;
-        levelSystem.OnLevelChanged += LevelSystem_OnLevelChanged;
+        levelSystemAnimator.OnXPChanged += levelSystemAnimator_OnXPChanged;
+        levelSystemAnimator.OnLevelChanged += levelSystemAnimator_OnLevelChanged;
     }
 
-    private void LevelSystem_OnLevelChanged(object sender, EventArgs e)
+    private void levelSystemAnimator_OnLevelChanged(object sender, EventArgs e)
     {
-        SetLevelNum(levelSystem.getLevel());
+        SetLevelNum(levelSystemAnimator.getLevel());
     }
 
-    private void levelSystem_OnXPChanged(object sender, EventArgs e)
+    private void levelSystemAnimator_OnXPChanged(object sender, EventArgs e)
     {
-        SetXPBarSize(levelSystem.GetXPNormalized());
+        SetXPBarSize(levelSystemAnimator.GetXPNormalized());
     }
 }

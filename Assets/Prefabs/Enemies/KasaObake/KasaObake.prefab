@@ -174,8 +174,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2763387642361644035}
   flashMaterial: {fileID: 2100000, guid: 9c156d9eed0e1f647bd097ac963b161e, type: 2}
-  health: 3
-  XP: 50
+  health: 1
+  XP: 10
   damage: 1
   attackCD: 1.5
   recoveryCD: 0.5

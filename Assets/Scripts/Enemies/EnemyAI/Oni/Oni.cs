@@ -183,7 +183,7 @@ public class Oni : MonoBehaviour
             }
             else if (Vector2.Distance(transform.position, player.position) < detectDistance)
             {
-                updateSpeed = 0.5f;
+                updateSpeed = 0.1f;
                 speed = 10f;
                 state = State.ChaseTarget;
             }

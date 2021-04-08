@@ -175,7 +175,7 @@ MonoBehaviour:
   animator: {fileID: 800105458804917878}
   flashMaterial: {fileID: 2100000, guid: 9c156d9eed0e1f647bd097ac963b161e, type: 2}
   damage: 1
-  health: 10
+  health: 5
   XP: 50
   attackCD: 1
   recoveryCD: 0.5
