@@ -24,8 +24,12 @@ public class Player : MonoBehaviour
     private LevelSystemUI levelSystemUI;
     #endregion
 
-// SkillSystem
-private PlayerSkills playerSkills;
+    #region
+    // SkillSystem
+    private PlayerSkills playerSkills;
+    private SkillTree_UI skillTree_UI;
+    [SerializeField] private GameObject SkillTree;
+    #endregion
 
 
 
@@ -69,13 +73,18 @@ enum dir
 float curDir = 1;
 
 
-    
+    private void Awake()
+    {
+        
+    }
 
     void Start()
     {
         player = this.GetComponent<Player>();
 
         LevelSystemStartSetting();
+        SkillSystemStartSetting();
+
 
         source = GetComponent<AudioSource>();
 
@@ -87,7 +96,10 @@ float curDir = 1;
 
     void Update ()    //Every frame...
     {
-      if(!dead)   //not paused
+
+        OpenCloseSkillMenu();
+
+      if (!dead)   //not paused
       {
         UpdateHealth();     //Update player's health
         manageTimers();     //Put all timer loop stuff in here
@@ -157,6 +169,7 @@ float curDir = 1;
     {
         // set full health
         health = numOfHearts;
+        playerSkills.addSkillPoint();
         Debug.Log("Lvel Up!");
     }
     #endregion
@@ -164,17 +177,46 @@ float curDir = 1;
     // skill System
     #region SkillSystem
 
-    // get playerSkills
-    public PlayerSkills GetPlayerSkills()
+    public void SkillSystemStartSetting()
     {
-        return playerSkills;
+        playerSkills = new PlayerSkills();
+        skillTree_UI = GameObject.Find("SkillTree_UI").GetComponent<SkillTree_UI>();
+        skillTree_UI.setPlayerSkills(playerSkills);
+
+        playerSkills.OnSkillUnlocked += PlayerSkills_OnSkillUnlocked;
     }
 
-    // heathup1 
-    public bool canHealthUp1()
+    private void OpenCloseSkillMenu()
     {
-        return playerSkills.isSkillUnlocked(PlayerSkills.SkillType.HealthUp1);
+        if (Input.GetButtonDown("SkillsTree"))
+        {
+            SkillTree.SetActive(!SkillTree.activeSelf);
+        }
     }
+
+    private void PlayerSkills_OnSkillUnlocked(object sender, PlayerSkills.OnskillUnlockedEventArgs e)
+    {
+        switch (e.skillType)
+        {
+            case PlayerSkills.SkillType.HealthUp_1:
+                SetHealthAmount(5);
+                break;
+            case PlayerSkills.SkillType.HealthUp_2:
+                SetHealthAmount(7);
+                break;
+            case PlayerSkills.SkillType.HealthUp_3:
+                SetHealthAmount(10);
+                break;
+        }
+    }
+
+    private void SetHealthAmount(int HealthAmount)
+    {
+        numOfHearts = HealthAmount;
+        health = numOfHearts;
+    }
+
+
 
     #endregion
 
@@ -376,4 +418,6 @@ void OnTriggerEnter2D(Collider2D col)
 }
 
 }
+
+   
 
