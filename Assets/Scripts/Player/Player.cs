@@ -179,12 +179,17 @@ float curDir = 1;
 
     public void SkillSystemStartSetting()
     {
+
         playerSkills = new PlayerSkills();
         skillTree_UI = GameObject.Find("SkillTree_UI").GetComponent<SkillTree_UI>();
         skillTree_UI.setPlayerSkills(playerSkills);
 
         playerSkills.OnSkillUnlocked += PlayerSkills_OnSkillUnlocked;
+
+
+        SkillTree.SetActive(false);
     }
+
 
     private void OpenCloseSkillMenu()
     {
