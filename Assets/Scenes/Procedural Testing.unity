@@ -278,8 +278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seed: 0
-  maxRows: 12
-  maxColumns: 12
+  maxRows: 10
+  maxColumns: 20
   roomsPerBiome: 2
 --- !u!114 &519492681 stripped
 MonoBehaviour:
