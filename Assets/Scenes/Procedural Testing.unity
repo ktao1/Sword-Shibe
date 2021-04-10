@@ -233,18 +233,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTiles:
-  - {fileID: 2483367767447085681, guid: 5af01d134084fe242a1ecbace3ab43d2, type: 3}
-  - {fileID: 2811299489344764727, guid: bd4a5c65121ee8b4dbc59520228a5d7f, type: 3}
-  - {fileID: 2277827130783706228, guid: fd8f34505df727d4cb50c580358835fa, type: 3}
-  - {fileID: 8872208647351948790, guid: 236ff33bab75dad4d8157f694bb54d09, type: 3}
-  - {fileID: 4624983794806703532, guid: 6c7688c54e6c39046816a1782e24fefc, type: 3}
+  - {fileID: 8953454622268293632, guid: 9075daaf857cba94985986d40306daa7, type: 3}
+  - {fileID: 1076765555138673838, guid: f6e59a99bc8c3174081fc7713199780c, type: 3}
+  - {fileID: 9019947061455994906, guid: 54ef2aca537e65f479175adf57ae6b74, type: 3}
+  - {fileID: 6276221563529954647, guid: 0b73507698ceb3641b7d114324295ab5, type: 3}
+  - {fileID: 8485055618536113234, guid: 50300ee09bc405f42abd405cef8aa43f, type: 3}
+  - {fileID: 427445521443827604, guid: 06774b319c3a0cb44a62ffe8c3c1c2fd, type: 3}
+  - {fileID: 6260800179591075250, guid: 7473b83fe5914504d8fbda6dd93e3d22, type: 3}
+  - {fileID: 2312847857892178205, guid: 7e49ce0df73011d4993a96d46fb92730, type: 3}
+  - {fileID: 4244887258623213981, guid: 01631ef9a930df047a8ea5deb0f66fc9, type: 3}
+  - {fileID: 6454883065691005169, guid: d33a352c6b218b348abfb1375488167a, type: 3}
+  - {fileID: 449163007499210254, guid: beda812ee235b6549af17cb8742686d7, type: 3}
+  - {fileID: 7929961690657399525, guid: 2e3a4eeea78c2634a9774f54c1189359, type: 3}
+  - {fileID: 772131668809110979, guid: 428209d6999dc454c84a744f02112e38, type: 3}
+  - {fileID: 4964657817033542390, guid: fcad5fc57fb101e4ea1c65a84fd7e3e0, type: 3}
+  - {fileID: 4336519271966304366, guid: a742eaf2646397843a4f54051b2d93d5, type: 3}
   - {fileID: 6065178903988709167, guid: 1616ce3cac23b5a488548fbbf153d5ec, type: 3}
   - {fileID: 536173840803020418, guid: 286a8315ac831344ea3cf869b6587aac, type: 3}
-  - {fileID: 589412048553338585, guid: 0c79b8e4bcfec6f40b2bd85458745fb3, type: 3}
-  - {fileID: 8953454622268293632, guid: 9075daaf857cba94985986d40306daa7, type: 3}
-  - {fileID: 3167982481611601279, guid: 30a87926e7608364c9c823869115b6d5, type: 3}
-  - {fileID: 7140184144014265774, guid: 2ba9cd71eda1db241a59c659b5b224ab, type: 3}
-  - {fileID: 5389638823000748555, guid: 2afa52ddf6a31bc4e92c462d10ecc0b9, type: 3}
   cornerTiles:
   - {fileID: 8953454622268293632, guid: 3b61a12aabdd5a84cbb2cff73e5b38c3, type: 3}
   edgeTiles:
@@ -386,6 +391,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4748123824111664046, guid: e4588d2ee454a994983194f442e6ea68,
         type: 3}
+      propertyPath: SkillTree
+      value: 
+      objectReference: {fileID: 989967966}
+    - target: {fileID: 4748123824111664046, guid: e4588d2ee454a994983194f442e6ea68,
+        type: 3}
       propertyPath: fullHeart
       value: 
       objectReference: {fileID: 21300000, guid: 3d689fe9125826a4b9b5f4531e3a8f28,
@@ -455,6 +465,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &989967966 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 208302450, guid: 9d35025e4b3056049a5267b42bf3131c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1076188101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1076188101
 PrefabInstance:
   m_ObjectHideFlags: 0
