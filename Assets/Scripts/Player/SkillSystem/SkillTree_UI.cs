@@ -101,7 +101,6 @@ public class SkillTree_UI : MonoBehaviour
                 {
                     Debug.Log("Can't unlock" + skillType + "!");
                 }
-                // playerSkills.TryUnlockSkill(skillType);
             };
         }
 

@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c08dadf92066e4498721668b83ef657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 4
   numOfHearts: 4
   hearts:
   - {fileID: 0}
@@ -239,13 +239,14 @@ MonoBehaviour:
   - {fileID: 0}
   fullHeart: {fileID: 21300000, guid: 3d689fe9125826a4b9b5f4531e3a8f28, type: 3}
   breakedHeart: {fileID: 21300000, guid: f80ebbc375a6be94aa6d1f54725934cf, type: 3}
+  SkillTree: {fileID: 0}
   speed: 5
   immortalLayer: 13
   playerLayer: 12
   swordSound: {fileID: 8300000, guid: 37c0193dd2051d14cbc4cfb91e30ffc6, type: 3}
   attackLimit: 50
   dashLimit: 40
-  immortal: 1
+  immortal: 0
   immuneLimit: 80
   attack: {fileID: 7759383045867315639, guid: 58cf58090d149184c9b13be1f80aacc8, type: 3}
   animator: {fileID: 4818181438337094617}
