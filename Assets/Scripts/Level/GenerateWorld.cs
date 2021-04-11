@@ -23,6 +23,7 @@ public class GenerateWorld : MonoBehaviour
     //Value that holds the current biome index
     private int currentBiome = 0;
 
+    private Transform AllBullets;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,8 @@ public class GenerateWorld : MonoBehaviour
 
         //Instantiate first biomes starting room
         biomes[currentBiome].StartFirstLevel();
-
+        AllBullets = new GameObject("AllBullets").transform;
+        AllBullets.SetParent(gameObject.transform);
     }
 
     // Update is called once per frame

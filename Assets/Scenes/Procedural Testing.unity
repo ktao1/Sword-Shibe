@@ -264,6 +264,12 @@ MonoBehaviour:
   bossRoomArea: {fileID: 0}
   numOfRooms: 5
   id: 0
+  challengeMin: 5
+  challengeMax: 8
+  challengeCurRounds: 0
+  challengeRounds: 3
+  challengeTimer: 1000
+  challengeCurTimer: 0
 --- !u!114 &185810143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +323,12 @@ MonoBehaviour:
     type: 3}
   numOfRooms: 4
   id: 0
+  challengeMin: 5
+  challengeMax: 8
+  challengeCurRounds: 0
+  challengeRounds: 3
+  challengeTimer: 50000
+  challengeCurTimer: 0
 --- !u!114 &185810144
 MonoBehaviour:
   m_ObjectHideFlags: 0

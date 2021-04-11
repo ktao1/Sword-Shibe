@@ -314,7 +314,7 @@ public class Biome : MonoBehaviour
     {
         if(room.point == bossRoom.point)
         {
-            ProduceBossLevel();
+            ProduceChallengeLevel();
         }   
         else if (room.isInstantiated)
         {
@@ -336,13 +336,41 @@ public class Biome : MonoBehaviour
         room.Deactivate();
     }
 
+public int challengeMin = 5;
+public int challengeMax = 8;
+public int challengeCurRounds = 0;
+public int challengeRounds = 3;
+
+public float challengeTimer = 5000f;
+private float challengeCurTimer;
     //Loads the premade boss level
-    public void ProduceBossLevel()
+    public void ProduceChallengeLevel()
     {
         GameObject roomInstance = Instantiate(bossRoomArea, new Vector3(0f, 0f, 0f), Quaternion.identity) as GameObject;
-        
         roomInstance.transform.SetParent(GameObject.Find("BiomeBoard").transform);
+        GameObject.FindWithTag("Player").transform.position = new Vector3(0f, 0f, 0f);
+
+        challengeCurTimer = Time.time + challengeTimer;
+        ChallengeLevelSpawnEnemies();
+        while(challengeCurRounds < challengeRounds)
+        {
+        if(challengeCurTimer < Time.time)
+        {
+            Debug.Log("CHECKING");
+            challengeCurTimer = Time.time + challengeTimer;
+            challengeCurRounds++;
+        }
+        }
     }
+    public void ChallengeLevelSpawnEnemies()
+    {
+        int enemyAmount = Random.Range(challengeMin, challengeMax);
+        Debug.Log("Spawning");
 
-
+            for(int i = 0; i < enemyAmount; i++)
+            {
+                Vector3 newEnemy = new Vector3(Random.Range(-9.2f, 9.2f), Random.Range(-5f, 5f), 0f);
+                Instantiate(enemies[Random.Range(0,enemies.Length)], newEnemy, Quaternion.identity);    
+            }
+    }
 }
