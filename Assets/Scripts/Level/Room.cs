@@ -208,18 +208,18 @@ public class Room : MonoBehaviour
                 //90-degree Z rotation corner tile, bottom-left
                 if (i == 0 && j == 0)
                 {
-                    selectedTile = cornerTiles[Random.Range(0, cornerTiles.Length)];
+                    selectedTile = cornerTiles[3];
 
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
 
                     tileInstance.transform.SetParent(roomBoard);
-                    tileInstance.transform.eulerAngles = new Vector3(tileInstance.transform.eulerAngles.x, tileInstance.transform.eulerAngles.y, tileInstance.transform.eulerAngles.z + 90);
+                    //tileInstance.transform.eulerAngles = new Vector3(tileInstance.transform.eulerAngles.x, tileInstance.transform.eulerAngles.y, tileInstance.transform.eulerAngles.z + 90);
                 }
                 //Base corner tile, top-left
                 else if (i == 0 && j == rows * 3.5)
                 {
-                    selectedTile = cornerTiles[Random.Range(0, cornerTiles.Length)];
+                    selectedTile = cornerTiles[0];
 
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
@@ -230,31 +230,31 @@ public class Room : MonoBehaviour
                 //180-degree Z rotation corner tile, bottom-right
                 else if (i == columns * 3.5 && j == 0)
                 {
-                    selectedTile = cornerTiles[Random.Range(0, cornerTiles.Length)];
+                    selectedTile = cornerTiles[2];
 
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
 
                     tileInstance.transform.SetParent(roomBoard);
-                    tileInstance.transform.eulerAngles = new Vector3(tileInstance.transform.eulerAngles.x, tileInstance.transform.eulerAngles.y, tileInstance.transform.eulerAngles.z + 180);
+                    //tileInstance.transform.eulerAngles = new Vector3(tileInstance.transform.eulerAngles.x, tileInstance.transform.eulerAngles.y, tileInstance.transform.eulerAngles.z + 180);
                 }
                 //-90-degree Z rotation corner tile, top-right
                 else if (i == columns * 3.5 && j == rows * 3.5)
                 {
-                    selectedTile = cornerTiles[Random.Range(0, cornerTiles.Length)];
+                    selectedTile = cornerTiles[1];
 
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
 
                     tileInstance.transform.SetParent(roomBoard);
-                    tileInstance.transform.eulerAngles = new Vector3(tileInstance.transform.eulerAngles.x, tileInstance.transform.eulerAngles.y, tileInstance.transform.eulerAngles.z - 90);
+                    //tileInstance.transform.eulerAngles = new Vector3(tileInstance.transform.eulerAngles.x, tileInstance.transform.eulerAngles.y, tileInstance.transform.eulerAngles.z - 90);
                 }
 
                 //Edge tiles, left-edge
                 else if (i == 0)
                 {
 
-                    selectedTile = edgeTiles[Random.Range(0, edgeTiles.Length)];
+                    selectedTile = edgeTiles[0];
 
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
@@ -265,37 +265,37 @@ public class Room : MonoBehaviour
                 else if (i == columns * 3.5)
                 {
 
-                    selectedTile = edgeTiles[Random.Range(0, edgeTiles.Length)];
+                    selectedTile = edgeTiles[2];
 
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
 
                     tileInstance.transform.SetParent(roomBoard);
-                    tileInstance.transform.eulerAngles = new Vector3(tileInstance.transform.eulerAngles.x, tileInstance.transform.eulerAngles.y, tileInstance.transform.eulerAngles.z + 180);
+                    //tileInstance.transform.eulerAngles = new Vector3(tileInstance.transform.eulerAngles.x, tileInstance.transform.eulerAngles.y, tileInstance.transform.eulerAngles.z + 180);
                 }
                 //90-degree Z rotation edge tiles, bottom-edge
                 else if (j == 0)
                 {
 
-                    selectedTile = edgeTiles[Random.Range(0, edgeTiles.Length)];
+                    selectedTile = edgeTiles[3];
 
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
 
                     tileInstance.transform.SetParent(roomBoard);
-                    tileInstance.transform.eulerAngles = new Vector3(tileInstance.transform.eulerAngles.x, tileInstance.transform.eulerAngles.y, tileInstance.transform.eulerAngles.z + 90);
+                    //tileInstance.transform.eulerAngles = new Vector3(tileInstance.transform.eulerAngles.x, tileInstance.transform.eulerAngles.y, tileInstance.transform.eulerAngles.z + 90);
                 }
                 //-90-degree Z rotation edge tiles, top-edge
                 else if (j == rows * 3.5)
                 {
 
-                    selectedTile = edgeTiles[Random.Range(0, edgeTiles.Length)];
+                    selectedTile = edgeTiles[1];
 
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
 
                     tileInstance.transform.SetParent(roomBoard);
-                    tileInstance.transform.eulerAngles = new Vector3(tileInstance.transform.eulerAngles.x, tileInstance.transform.eulerAngles.y, tileInstance.transform.eulerAngles.z - 90);
+                    //tileInstance.transform.eulerAngles = new Vector3(tileInstance.transform.eulerAngles.x, tileInstance.transform.eulerAngles.y, tileInstance.transform.eulerAngles.z - 90);
                 }
                 //Add tiles randomly into scene
                 else
@@ -308,12 +308,16 @@ public class Room : MonoBehaviour
                     {
                         GameObject neighbor = temp[k];
                         
-                        if(    (!grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().W.CompareTo(grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E) == 0)) &&
+                        if((grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().W.CompareTo(grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E) == 0)) {
+                            Debug.Log("Type Compare E and W");
+                            Debug.Log(neighbor.GetComponent<Connector>().W + " " + grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E);
+                        }
+
+                        if((!grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().W.CompareTo(grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E) == 0)) &&
                             (!grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().E.CompareTo(grid[new Vector3(i + 3.5f, j, 0f)].GetComponent<Connector>().W) == 0)) &&
-                            (!grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) && neighbor.GetComponent<Connector>().S.CompareTo(grid[new Vector3(i, j - 3.5f, 0f)].GetComponent<Connector>().N) == 0)) &&
-                            (!grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) && neighbor.GetComponent<Connector>().N.CompareTo(grid[new Vector3(i, j + 3.5f, 0f)].GetComponent<Connector>().S) == 0)))
+                            (!grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) && neighbor.GetComponent<Connector>().S.CompareTo(grid[new Vector3(i, j + 3.5f, 0f)].GetComponent<Connector>().N) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) && neighbor.GetComponent<Connector>().N.CompareTo(grid[new Vector3(i, j - 3.5f, 0f)].GetComponent<Connector>().S) == 0)))
                         {
-                            
                             available.Add(neighbor);
                         }
                        

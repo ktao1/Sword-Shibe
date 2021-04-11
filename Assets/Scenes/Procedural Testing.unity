@@ -223,14 +223,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef1aea4c390f4f4ebd5a23b3f2a6b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundTiles: []
-  cornerTiles: []
-  edgeTiles: []
+  groundTiles:
+  - {fileID: 2043061760996905235, guid: 485b48e83ed2a79489df58dac8dea0cb, type: 3}
+  - {fileID: 8091165235454943054, guid: 7bf7264d8de0d424396d24cec23ef1b7, type: 3}
+  - {fileID: 4654811524505174656, guid: ea1fbbcd14460f3449557dd9ee62b437, type: 3}
+  - {fileID: 2842233444632037840, guid: 4b21f565941eb8c49b9244e624df2f1a, type: 3}
+  - {fileID: 2875901790721859485, guid: 67eab574445746b42b31e1defee37225, type: 3}
+  - {fileID: 934226508047949837, guid: be01a52a83ea85e42af6eef2010d1e1c, type: 3}
+  - {fileID: 351034296511472418, guid: f2bf94ad7e48acb40b147d156576f59f, type: 3}
+  - {fileID: 5682447019491186805, guid: e46e44a8ea545324083773df8500a69f, type: 3}
+  - {fileID: 5020467014721500160, guid: 5c84f30295500b54ca8f9ff35e60b3c5, type: 3}
+  - {fileID: 7646664739698559800, guid: 0825869a13640ff42889af8505e866bb, type: 3}
+  - {fileID: 3835904490251135724, guid: 693b5898d3d545e40b4d88a9e2042fef, type: 3}
+  - {fileID: 1295905636148290810, guid: abb4e56162719484daa9371a3bcbac58, type: 3}
+  - {fileID: 1213629266063369769, guid: cfb0a2fd35f37914f9281de18518009b, type: 3}
+  - {fileID: 5269673954358115337, guid: 7f421c74b96646b469ab8d7037f7c3b8, type: 3}
+  - {fileID: 3989917286939355675, guid: c0881d1c35095f84db14d84e32ee0301, type: 3}
+  - {fileID: 617880627864880978, guid: c0c7def3963c8bf47aaff26b68b5d64b, type: 3}
+  cornerTiles:
+  - {fileID: 3477598755304437808, guid: e01dd5d2aa9534f4194596292e5bdd57, type: 3}
+  - {fileID: 4941778520129156453, guid: 55d807ae35bbd45418735a3aa5558c10, type: 3}
+  - {fileID: 4555399605114433324, guid: 563e5501e6b5de0448a5d7d3dfc26a88, type: 3}
+  - {fileID: 6742795866708692715, guid: a5861d5dce810044fb85603e281e1813, type: 3}
+  edgeTiles:
+  - {fileID: 2424012654078992033, guid: 84fcfe7d24b69ff43b6d2a113206a2fd, type: 3}
+  - {fileID: 6731790738792531173, guid: a9a57fc5daabfda4681016ad6205a4a2, type: 3}
+  - {fileID: 765040527481343114, guid: c48b032ae579c494ab00ee4f30142c1c, type: 3}
+  - {fileID: 1562291749483657104, guid: 831def008481885409e7423b154e17e4, type: 3}
   items: []
-  enemies: []
-  obstacles: []
-  exit: {fileID: 0}
-  numOfRooms: 0
+  enemies:
+  - {fileID: 158036453907044805, guid: 15e8b7ecab459874da0386e2903b98ed, type: 3}
+  - {fileID: 9003709334094499170, guid: e565d9ed2c1a9724bb0c7a6d8c4eafb2, type: 3}
+  - {fileID: 6741116665421499102, guid: 6c55330d3a1bde14f9ab5c4a928cd446, type: 3}
+  - {fileID: 800105458804917874, guid: fe5485227347efa4fa7dd657600f9ef3, type: 3}
+  - {fileID: 2763387642361644032, guid: a7a931e8e9f77b34f84e785626261c1b, type: 3}
+  - {fileID: 4649361288683292797, guid: 186bf3ec8a87e03429e5418daae3090f, type: 3}
+  obstacles:
+  - {fileID: 6541598668672096553, guid: d95d85ebfee13b944920c6e10fb41a49, type: 3}
+  exit: {fileID: 1803885712776336110, guid: cc5d21ddf573af84185abfe41dd37a28, type: 3}
+  bossRoomArea: {fileID: 0}
+  numOfRooms: 5
   id: 0
 --- !u!114 &185810143
 MonoBehaviour:
@@ -264,8 +296,14 @@ MonoBehaviour:
   - {fileID: 536173840803020418, guid: 286a8315ac831344ea3cf869b6587aac, type: 3}
   cornerTiles:
   - {fileID: 8953454622268293632, guid: 3b61a12aabdd5a84cbb2cff73e5b38c3, type: 3}
+  - {fileID: 7288506269474985235, guid: c7bb9720b955528468c49f54b905b0ac, type: 3}
+  - {fileID: 5714092853345503484, guid: ed74d986c148b3a4f89e237aa3dbfcec, type: 3}
+  - {fileID: 1230290371403755654, guid: c96c9c9bead15214090f0dd4b7a1bd7b, type: 3}
   edgeTiles:
   - {fileID: 7702639776871055652, guid: 03accaa6f99181e4c86ef5546a501a24, type: 3}
+  - {fileID: 3896292524268026736, guid: 659bdb69cb7883747b5e47b518af5450, type: 3}
+  - {fileID: 5956613516616033728, guid: eb13045cd394b0d44a5a3192f77aab76, type: 3}
+  - {fileID: 3797143525829847999, guid: cc73a07d1a728dc42b680ac2bd100fdd, type: 3}
   items: []
   enemies:
   - {fileID: 800105458804917874, guid: fe5485227347efa4fa7dd657600f9ef3, type: 3}
@@ -275,7 +313,9 @@ MonoBehaviour:
   - {fileID: 1378282287286071371, guid: b66833f55046ff745ab43b3024c93a82, type: 3}
   - {fileID: 6541598668672096553, guid: d95d85ebfee13b944920c6e10fb41a49, type: 3}
   exit: {fileID: 1566059990480320428, guid: 207ec3e59324a674684caa0ca9c5d1bf, type: 3}
-  numOfRooms: 7
+  bossRoomArea: {fileID: 3291513513664716310, guid: 3e493a4cec860f54cb91a0a8c2be3e9b,
+    type: 3}
+  numOfRooms: 4
   id: 0
 --- !u!114 &185810144
 MonoBehaviour:
@@ -290,8 +330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seed: 0
-  maxRows: 10
-  maxColumns: 20
+  maxRows: 7
+  maxColumns: 7
   roomsPerBiome: 2
 --- !u!114 &222501068 stripped
 MonoBehaviour:
@@ -577,6 +617,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6088466053718472023, guid: 9d35025e4b3056049a5267b42bf3131c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6088466053718472027, guid: 9d35025e4b3056049a5267b42bf3131c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -761,6 +806,11 @@ PrefabInstance:
     - target: {fileID: 2243053426131759926, guid: fac3ec6127dccef47b12b61b809e50a5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2243053426131759927, guid: fac3ec6127dccef47b12b61b809e50a5,
+        type: 3}
+      propertyPath: showNavGraphs
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2243053426131759927, guid: fac3ec6127dccef47b12b61b809e50a5,

@@ -25,6 +25,7 @@ public class Biome : MonoBehaviour
     public GameObject[] enemies;
     public GameObject[] obstacles;
     public GameObject exit;
+    public GameObject bossRoomArea;
 
     //Number of rooms this biome holds
     public int numOfRooms;
@@ -311,8 +312,11 @@ public class Biome : MonoBehaviour
 
     public void ActivateRoom(Room room)
     {
-                
-        if (room.isInstantiated)
+        if(room.point == bossRoom.point)
+        {
+            ProduceBossLevel();
+        }   
+        else if (room.isInstantiated)
         {
             room.Activate();
         }
@@ -335,7 +339,9 @@ public class Biome : MonoBehaviour
     //Loads the premade boss level
     public void ProduceBossLevel()
     {
-
+        GameObject roomInstance = Instantiate(bossRoomArea, new Vector3(0f, 0f, 0f), Quaternion.identity) as GameObject;
+        
+        roomInstance.transform.SetParent(GameObject.Find("BiomeBoard").transform);
     }
 
 
