@@ -224,9 +224,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c08dadf92066e4498721668b83ef657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
-  numOfHearts: 3
+  health: 4
+  numOfHearts: 4
   hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -236,9 +239,7 @@ MonoBehaviour:
   - {fileID: 0}
   fullHeart: {fileID: 21300000, guid: 3d689fe9125826a4b9b5f4531e3a8f28, type: 3}
   breakedHeart: {fileID: 21300000, guid: f80ebbc375a6be94aa6d1f54725934cf, type: 3}
-  level: 0
-  experience: 0
-  experienceToNextLevel: 0
+  SkillTree: {fileID: 0}
   speed: 5
   immortalLayer: 13
   playerLayer: 12

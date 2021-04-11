@@ -20,6 +20,9 @@ public class GenerateWorld : MonoBehaviour
     //List of biomes on map
     private List<Biome> biomes = new List<Biome>();
 
+    //Value that holds the current biome index
+    private int currentBiome = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +40,11 @@ public class GenerateWorld : MonoBehaviour
         }
 
         //Link each biomes rooms together
-        biomes[0].LinkRooms();
-        biomes[0].DisplayRooms();
+        biomes[currentBiome].LinkRooms();
+        biomes[currentBiome].DisplayRooms();
 
         //Instantiate first biomes starting room
-        biomes[0].StartFirstLevel();
+        biomes[currentBiome].StartFirstLevel();
 
     }
 
@@ -75,7 +78,29 @@ public class GenerateWorld : MonoBehaviour
     //Loads the next biome once a boss is defeated, if no more biomes, game is over
     public void NextLevel()
     {
+        currentBiome += 1;
+        if (currentBiome == biomes.Count)
+            EndGame();
 
+        //Link each biomes rooms together
+        biomes[currentBiome].LinkRooms();
+        biomes[currentBiome].DisplayRooms();
+
+        //Instantiate first biomes starting room
+        biomes[currentBiome].StartFirstLevel();
     }
 
+    //Quit the game
+    private void EndGame()
+    {
+        /*
+         * TODO:
+         * - Setup ending scenes
+         * - Add option to replay
+         * - Or quit out
+         */
+
+        //Exit the game
+        Application.Quit();
+    }
 }

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Player : MonoBehaviour
 {
+    private Player player;
     // Health System
     #region HealthSystem
     public int health = 3;
@@ -15,7 +17,21 @@ public class Player : MonoBehaviour
     public Sprite breakedHeart;
     #endregion
 
+    // LevelSystem
+    #region Level System
     public LevelSystem levelSystem;
+    private LevelSystemAnimator levelSystemAnimator;
+    private LevelSystemUI levelSystemUI;
+    #endregion
+
+    #region
+    // SkillSystem
+    private PlayerSkills playerSkills;
+    private SkillTree_UI skillTree_UI;
+    [SerializeField] private GameObject SkillTree;
+    #endregion
+
+
 
     public float speed = 5; 
     public int immortalLayer = 13;  //The layer where the player can't take damage
@@ -57,14 +73,17 @@ enum dir
 float curDir = 1;
 
 
-    private LevelSystemUI levelSystemUI;
+    private void Awake()
+    {
+        
+    }
 
     void Start()
     {
-        // get the levelSystem
-        levelSystem = new LevelSystem();
-        levelSystemUI = GameObject.Find("LevelSystem").GetComponent<LevelSystemUI>();
-        levelSystemUI.SetLevelSystem(levelSystem);
+        player = this.GetComponent<Player>();
+
+        LevelSystemStartSetting();
+        SkillSystemStartSetting();
 
 
         source = GetComponent<AudioSource>();
@@ -77,7 +96,10 @@ float curDir = 1;
 
     void Update ()    //Every frame...
     {
-      if(!dead)   //not paused
+
+        OpenCloseSkillMenu();
+
+      if (!dead)   //not paused
       {
         UpdateHealth();     //Update player's health
         manageTimers();     //Put all timer loop stuff in here
@@ -88,6 +110,121 @@ float curDir = 1;
           animator.SetTrigger("Dead");
       }
     }
+
+    // health System
+    #region HealthSystem
+    public void UpdateHealth()
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (health > numOfHearts)
+            {
+                health = numOfHearts;
+            }
+
+            if (i < health)
+            {
+                hearts[i].sprite = fullHeart;
+            }
+            else
+            {
+                hearts[i].sprite = breakedHeart;
+            }
+            if (i < numOfHearts)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
+            }
+        }
+    }
+    #endregion
+
+    // level System
+    #region LevelSystem
+
+    public void LevelSystemStartSetting()
+    {
+        levelSystemUI = GameObject.Find("LevelSystem_UI").GetComponent<LevelSystemUI>();
+        levelSystem = new LevelSystem();
+        levelSystemUI.SetLevelSystem(levelSystem);
+        levelSystemAnimator = new LevelSystemAnimator(levelSystem);
+        levelSystemUI.SetLevelSystemAnimator(levelSystemAnimator);
+        player.SetLevelSystem(levelSystem);
+        player.SetLevelSystemAnimator(levelSystemAnimator);
+    }
+    public void SetLevelSystem(LevelSystem levelSystem)
+    {
+        this.levelSystem = levelSystem;
+    }
+    public void SetLevelSystemAnimator(LevelSystemAnimator levelSystemAnimator)
+    {
+        this.levelSystemAnimator = levelSystemAnimator;
+        levelSystemAnimator.OnLevelChanged += LevelSystemAnimator_OnLevelChanged;
+    }
+
+    private void LevelSystemAnimator_OnLevelChanged(object sender, EventArgs e)
+    {
+        // set full health
+        health = numOfHearts;
+        playerSkills.addSkillPoint();
+        Debug.Log("Lvel Up!");
+    }
+    #endregion
+
+    // skill System
+    #region SkillSystem
+
+    public void SkillSystemStartSetting()
+    {
+
+        playerSkills = new PlayerSkills();
+        skillTree_UI = GameObject.Find("SkillTree_UI").GetComponent<SkillTree_UI>();
+        skillTree_UI.setPlayerSkills(playerSkills);
+
+        playerSkills.OnSkillUnlocked += PlayerSkills_OnSkillUnlocked;
+
+
+        SkillTree.SetActive(false);
+    }
+
+
+    private void OpenCloseSkillMenu()
+    {
+        if (Input.GetButtonDown("SkillsTree"))
+        {
+            SkillTree.SetActive(!SkillTree.activeSelf);
+        }
+    }
+
+    private void PlayerSkills_OnSkillUnlocked(object sender, PlayerSkills.OnskillUnlockedEventArgs e)
+    {
+        switch (e.skillType)
+        {
+            case PlayerSkills.SkillType.HealthUp_1:
+                SetHealthAmount(5);
+                break;
+            case PlayerSkills.SkillType.HealthUp_2:
+                SetHealthAmount(7);
+                break;
+            case PlayerSkills.SkillType.HealthUp_3:
+                SetHealthAmount(10);
+                break;
+        }
+    }
+
+    private void SetHealthAmount(int HealthAmount)
+    {
+        numOfHearts = HealthAmount;
+        health = numOfHearts;
+    }
+
+
+
+    #endregion
+
 
     void moveAndAttack()
     {
@@ -140,11 +277,20 @@ else
 
             Vector3 attackOffset = transform.position;
 
-            if(x != 0)
+            if(x < 0)
+            {
+            attackOffset[0] -= 1;
+            }
+            if(x > 0)
             {
             attackOffset[0] += 1;
             }
-            if(y != 0)
+
+            if(y < 0)
+            {
+              attackOffset[1] -= 1;
+            }
+            if(y > 0)
             {
               attackOffset[1] += 1;
             }
@@ -183,50 +329,7 @@ else
         }
       }
 
-    // function that update player's health
-    #region HealthSystem
-    public void UpdateHealth()
-    {
-        for (int i = 0; i < hearts.Length; i++)
-        {
-            if (health > numOfHearts)
-            {
-                health = numOfHearts;
-            }
-
-            if (i < health)
-            {
-                hearts[i].sprite = fullHeart;
-            }
-            else
-            {
-                hearts[i].sprite = breakedHeart;
-            }
-            if (i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
-        }
-    }
-    #endregion
-
-    // level up system
-    #region LevelSystem
-    public void SetLevelSystem(LevelSystem levelSystem)
-    {
-        this.levelSystem = levelSystem;
-        levelSystem.OnLevelChanged += LevelSystem_OnLevelChanged;
-    }
-
-    private void LevelSystem_OnLevelChanged(object sender, System.EventArgs e)
-    {
-        // play animation here
-    }
-    #endregion
+    
 
     public void manageTimers()
   {
@@ -320,4 +423,6 @@ void OnTriggerEnter2D(Collider2D col)
 }
 
 }
+
+   
 

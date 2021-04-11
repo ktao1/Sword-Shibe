@@ -5,126 +5,151 @@ using Pathfinding;
 
 public class ShirimeAI : MonoBehaviour
 {
-
+    // get gameobject
+    #region GameObject
     // get player transform
     Transform player;
     // get Player Class use for doing damage
     Player _player;
     // get animator
     public Animator animator;
-    private Rigidbody2D rb;
     public GameObject shirimeBullet;
+    #endregion
 
-    public float bulletForce = 10f;
+    // get spirte shader
+    #region Material
+    SpriteRenderer spriteRenderer;
+    Material originalMaterial;
+    [SerializeField]
+    Material flashMaterial;
+    Coroutine flashRoutine;
+    #endregion
 
-    // upadteTimer and updateSpees: how often should upadte the path
-    float upadteTimer;
-    public float updateSpeed = 2f;
-
-
-
-    // chargeTimer and ChargeSpeed: how often should enemy attack
-    float NextFire;
-    public float FireRate = 1f;
-    public bool canAttack;
-
-
-    /*
-    public float attackCD = 1f;
-    public float attackCDTimer;
-    */
-
-    public bool transformed = false;
+    // Enemy Stateus
+    #region enemyStatus
 
     // enemry attack's damge
-    public int damage = 1;
-
+    public int damage;
     // enemy health
-    public int health = 1;
+    public int health;
     // enemy XP
-    public int XP = 50;
+    public int XP;
 
+    bool canAttack = true;
+    bool canHurt = true;
+    bool canCharging = false;
+    bool canTransformed = true;
+    public float attackCD;
+    public float recoveryCD;
+    public float flashDuration;
     // how far enemy can see the player
-    public float detectDistance = 7.0f;
-    public float attackRange = 5.0f;
+    public float detectDistance;
+    public float attackRange;
+    public float FireRate = 1f;
+    public float bulletForce = 10f;
 
+    #endregion
 
-
+    // AI State
+    #region AI State
     // Enemy AI 
     private enum State
     {
         Romaing,
         ChaseTarget,
-        Charging,
-        Shooting,
+        Transform,
+        Attack,
+        Hurt,
     }
     private State state;
+    #endregion
+
+    // Animation State
+    #region Animation State
+    string currentState = "Shirime Walk NORMAL";
+    const string WALK = "Shirime Walk NORMAL";
+    const string TRANSFORM = "Shirime Transform";
+    const string CHARGING = "Shirime Charging";
+    const string ATTACK = "Shirime Firing";
+    const string CRAWL = "Shirime Crawl";
+    const string HURT = "hurt";
+    #endregion 
 
     //A* path finding asset
+    #region Astar Asset
+    // upadteTimer and updateSpees: how often should upadte the path
+    float upadteTimer;
+    public float updateSpeed;
     private Seeker seeker;
     public Path path;
     // Enemy Movement speed
     public float speed = 1;
     // Enemy movmen determines the distance to the point the AI will move to
-    public float nextWaypointDistance = 3;
-    private int currentWaypoint = 0;
+    public float nextWaypointDistance;
+    private int currentWaypoint;
     public bool reachedEndOfPath;
     public bool canMove = true;
-
-    private Vector2 startingPosition;
+    Vector2 startingPosition;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").transform;
-        _player = player.GetComponent<Player>();
-        startingPosition = transform.position;
-        // roamPosition.position = GetRoamPosition();
-        rb = GetComponent<Rigidbody2D>();
-
-        // Get a reference to the Seeker component we added earlier
-        seeker = GetComponent<Seeker>();
-
-        state = State.Romaing;
-
+        defaultSetting();
     }
 
     // Update is called once per frame
     // Use state to do the enemy AI
-    void FixedUpdate()
+    void Update()
     {
-        if (health < 1)
-        {
-            _player.levelSystem.AddXP(XP);
-            Destroy(gameObject);
-        }
-
         switch (state)
         {
             default:
             case State.Romaing:
                 // enemy start roaming and try to find the player.
-                RoamPath();
-                findTarget();
+                RoamPath();          
                 break;
             // if enemy find the player, start chase player.
-            case State.ChaseTarget:
+            case State.Transform:
                 ShirimeTransform();
+                break;
+            case State.ChaseTarget:
                 ChasePlayer();
-                findTarget();
                 break;
-            case State.Charging:
-                charging();
+            case State.Attack:
+                attackLogic();
                 break;
-            case State.Shooting:
-                shooting();
+            case State.Hurt:
+                hurt();
                 break;
         }
+        findTarget();
         Move();
     }
 
+    // Default setting
+    void defaultSetting()
+    {
+        // find player gameObject
+        player = GameObject.Find("Player").transform;
+        _player = player.GetComponent<Player>();
+        startingPosition = transform.position;
+
+        // Get a reference to the Seeker component we added earlier
+        seeker = GetComponent<Seeker>();
+
+        // set material
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = spriteRenderer.material;
+
+        // start the AI;
+        RoamPath();
+    }
+
+    // Astart path movement
+    #region Astart Path Movement
     // Callback function for UpdatePath(Vector2 position)
-    public void OnPathComplete(Path p)
+    void OnPathComplete(Path p)
     {
         if (!p.error)
         {
@@ -148,99 +173,45 @@ public class ShirimeAI : MonoBehaviour
     }
 
     // update Roaming path
-    private void RoamPath()
+    void RoamPath()
     {
         Vector2 roamPosition = startingPosition + new Vector2(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f));
         UpdatePath(roamPosition);
     }
 
     // update Chasing path
-    private void ChasePlayer()
+    void ChasePlayer()
     {
         UpdatePath(player.position);
     }
 
     // Try to find the target
-    private void findTarget()
+    void findTarget()
     {
-        
-        if (Vector2.Distance(transform.position, player.position) < attackRange)
+        if (canHurt)
         {
-            state = State.Charging;
-        }
-        else if (Vector2.Distance(transform.position, player.position) < detectDistance)
-        {
-            updateSpeed = 0.5f;
-            state = State.ChaseTarget;
-        }
-        else
-        {
-            state = State.Romaing;
-        }
-    }
-
-    private void ShirimeTransform()
-    {
-        animator.SetBool("canTransform", true);
-        speed = 1.5f;
-    }
-
-    private void shooting()
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Shirime Firing"))
-        {
-            Vector2 firDir = transform.position - player.position;
-            float angle = Mathf.Atan2(firDir.y, firDir.x) * Mathf.Rad2Deg;     
-            Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            GameObject bullet = Instantiate(shirimeBullet, rb.position, rotation);
-            bullet.transform.SetParent(gameObject.transform);
-            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-            Vector2 dir = (player.position - transform.position).normalized;
-            bulletRb.AddForce(dir * bulletForce, ForceMode2D.Impulse);
-            canMove = true;
-            animator.SetBool("canAttack", false);
-            state = State.ChaseTarget;
-        }
-        
-        
-        /*
-        if (attackTimer < attackSpeed)
-        {
-            speed = 5f;
-            attackTimer += Time.deltaTime;
-            // attacking
-        }
-        else
-        {
-            attackCDTimer += Time.deltaTime;
-            canMove = false;
-            if (attackCDTimer > attackCD)
+            if (Vector2.Distance(transform.position, player.position) < attackRange)
             {
-                speed = 3f;
-                attackTimer = 0;
-                attackCDTimer = 0;
-                canMove = true;
-                state = State.ChaseTarget;
+                state = State.Attack;
+            }
+            else if (Vector2.Distance(transform.position, player.position) < detectDistance)
+            {
+                updateSpeed = 0.5f;
+                if (canTransformed)
+                    state = State.Transform;
+                else
+                    state = State.ChaseTarget;
+            }
+            else
+            {
+                updateSpeed = 2f;
+                state = State.Romaing;
             }
         }
-        */
-    }
-
-    private void charging()
-    {
-        canMove = false;
-        animator.SetBool("canAttack", true);
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Shirime Charging")  && Time.time > NextFire)
-        {
-            NextFire = Time.time + FireRate;
-            state = State.Shooting;
-            canAttack = true;
-        }
-
     }
 
     // after find the path, Move() actually move the Enemy base on the path
-    private void Move()
+    void Move()
     {
         if (!canMove)
         {
@@ -298,28 +269,167 @@ public class ShirimeAI : MonoBehaviour
         // If you are writing a 2D game you should remove the CharacterController code above and instead move the transform directly by uncommenting the next line
         transform.position += velocity * Time.deltaTime;
     }
+    #endregion
 
+    // Shirime transform animation
+    #region Transform animation
+    void ShirimeTransform()
+    {
+        canTransformed = false;
+        canMove = false;
+        ChangeAnimationState(TRANSFORM);
+        Invoke("OnTransformFinished", animator.GetCurrentAnimatorStateInfo(0).length);
+    }
+
+    void OnTransformFinished()
+    {
+        ChangeAnimationState(CRAWL);
+        canMove = true;
+        canCharging = true;
+        speed = 2f;
+    }
+
+    #endregion
+
+    // Shirime Attack animation
+    #region Attack
+    // attack state machine
+    void attackLogic()
+    {
+        // stop move and attack
+        canMove = false;
+        // check does it need to charging;
+        if (canCharging)
+        {
+            canCharging = false;
+            // do charging animation
+            ChangeAnimationState(CHARGING);
+            float charingTime = animator.GetCurrentAnimatorStateInfo(0).length;
+            // When charge animation finished
+            Invoke("OnChargingFinished", charingTime*2);
+        }
+    }
+
+    void OnChargingFinished()
+    {
+        if (canAttack)
+        {
+            canAttack = false;
+            ChangeAnimationState(ATTACK);
+            shootBullet();
+            Invoke("OnAttackFinished", animator.GetCurrentAnimatorStateInfo(0).length);
+        }
+    }
+    void shootBullet()
+    {
+        Vector3 shootDir = (player.position - transform.position).normalized;
+        GameObject bullet = Instantiate(shirimeBullet, transform.position, Quaternion.identity);
+        bullet.GetComponent<ShirimeBullet>().setDir(shootDir);
+    }
+
+    void OnAttackFinished()
+    {
+        canMove = true;
+        canCharging = true;
+        canAttack = true;
+        ChangeAnimationState(CRAWL);
+    }
+
+    #endregion
+
+    // enemyAI take damage animation
+    #region Take Damage
     public void takeDamage(int damage)
     {
-        health -= damage;
+        if (canHurt)
+        {
+            health -= damage;
+            state = State.Hurt;
+        }
     }
 
-    // Use collider to do the attack or be attacked. 
-    void OnTriggerEnter2D(Collider2D col)
+    // function that set hurt animaion
+    void hurt()
     {
-        /*
-        if (col.gameObject.tag == "Player")
+        if (canHurt)
         {
-            Debug.Log("Hit player");
-            _player.takeDamage(damage);
+            CancelInvoke();
+            canHurt = false;
+            canMove = false;
+            ChangeAnimationState(HURT);
+            flash();
+            Invoke("recovery", recoveryCD);
         }
-        /*
-        if (col.gameObject.name == "Swpie")
+    }
+
+    // hurt animation CD
+    void recovery()
+    {
+        canMove = true;
+        canHurt = true;
+        canAttack = true;
+        canCharging = true;
+        ChangeAnimationState(CRAWL);
+        isDeath();
+        findTarget();
+    }
+
+    // function that makes sprite flash
+    void flash()
+    {
+        if (flashRoutine != null)
         {
+            StopCoroutine(flashRoutine);
+        }
+
+        flashRoutine = StartCoroutine(FlashRoutine());
+    }
+
+    // function detect enemy death
+    IEnumerator FlashRoutine()
+    {
+        // Swap to the fflashMaterial
+        spriteRenderer.material = flashMaterial;
+        // pause the execution of this function for "flashDuration" seconds
+        yield return new WaitForSeconds(flashDuration);
+
+        // after pause, swap back to original material
+        spriteRenderer.material = originalMaterial;
+
+        // set the routine to null, signaling that it's finished
+        flashRoutine = null;
+    }
+    void isDeath()
+    {
+        // if enemy health drop to 0 destory the enemy
+        if (health < 1)
+        {
+            _player.levelSystem.AddXP(XP);
             Destroy(gameObject);
         }
-        */
+    }
+    #endregion
+
+
+    // function that changes animation
+    void ChangeAnimationState(string newState)
+    {
+        // stop same animation interuuping each other
+        if (currentState == newState)
+            return;
+        // play new animation 
+        animator.Play(newState);
+        // set the current state
+        currentState = newState;
     }
 
+    // Use collider to do the attack
+    void OnCollisionEnter2D(Collision2D c)
+    {
+        if (c.gameObject.tag == "Player" && c.gameObject.layer != 13)
+        {
+            c.gameObject.SendMessage("takeDamage", damage);
+        }
+    }
 
 }

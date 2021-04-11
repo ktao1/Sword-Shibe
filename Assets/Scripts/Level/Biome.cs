@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pathfinding;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class Biome : MonoBehaviour
     public GameObject[] enemies;
     public GameObject[] obstacles;
     public GameObject exit;
+    public GameObject bossRoomArea;
 
     //Number of rooms this biome holds
     public int numOfRooms;
@@ -310,7 +312,11 @@ public class Biome : MonoBehaviour
 
     public void ActivateRoom(Room room)
     {
-        if (room.isInstantiated)
+        if(room.point == bossRoom.point)
+        {
+            ProduceBossLevel();
+        }   
+        else if (room.isInstantiated)
         {
             room.Activate();
         }
@@ -318,6 +324,11 @@ public class Biome : MonoBehaviour
         {
             room.InstantiateRoom(groundTiles, cornerTiles, edgeTiles, enemies, obstacles, exit);
         }
+
+        AstarData data = AstarPath.active.data;
+        GridGraph gg = data.gridGraph;
+        gg.center = new Vector3((float)room.rows * 3.5f / 2, (float)room.columns * 3.5f / 2, 0f);
+        AstarPath.active.Scan();
     }
 
     public void DeactivateRoom(Room room)
@@ -328,7 +339,9 @@ public class Biome : MonoBehaviour
     //Loads the premade boss level
     public void ProduceBossLevel()
     {
-
+        GameObject roomInstance = Instantiate(bossRoomArea, new Vector3(0f, 0f, 0f), Quaternion.identity) as GameObject;
+        
+        roomInstance.transform.SetParent(GameObject.Find("BiomeBoard").transform);
     }
 
 
