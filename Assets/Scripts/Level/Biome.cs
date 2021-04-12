@@ -336,6 +336,7 @@ public class Biome : MonoBehaviour
         }
     }
 
+    #region Room Transition
     public void ActivateRoom(Room room)
     {
         if(room.point == bossRoom.point)
@@ -361,9 +362,16 @@ public class Biome : MonoBehaviour
     {
         room.Deactivate();
     }
+    #endregion
 
-
-    //Loads the premade boss level
+    #region Challenge Spawner
+    /*
+     * Function: ProduceChallengeLevel()
+     * 
+     * Description: Instantiates the challenge area and controls the spawn of 
+     * enemies within that room
+     * 
+     */
     public void ProduceChallengeLevel()
     {
         GameObject roomInstance = Instantiate(bossRoomArea, new Vector3(0f, 0f, 0f), Quaternion.identity) as GameObject;
@@ -372,6 +380,14 @@ public class Biome : MonoBehaviour
         ChallengeLevelSpawnEnemies();
         challengeCurRounds = challengeRounds;
     }
+
+    /*
+     * Function: ChallengeLevelSpawnEnemies()
+     * 
+     * Description: Selects a random amount of enemies and begins spawning each 
+     * as part of a wave
+     * 
+     */
     public void ChallengeLevelSpawnEnemies()
     {
         int enemyAmount = Random.Range(challengeMin, challengeMax);
@@ -383,4 +399,5 @@ public class Biome : MonoBehaviour
             Instantiate(enemies[Random.Range(0,enemies.Length)], newEnemy, Quaternion.identity);    
         }
     }
+    #endregion
 }

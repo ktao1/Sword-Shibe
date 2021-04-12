@@ -144,8 +144,9 @@ GameObject:
   - component: {fileID: 185810141}
   - component: {fileID: 185810140}
   - component: {fileID: 185810144}
-  - component: {fileID: 185810142}
   - component: {fileID: 185810143}
+  - component: {fileID: 185810142}
+  - component: {fileID: 185810145}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -348,6 +349,63 @@ MonoBehaviour:
   maxRows: 7
   maxColumns: 7
   roomsPerBiome: 2
+--- !u!114 &185810145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185810139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef1aea4c390f4f4ebd5a23b3f2a6b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundTiles:
+  - {fileID: 3372072250988406715, guid: f9bff7f0631db464884977fe90cf7eff, type: 3}
+  - {fileID: 370689969590098650, guid: fa1b3e5057f38144eb13e46e36e6b95e, type: 3}
+  - {fileID: 8849421723171775290, guid: 6d1581c156c015244b76cf4c4a6101cc, type: 3}
+  - {fileID: 8833457927033142858, guid: 575fe71360cbc564197b6dd9d846ec21, type: 3}
+  - {fileID: 3710557947898527825, guid: d4bf5dfc923c7fe4eadec84b079943fb, type: 3}
+  - {fileID: 8024050598407497394, guid: 3fa9303293fb38743869b64bc210fc87, type: 3}
+  - {fileID: 9159691013999874864, guid: de21ddea4bf861f4394c7a84beac11f4, type: 3}
+  - {fileID: 4400742071678909083, guid: a6f09903e5a315040b63906ebb3077a4, type: 3}
+  - {fileID: 4810920045649914461, guid: bf0ca0aea7a814e45970154981343259, type: 3}
+  - {fileID: 8863256031863531784, guid: c3a26ed003e7a9345b8f6b6ca63fb088, type: 3}
+  - {fileID: 495095884112367229, guid: fc2fae6ca45f1be4fb3a3448d919c83e, type: 3}
+  - {fileID: 2219807730859443354, guid: 5cad19d70eca37c45a731ac43e9a3a8c, type: 3}
+  - {fileID: 6940372421292586644, guid: 9ace8e3df64f29147af2982916bebfff, type: 3}
+  - {fileID: 5985106624150058314, guid: c0664fb7f785c7b49bfed30d3ab9b411, type: 3}
+  - {fileID: 4764204216540660395, guid: 87a29dc3809a67643ae07b39e12512d2, type: 3}
+  - {fileID: 2837450270889873869, guid: 423e3d74f4cab4e40acb2c06fde38a95, type: 3}
+  cornerTiles:
+  - {fileID: 7436050176816208471, guid: a72e84af2817e41488f11fe8755aad39, type: 3}
+  - {fileID: 4843714662602704181, guid: efcfe038e73e97144a8a5d55b34205ab, type: 3}
+  - {fileID: 5541995476437441105, guid: f87e4e1bd13f48345b0aef430df2c4ff, type: 3}
+  - {fileID: 7443498802710532635, guid: 4a82219d969649d458542cea1be64e0d, type: 3}
+  edgeTiles:
+  - {fileID: 8028035908747704758, guid: 723bc0b69bb35334f8e99a7ae7edc018, type: 3}
+  - {fileID: 2322002134326042529, guid: db2d30149e3be0841ad6e3b4c0f4347f, type: 3}
+  - {fileID: 7008589931629845118, guid: aaf526f551832b542ba41adf57684495, type: 3}
+  - {fileID: 9185825754958184035, guid: 6afd31cddf45a0942a09aec528cad139, type: 3}
+  - {fileID: 3666441137994739644, guid: 9fdc97b259ed32e438dbc358319db903, type: 3}
+  - {fileID: 1392801481270659851, guid: b856b31703e97ee4198c237ef4664aac, type: 3}
+  - {fileID: 3535224721935072349, guid: 3590b0b4114e5a047ba469d717ea0ce9, type: 3}
+  - {fileID: 6454928883884786719, guid: f708aa75536a9c74aa9d0f96b557bd55, type: 3}
+  items: []
+  enemies:
+  - {fileID: 9003709334094499170, guid: e565d9ed2c1a9724bb0c7a6d8c4eafb2, type: 3}
+  - {fileID: 6741116665421499102, guid: 6c55330d3a1bde14f9ab5c4a928cd446, type: 3}
+  obstacles:
+  - {fileID: 1378282287286071371, guid: b66833f55046ff745ab43b3024c93a82, type: 3}
+  exit: {fileID: 1803885712776336110, guid: cc5d21ddf573af84185abfe41dd37a28, type: 3}
+  bossRoomArea: {fileID: 3291513513664716310, guid: 3e493a4cec860f54cb91a0a8c2be3e9b,
+    type: 3}
+  numOfRooms: 5
+  challengeMin: 5
+  challengeMax: 8
+  challengeRounds: 3
+  challengeTimer: 5000
 --- !u!114 &222501068 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6710183287084529812, guid: 9d35025e4b3056049a5267b42bf3131c,

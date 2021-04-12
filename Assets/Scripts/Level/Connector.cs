@@ -21,11 +21,6 @@ public class Connector : MonoBehaviour
     public Edge E = Edge.Type1;
     public Edge W = Edge.Type2;
 
-    public int NN;
-    public int SN;
-    public int EN;
-    public int WN;
-
     void Start()
     {
 
