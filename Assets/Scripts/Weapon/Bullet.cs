@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
             c.gameObject.SendMessage("takeDamage", damage);
             Destroy(gameObject);
         }
-        else if(c.gameObject.tag == "Decorative")
+        else
         {
             Destroy(gameObject);
         }

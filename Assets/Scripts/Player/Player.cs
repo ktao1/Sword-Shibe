@@ -316,7 +316,6 @@ else
             }
 
             Instantiate (attack, attackOffset, transform.rotation);
-            source.PlayOneShot(swordSound, 1F);
         }
         else if(dashing && !attacking)
         {

@@ -10,7 +10,9 @@ GameObject player;
     int attackTimer;
     public int maxAttack = 50;
     bool visible = true;
+    public int XP = 50;
     int timerHide;
+    public int health = 3;
     public Animator animator;
     Monster monster;
     void Start()
@@ -25,6 +27,11 @@ GameObject player;
     {
         if (Time.timeScale != 0)
         {
+            if(health < 1)
+            {
+                player.GetComponent<Player>().levelSystem.AddXP(XP);
+                Destroy(gameObject);
+            }
             attackPlayer();
         }
     }
@@ -105,5 +112,10 @@ GameObject player;
         transform.position = new Vector3(newX, newY, transform.position.z);
 
         Destroy(playerPosition);
+    }
+
+    void takeDamage(int damage)
+    {
+        health -= damage;
     }
 }

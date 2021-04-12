@@ -134,8 +134,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 5
-  maxHide: 200
-  maxAttack: 250
+  maxHide: 400
+  maxAttack: 500
+  XP: 50
+  health: 3
   animator: {fileID: 6538576393171640533}
 --- !u!68 &8076974282601270097
 EdgeCollider2D:

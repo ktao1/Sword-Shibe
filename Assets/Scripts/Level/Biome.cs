@@ -37,16 +37,36 @@ public class Biome : MonoBehaviour
 
     public int id;
 
+#region Challenge Room
+public int challengeMin = 5; //Min enemies per round
+public int challengeMax = 8; //Max enemies per round
+public int challengeRounds = 3; //Number of rounds for the room
+int challengeCurRounds = 0; //Current room round
+public int challengeTimer = 5000; //Timer for the next round
+int challengeCurTimer = 0; //Counter for next round
+#endregion
+
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
+//Challenge room values
+
     // Update is called once per frame
     void Update()
     {
-
+        if(challengeCurRounds > 0)
+        {
+            challengeCurTimer++;
+            if(challengeCurTimer > challengeTimer)
+            {
+                ChallengeLevelSpawnEnemies();
+                challengeCurTimer = 0;
+                challengeCurRounds--;
+            }
+        }
     }
 
     internal void StartFirstLevel()
@@ -87,10 +107,7 @@ public class Biome : MonoBehaviour
             biomeRooms.Add(randomPosition, new Room(Random.Range(maxRows / 2, maxRows), Random.Range(maxColumns / 2, maxColumns), randomPosition));
 
         }
-
         SetBeginEnd();
-
-
     }
 
     /*
@@ -314,7 +331,7 @@ public class Biome : MonoBehaviour
     {
         if(room.point == bossRoom.point)
         {
-            //ProduceChallengeLevel();
+            ProduceChallengeLevel();
         }   
         else if (room.isInstantiated)
         {
@@ -336,31 +353,15 @@ public class Biome : MonoBehaviour
         room.Deactivate();
     }
 
-public int challengeMin = 5;
-public int challengeMax = 8;
-public int challengeCurRounds = 0;
-public int challengeRounds = 3;
 
-public float challengeTimer = 5000f;
-private float challengeCurTimer;
     //Loads the premade boss level
     public void ProduceChallengeLevel()
     {
         GameObject roomInstance = Instantiate(bossRoomArea, new Vector3(0f, 0f, 0f), Quaternion.identity) as GameObject;
         roomInstance.transform.SetParent(GameObject.Find("BiomeBoard").transform);
         GameObject.FindWithTag("Player").transform.position = new Vector3(0f, 0f, 0f);
-
-        challengeCurTimer = Time.time + challengeTimer;
         ChallengeLevelSpawnEnemies();
-        while(challengeCurRounds < challengeRounds)
-        {
-            if(challengeCurTimer < Time.time)
-            {
-                Debug.Log("CHECKING");
-                challengeCurTimer = Time.time + challengeTimer;
-                challengeCurRounds++;
-            }
-        }
+        challengeCurRounds = challengeRounds;
     }
     public void ChallengeLevelSpawnEnemies()
     {

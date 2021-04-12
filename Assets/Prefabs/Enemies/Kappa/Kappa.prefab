@@ -138,12 +138,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b16bdefb3ce72044b21037cb9ce673f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
-  spinShot: 0
-  followShot: 0
-  randomDir: 0
-  maxDistance: 50
   animator: {fileID: 2817736837301116298}
+  bullet: {fileID: 6218445422791365591, guid: 13efcd4593c33814fb1a6d14d5a1ce19, type: 3}
+  flashMaterial: {fileID: 0}
+  damage: 1
+  health: 3
+  XP: 50
+  attackCD: 1
+  recoveryCD: 0.5
+  flashDuration: 0.1
+  detectDistance: 7
+  attackRange: 2.5
+  updateSpeed: 2
+  speed: 2
+  nextWaypointDistance: 3
+  reachedEndOfPath: 0
+  canMove: 1
 --- !u!61 &342616448832315870
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -208,7 +218,7 @@ Animator:
   m_GameObject: {fileID: 4649361288683292797}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e57fbaba6dd78e744a8cf77a656c0be6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4f21cbcf7c2d9aa45a729a2600c44e80, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
