@@ -100,6 +100,10 @@ MonoBehaviour:
   S: 0
   E: 1
   W: 0
+  NN: 1
+  SN: 0
+  EN: 1
+  WN: 0
 --- !u!61 &4194037924074919308
 BoxCollider2D:
   m_ObjectHideFlags: 0

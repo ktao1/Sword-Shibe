@@ -98,7 +98,7 @@ public class Room : MonoBehaviour
                 exitInstance.transform.SetParent(roomBoard);
 
                 //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.AddComponent<Navigator>();
+                Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = N;
             }
@@ -108,7 +108,7 @@ public class Room : MonoBehaviour
                 exitInstance.transform.SetParent(roomBoard);
 
                 //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.AddComponent<Navigator>();
+                Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = N;
             }
@@ -123,7 +123,7 @@ public class Room : MonoBehaviour
                 exitInstance.transform.SetParent(roomBoard);
 
                 //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.AddComponent<Navigator>();
+                Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = S;
             }
@@ -133,7 +133,7 @@ public class Room : MonoBehaviour
                 exitInstance.transform.SetParent(roomBoard);
 
                 //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.AddComponent<Navigator>();
+                Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = S;
             }
@@ -149,7 +149,7 @@ public class Room : MonoBehaviour
                 exitInstance.transform.SetParent(roomBoard);
 
                 //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.AddComponent<Navigator>();
+                Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = E;
             }
@@ -159,7 +159,7 @@ public class Room : MonoBehaviour
                 exitInstance.transform.SetParent(roomBoard);
 
                 //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.AddComponent<Navigator>();
+                Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = E;
             }
@@ -174,7 +174,7 @@ public class Room : MonoBehaviour
                 exitInstance.transform.SetParent(roomBoard);
 
                 //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.AddComponent<Navigator>();
+                Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = W;
             }
@@ -184,7 +184,7 @@ public class Room : MonoBehaviour
                 exitInstance.transform.SetParent(roomBoard);
 
                 //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.AddComponent<Navigator>();
+                Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = W;
             }
@@ -302,30 +302,107 @@ public class Room : MonoBehaviour
                 {
                     List<GameObject> temp = new List<GameObject>(groundTiles);
                     List<GameObject> available = new List<GameObject>();
-                    
+
+                    Debug.Log("<color=red>Beginning tile selection for " + new Vector3(i, j, 0f).ToString() + "</color>");
+
                     //Separate into another function
-                    for(int k = 0; k < temp.Capacity; k++)
+                    for (int k = 0; k < temp.Capacity; k++)
                     {
                         GameObject neighbor = temp[k];
                         
-                        if((grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().W.CompareTo(grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E) == 0)) {
-                            Debug.Log("Type Compare E and W");
-                            Debug.Log(neighbor.GetComponent<Connector>().W + " " + grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E);
-                        }
 
-                        if((!grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().W.CompareTo(grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E) == 0)) &&
+                        /*
+                        if ((!grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().W.CompareTo(grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E) == 0)) &&
                             (!grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().E.CompareTo(grid[new Vector3(i + 3.5f, j, 0f)].GetComponent<Connector>().W) == 0)) &&
                             (!grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) && neighbor.GetComponent<Connector>().S.CompareTo(grid[new Vector3(i, j + 3.5f, 0f)].GetComponent<Connector>().N) == 0)) &&
                             (!grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) && neighbor.GetComponent<Connector>().N.CompareTo(grid[new Vector3(i, j - 3.5f, 0f)].GetComponent<Connector>().S) == 0)))
                         {
-                            available.Add(neighbor);
+                            
                         }
-                       
+                        */
+
+                        if(!grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().W.CompareTo(grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E) == 0))
+                        {
+                            if(!grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().E.CompareTo(grid[new Vector3(i + 3.5f, j, 0f)].GetComponent<Connector>().W) == 0))
+                            {
+                                if(!grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) && neighbor.GetComponent<Connector>().N.CompareTo(grid[new Vector3(i, j + 3.5f, 0f)].GetComponent<Connector>().S) == 0))
+                                {
+                                    if(!grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) && neighbor.GetComponent<Connector>().S.CompareTo(grid[new Vector3(i, j - 3.5f, 0f)].GetComponent<Connector>().N) == 0))
+                                    {
+                                        if (grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)))
+                                        {
+                                            Debug.Log("Checking tile at: " + new Vector3(i - 3.5f, j, 0f).ToString());
+                                            Debug.Log("Neighbor W: " + neighbor.GetComponent<Connector>().W + " Grid Tile E: " + grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E);
+                                            Debug.Log("Possible Neighbor: " + neighbor.name + "Tile: " + grid[new Vector3(i - 3.5f, j, 0f)].name);
+                                        }
+                                        else
+                                        {
+                                            Debug.Log("No tile found at: " + new Vector3(i - 3.5f, j, 0f).ToString());
+                                        }
+                                        if(grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)))
+                                        {
+                                            Debug.Log("Checking tile at: " + new Vector3(i, j - 3.5f, 0f).ToString());
+                                            Debug.Log("Neighbor N: " + neighbor.GetComponent<Connector>().S + " Grid Tile S: " + grid[new Vector3(i, j - 3.5f, 0f)].GetComponent<Connector>().N);
+                                            Debug.Log("Possible Neighbor: " + neighbor.name + "Tile: " + grid[new Vector3(i, j - 3.5f, 0f)].name);
+                                        }
+                                        else
+                                        {
+                                            Debug.Log("No tile found at: " + new Vector3(i, j - 3.5f, 0f));
+                                        }
+                                        if (grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)))
+                                        {
+                                            Debug.Log("Checking tile at: " + new Vector3(i + 3.5f, j, 0f).ToString());
+                                            Debug.Log("Neighbor E: " + neighbor.GetComponent<Connector>().E + " Grid Tile W: " + grid[new Vector3(i + 3.5f, j, 0f)].GetComponent<Connector>().W);
+                                            Debug.Log("Possible Neighbor: " + neighbor.name + "Tile: " + grid[new Vector3(i + 3.5f, j, 0f)].name);
+                                        }
+                                        else
+                                        {
+                                            Debug.Log("No tile found at: " + new Vector3(i + 3.5f, j, 0f));
+                                        }
+                                        if(grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)))
+                                        {
+                                            Debug.Log("Checking tile at: " + new Vector3(i, j + 3.5f, 0f).ToString());
+                                            Debug.Log("Neighbor S: " + neighbor.GetComponent<Connector>().S + " Grid Tile N: " + grid[new Vector3(i, j + 3.5f, 0f)].GetComponent<Connector>().N);
+                                            Debug.Log("Possible Neighbor: " + neighbor.name + "Tile: " + grid[new Vector3(i, j + 3.5f, 0f)].name);
+                                        }
+                                        else
+                                        {
+                                            Debug.Log("No tile found at: " + new Vector3(i, j + 3.5f, 0f));
+                                        }
+                                        Debug.Log("Neighbor Added: " + neighbor.name);
+                                        available.Add(neighbor);
+                                    }
+                                }
+                            }
+                        }
+                        /*
+
+                        if (!grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().WN == grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().EN))
+                        {
+                            if (!grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().EN == grid[new Vector3(i + 3.5f, j, 0f)].GetComponent<Connector>().WN))
+                            {
+                                if (!grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) && neighbor.GetComponent<Connector>().SN == grid[new Vector3(i, j + 3.5f, 0f)].GetComponent<Connector>().NN))
+                                {
+                                    if (!grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) && neighbor.GetComponent<Connector>().NN == grid[new Vector3(i, j - 3.5f, 0f)].GetComponent<Connector>().SN))
+                                    {
+                                        available.Add(neighbor);
+                                    }
+                                }
+                            }
+                        }
+                        */
                     }
                     
                     int selection = Random.Range(0, available.Count);
-                    if(available.Count > 0 && selection < available.Count && selection > 0)
+                    if(available.Count > 0)
                         selectedTile = available[selection];
+                    Debug.Log("There are " + available.Count + " possible tile configurations for the placement " + new Vector3(i, j, 0f).ToString());
+                    Debug.Log("<color=blue>Selected tile: " + selectedTile.name + "</color>");
+                    for (int s = 0; s < available.Count; s++)
+                        Debug.Log(available[s].name);
+                    available.Clear();
+
+                    Debug.Log("<color=green>End of tile placement</color>");
                     
                     GameObject tileInstance = Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
@@ -361,6 +438,12 @@ public class Room : MonoBehaviour
             i += 3.5f;
             if (tileCount != 0)
                 obstacleProbability = ((float)obstacleCount) / tileCount;
+        }
+
+        Debug.Log("<color=yellow>Printing Grid Tile Locations</color>");
+        foreach(var tile in grid)
+        {
+            Debug.Log(tile.Key.ToString());
         }
 
         //Set room to active

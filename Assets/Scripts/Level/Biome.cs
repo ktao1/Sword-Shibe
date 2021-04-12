@@ -314,7 +314,7 @@ public class Biome : MonoBehaviour
     {
         if(room.point == bossRoom.point)
         {
-            ProduceChallengeLevel();
+            //ProduceChallengeLevel();
         }   
         else if (room.isInstantiated)
         {
@@ -354,12 +354,12 @@ private float challengeCurTimer;
         ChallengeLevelSpawnEnemies();
         while(challengeCurRounds < challengeRounds)
         {
-        if(challengeCurTimer < Time.time)
-        {
-            Debug.Log("CHECKING");
-            challengeCurTimer = Time.time + challengeTimer;
-            challengeCurRounds++;
-        }
+            if(challengeCurTimer < Time.time)
+            {
+                Debug.Log("CHECKING");
+                challengeCurTimer = Time.time + challengeTimer;
+                challengeCurRounds++;
+            }
         }
     }
     public void ChallengeLevelSpawnEnemies()
@@ -367,10 +367,10 @@ private float challengeCurTimer;
         int enemyAmount = Random.Range(challengeMin, challengeMax);
         Debug.Log("Spawning");
 
-            for(int i = 0; i < enemyAmount; i++)
-            {
-                Vector3 newEnemy = new Vector3(Random.Range(-9.2f, 9.2f), Random.Range(-5f, 5f), 0f);
-                Instantiate(enemies[Random.Range(0,enemies.Length)], newEnemy, Quaternion.identity);    
-            }
+        for(int i = 0; i < enemyAmount; i++)
+        {
+            Vector3 newEnemy = new Vector3(Random.Range(-9.2f, 9.2f), Random.Range(-5f, 5f), 0f);
+            Instantiate(enemies[Random.Range(0,enemies.Length)], newEnemy, Quaternion.identity);    
+        }
     }
 }
