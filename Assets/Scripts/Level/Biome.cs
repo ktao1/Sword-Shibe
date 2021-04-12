@@ -17,6 +17,7 @@ using Random = UnityEngine.Random;
 public class Biome : MonoBehaviour
 {
 
+    #region Biome Objects
     //Arrays that hold the biomes prefab tiles
     public GameObject[] groundTiles;
     public GameObject[] cornerTiles;
@@ -24,18 +25,37 @@ public class Biome : MonoBehaviour
     public GameObject[] items;
     public GameObject[] enemies;
     public GameObject[] obstacles;
+
+    //Holds the portal to allow transitions between rooms
     public GameObject exit;
+
+    //The premade challenge/boss arena
     public GameObject bossRoomArea;
+    #endregion
 
     //Number of rooms this biome holds
     public int numOfRooms;
 
-    private Dictionary<Vector2, Room> biomeRooms = new Dictionary<Vector2, Room>();
+    //Room dictating where the player starts
     private Room startRoom;
+
+    //Final room to exit the Biome
     private Room bossRoom;
+    
+    //Transform holding all relevant objects belonging to the biome
     private Transform biomeBoard;
 
-    public int id;
+    //Dictionary which holds all rooms and their associated locations within the biome
+    private Dictionary<Vector2, Room> biomeRooms = new Dictionary<Vector2, Room>();
+
+    #region Challenge Room
+    public int challengeMin = 5; //Min enemies per round
+    public int challengeMax = 8; //Max enemies per round
+    public int challengeRounds = 3; //Number of rounds for the room
+    int challengeCurRounds = 0; //Current room round
+    public int challengeTimer = 5000; //Timer for the next round
+    int challengeCurTimer = 0; //Counter for next round
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -43,10 +63,21 @@ public class Biome : MonoBehaviour
 
     }
 
+//Challenge room values
+
     // Update is called once per frame
     void Update()
     {
-
+        if(challengeCurRounds > 0)
+        {
+            challengeCurTimer++;
+            if(challengeCurTimer > challengeTimer)
+            {
+                ChallengeLevelSpawnEnemies();
+                challengeCurTimer = 0;
+                challengeCurRounds--;
+            }
+        }
     }
 
     internal void StartFirstLevel()
@@ -73,7 +104,7 @@ public class Biome : MonoBehaviour
      * @maxRows Maximum number of rows allowed per room
      * @maxColumns Maximum number of columns allowed per room
      */
-    public void GenerateRooms(int maxRows, int maxColumns, int id)
+    public void GenerateRooms(int maxRows, int maxColumns)
     {
         for (int i = 0; i < numOfRooms; i++)
         {
@@ -87,10 +118,7 @@ public class Biome : MonoBehaviour
             biomeRooms.Add(randomPosition, new Room(Random.Range(maxRows / 2, maxRows), Random.Range(maxColumns / 2, maxColumns), randomPosition));
 
         }
-
         SetBeginEnd();
-
-
     }
 
     /*
@@ -152,7 +180,6 @@ public class Biome : MonoBehaviour
     //Reestablish a connection to room with broken link
     public void Reestablish(Room broken, string neighbor)
     {
-        Debug.Log("Reestablishing Neighbor");
         foreach (var room in biomeRooms)
         {
             if (room.Key != broken.point)
@@ -183,7 +210,6 @@ public class Biome : MonoBehaviour
 
     public void DisplayRooms()
     {
-        Debug.Log("End of Run, Displaying Rooms");
         foreach (var room in biomeRooms)
         {
             room.Value.DisplayNeighbors();
@@ -285,7 +311,7 @@ public class Biome : MonoBehaviour
      */
     private Room GetRoom(Vector2 position)
     {
-        if (position.Equals(Vector2.negativeInfinity))
+        if (position.Equals(Vector2.negativeInfinity) || !biomeRooms.ContainsKey(position))
         {
             return new Room(0, 0, Vector2.negativeInfinity);
         }
@@ -314,7 +340,7 @@ public class Biome : MonoBehaviour
     {
         if(room.point == bossRoom.point)
         {
-            ProduceBossLevel();
+            ProduceChallengeLevel();
         }   
         else if (room.isInstantiated)
         {
@@ -336,13 +362,25 @@ public class Biome : MonoBehaviour
         room.Deactivate();
     }
 
+
     //Loads the premade boss level
-    public void ProduceBossLevel()
+    public void ProduceChallengeLevel()
     {
         GameObject roomInstance = Instantiate(bossRoomArea, new Vector3(0f, 0f, 0f), Quaternion.identity) as GameObject;
-        
         roomInstance.transform.SetParent(GameObject.Find("BiomeBoard").transform);
+        GameObject.FindWithTag("Player").transform.position = new Vector3(0f, 0f, 0f);
+        ChallengeLevelSpawnEnemies();
+        challengeCurRounds = challengeRounds;
     }
+    public void ChallengeLevelSpawnEnemies()
+    {
+        int enemyAmount = Random.Range(challengeMin, challengeMax);
+        Debug.Log("Spawning");
 
-
+        for(int i = 0; i < enemyAmount; i++)
+        {
+            Vector3 newEnemy = new Vector3(Random.Range(-9.2f, 9.2f), Random.Range(-5f, 5f), 0f);
+            Instantiate(enemies[Random.Range(0,enemies.Length)], newEnemy, Quaternion.identity);    
+        }
+    }
 }

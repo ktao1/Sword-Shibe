@@ -115,6 +115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6857545669322888278}
   maxDistance: 3
+  XP: 50
+  health: 1
 --- !u!61 &5077135663342661734
 BoxCollider2D:
   m_ObjectHideFlags: 0

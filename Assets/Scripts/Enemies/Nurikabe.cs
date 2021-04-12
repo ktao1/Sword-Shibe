@@ -9,6 +9,9 @@ public class Nurikabe : MonoBehaviour
         public int maxDistance = 50;
 
         bool isAwake = false;
+        public int XP = 50;
+
+        public int health = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,11 @@ public class Nurikabe : MonoBehaviour
     {
             if(!isAwake)
             {
+                if(health < 1)
+                {
+                    player.GetComponent<Player>().levelSystem.AddXP(XP);
+                    Destroy(gameObject);
+                }
                 float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
                 if( distanceFromPlayer < maxDistance)
                 {
@@ -28,5 +36,10 @@ public class Nurikabe : MonoBehaviour
                 isAwake = true;
                 }
             }
+        }
+
+        void takeDamage(int damage)
+        {
+            health -= damage;
         }
 }
