@@ -17,6 +17,7 @@ using Random = UnityEngine.Random;
 public class Biome : MonoBehaviour
 {
 
+    #region Biome Objects
     //Arrays that hold the biomes prefab tiles
     public GameObject[] groundTiles;
     public GameObject[] cornerTiles;
@@ -24,27 +25,37 @@ public class Biome : MonoBehaviour
     public GameObject[] items;
     public GameObject[] enemies;
     public GameObject[] obstacles;
+
+    //Holds the portal to allow transitions between rooms
     public GameObject exit;
+
+    //The premade challenge/boss arena
     public GameObject bossRoomArea;
+    #endregion
 
     //Number of rooms this biome holds
     public int numOfRooms;
 
-    private Dictionary<Vector2, Room> biomeRooms = new Dictionary<Vector2, Room>();
+    //Room dictating where the player starts
     private Room startRoom;
+
+    //Final room to exit the Biome
     private Room bossRoom;
+    
+    //Transform holding all relevant objects belonging to the biome
     private Transform biomeBoard;
 
-    public int id;
+    //Dictionary which holds all rooms and their associated locations within the biome
+    private Dictionary<Vector2, Room> biomeRooms = new Dictionary<Vector2, Room>();
 
-#region Challenge Room
-public int challengeMin = 5; //Min enemies per round
-public int challengeMax = 8; //Max enemies per round
-public int challengeRounds = 3; //Number of rounds for the room
-int challengeCurRounds = 0; //Current room round
-public int challengeTimer = 5000; //Timer for the next round
-int challengeCurTimer = 0; //Counter for next round
-#endregion
+    #region Challenge Room
+    public int challengeMin = 5; //Min enemies per round
+    public int challengeMax = 8; //Max enemies per round
+    public int challengeRounds = 3; //Number of rounds for the room
+    int challengeCurRounds = 0; //Current room round
+    public int challengeTimer = 5000; //Timer for the next round
+    int challengeCurTimer = 0; //Counter for next round
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -93,7 +104,7 @@ int challengeCurTimer = 0; //Counter for next round
      * @maxRows Maximum number of rows allowed per room
      * @maxColumns Maximum number of columns allowed per room
      */
-    public void GenerateRooms(int maxRows, int maxColumns, int id)
+    public void GenerateRooms(int maxRows, int maxColumns)
     {
         for (int i = 0; i < numOfRooms; i++)
         {
@@ -169,7 +180,6 @@ int challengeCurTimer = 0; //Counter for next round
     //Reestablish a connection to room with broken link
     public void Reestablish(Room broken, string neighbor)
     {
-        Debug.Log("Reestablishing Neighbor");
         foreach (var room in biomeRooms)
         {
             if (room.Key != broken.point)
@@ -200,7 +210,6 @@ int challengeCurTimer = 0; //Counter for next round
 
     public void DisplayRooms()
     {
-        Debug.Log("End of Run, Displaying Rooms");
         foreach (var room in biomeRooms)
         {
             room.Value.DisplayNeighbors();
@@ -302,7 +311,7 @@ int challengeCurTimer = 0; //Counter for next round
      */
     private Room GetRoom(Vector2 position)
     {
-        if (position.Equals(Vector2.negativeInfinity))
+        if (position.Equals(Vector2.negativeInfinity) || !biomeRooms.ContainsKey(position))
         {
             return new Room(0, 0, Vector2.negativeInfinity);
         }

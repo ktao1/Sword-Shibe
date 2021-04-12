@@ -35,14 +35,16 @@ public class GenerateWorld : MonoBehaviour
         for (int i = 0; i < biomes.Count; i++)
         {
             if (i < biomes.Count - 1)
-                biomes[i].GenerateRooms(maxRows, maxColumns, biomes[i + 1].id);
+                biomes[i].GenerateRooms(maxRows, maxColumns);
             else
-                biomes[i].GenerateRooms(maxRows, maxColumns, 0);
+                biomes[i].GenerateRooms(maxRows, maxColumns);
         }
 
         //Link each biomes rooms together
         biomes[currentBiome].LinkRooms();
-        biomes[currentBiome].DisplayRooms();
+
+        //For debug purposes only
+        //biomes[currentBiome].DisplayRooms();
 
         //Instantiate first biomes starting room
         biomes[currentBiome].StartFirstLevel();
