@@ -144,8 +144,8 @@ GameObject:
   - component: {fileID: 185810141}
   - component: {fileID: 185810140}
   - component: {fileID: 185810144}
-  - component: {fileID: 185810143}
   - component: {fileID: 185810142}
+  - component: {fileID: 185810143}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -250,6 +250,10 @@ MonoBehaviour:
   - {fileID: 6731790738792531173, guid: a9a57fc5daabfda4681016ad6205a4a2, type: 3}
   - {fileID: 765040527481343114, guid: c48b032ae579c494ab00ee4f30142c1c, type: 3}
   - {fileID: 1562291749483657104, guid: 831def008481885409e7423b154e17e4, type: 3}
+  - {fileID: 6563342023049303757, guid: bc7bd8d8a351b0348bcc2cdb829363de, type: 3}
+  - {fileID: 7493655380720587399, guid: 63bf5318d7ec19246bd13246389345c2, type: 3}
+  - {fileID: 7210564700372957237, guid: 1ca3dd293f7121e4fb31d7c96f8962ad, type: 3}
+  - {fileID: 2808419788558027141, guid: 9f996cd6db1345b4eb76b2f9d1bad3bc, type: 3}
   items: []
   enemies:
   - {fileID: 158036453907044805, guid: 15e8b7ecab459874da0386e2903b98ed, type: 3}
@@ -261,9 +265,9 @@ MonoBehaviour:
   obstacles:
   - {fileID: 6541598668672096553, guid: d95d85ebfee13b944920c6e10fb41a49, type: 3}
   exit: {fileID: 1803885712776336110, guid: cc5d21ddf573af84185abfe41dd37a28, type: 3}
-  bossRoomArea: {fileID: 0}
+  bossRoomArea: {fileID: 3291513513664716310, guid: 3e493a4cec860f54cb91a0a8c2be3e9b,
+    type: 3}
   numOfRooms: 5
-  id: 0
   challengeMin: 5
   challengeMax: 8
   challengeRounds: 3
@@ -308,6 +312,10 @@ MonoBehaviour:
   - {fileID: 3896292524268026736, guid: 659bdb69cb7883747b5e47b518af5450, type: 3}
   - {fileID: 5956613516616033728, guid: eb13045cd394b0d44a5a3192f77aab76, type: 3}
   - {fileID: 3797143525829847999, guid: cc73a07d1a728dc42b680ac2bd100fdd, type: 3}
+  - {fileID: 8101779839824864499, guid: 7823162d0ca2ada449c49cb655a3d9c7, type: 3}
+  - {fileID: 53153414867505132, guid: 52cc16291482eb743bf224955202c5a6, type: 3}
+  - {fileID: 1305385380336196003, guid: d9f2a25f73a24e6488b90d8ceb196ba0, type: 3}
+  - {fileID: 358442253390471829, guid: e001f08f935c7c34aacba6ca470089a3, type: 3}
   items: []
   enemies:
   - {fileID: 800105458804917874, guid: fe5485227347efa4fa7dd657600f9ef3, type: 3}
@@ -320,7 +328,6 @@ MonoBehaviour:
   bossRoomArea: {fileID: 3291513513664716310, guid: 3e493a4cec860f54cb91a0a8c2be3e9b,
     type: 3}
   numOfRooms: 4
-  id: 0
   challengeMin: 5
   challengeMax: 8
   challengeRounds: 3

@@ -256,8 +256,32 @@ public class Room
                 //Edge tiles, left-edge
                 else if (i == 0)
                 {
+                    List<GameObject> temp = new List<GameObject>();
+                    temp.Add(edgeTiles[0]);
+                    temp.Add(edgeTiles[4]);
 
-                    selectedTile = edgeTiles[0];
+                    List<GameObject> available = new List<GameObject>();
+
+                    //Determine which tiles can be placed at current location
+                    for (int k = 0; k < temp.Count; k++)
+                    {
+                        GameObject neighbor = temp[k];
+
+                        if ((!grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().W.CompareTo(grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().E.CompareTo(grid[new Vector3(i + 3.5f, j, 0f)].GetComponent<Connector>().W) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) && neighbor.GetComponent<Connector>().N.CompareTo(grid[new Vector3(i, j + 3.5f, 0f)].GetComponent<Connector>().S) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) && neighbor.GetComponent<Connector>().S.CompareTo(grid[new Vector3(i, j - 3.5f, 0f)].GetComponent<Connector>().N) == 0)))
+                        {
+                            available.Add(neighbor);
+                        }
+                    }
+
+                    Debug.Log("<color=yellow>Tile Left Count" + available.Count + "</color>");
+
+                    int selection = Random.Range(0, available.Count);
+                    if (available.Count > 0)
+                        selectedTile = available[selection];
+                    available.Clear();
 
                     GameObject tileInstance = GameObject.Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
@@ -268,7 +292,32 @@ public class Room
                 else if (i == columns * 3.5)
                 {
 
-                    selectedTile = edgeTiles[2];
+                    List<GameObject> temp = new List<GameObject>();
+                    temp.Add(edgeTiles[2]);
+                    temp.Add(edgeTiles[6]);
+
+                    List<GameObject> available = new List<GameObject>();
+
+                    //Determine which tiles can be placed at current location
+                    for (int k = 0; k < temp.Count; k++)
+                    {
+                        GameObject neighbor = temp[k];
+
+                        if ((!grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().W.CompareTo(grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().E.CompareTo(grid[new Vector3(i + 3.5f, j, 0f)].GetComponent<Connector>().W) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) && neighbor.GetComponent<Connector>().N.CompareTo(grid[new Vector3(i, j + 3.5f, 0f)].GetComponent<Connector>().S) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) && neighbor.GetComponent<Connector>().S.CompareTo(grid[new Vector3(i, j - 3.5f, 0f)].GetComponent<Connector>().N) == 0)))
+                        {
+                            available.Add(neighbor);
+                        }
+                    }
+
+                    Debug.Log("<color=yellow>Tile Right Count" + available.Count + "</color>");
+
+                    int selection = Random.Range(0, available.Count);
+                    if (available.Count > 0)
+                        selectedTile = available[selection];
+                    available.Clear();
 
                     GameObject tileInstance = GameObject.Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
@@ -279,7 +328,32 @@ public class Room
                 else if (j == 0)
                 {
 
-                    selectedTile = edgeTiles[3];
+                    List<GameObject> temp = new List<GameObject>();
+                    temp.Add(edgeTiles[3]);
+                    temp.Add(edgeTiles[7]);
+
+                    List<GameObject> available = new List<GameObject>();
+
+                    //Determine which tiles can be placed at current location
+                    for (int k = 0; k < temp.Count; k++)
+                    {
+                        GameObject neighbor = temp[k];
+
+                        if ((!grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().W.CompareTo(grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().E.CompareTo(grid[new Vector3(i + 3.5f, j, 0f)].GetComponent<Connector>().W) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) && neighbor.GetComponent<Connector>().N.CompareTo(grid[new Vector3(i, j + 3.5f, 0f)].GetComponent<Connector>().S) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) && neighbor.GetComponent<Connector>().S.CompareTo(grid[new Vector3(i, j - 3.5f, 0f)].GetComponent<Connector>().N) == 0)))
+                        {
+                            available.Add(neighbor);
+                        }
+                    }
+
+                    Debug.Log("<color=yellow>Tile Bottom Count" + available.Count + "</color>");
+
+                    int selection = Random.Range(0, available.Count);
+                    if (available.Count > 0)
+                        selectedTile = available[selection];
+                    available.Clear();
 
                     GameObject tileInstance = GameObject.Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
@@ -290,7 +364,33 @@ public class Room
                 else if (j == rows * 3.5)
                 {
 
-                    selectedTile = edgeTiles[1];
+                    List<GameObject> temp = new List<GameObject>();
+                    temp.Add(edgeTiles[1]);
+                    temp.Add(edgeTiles[5]);
+
+                    List<GameObject> available = new List<GameObject>();
+
+                    //Determine which tiles can be placed at current location
+                    for (int k = 0; k < temp.Count; k++)
+                    {
+                        GameObject neighbor = temp[k];
+                        Debug.Log("Validating Tile: " + neighbor.name);
+                        if ((!grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().W.CompareTo(grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().E.CompareTo(grid[new Vector3(i + 3.5f, j, 0f)].GetComponent<Connector>().W) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) && neighbor.GetComponent<Connector>().N.CompareTo(grid[new Vector3(i, j + 3.5f, 0f)].GetComponent<Connector>().S) == 0)) &&
+                            (!grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j - 3.5f, 0f)) && neighbor.GetComponent<Connector>().S.CompareTo(grid[new Vector3(i, j - 3.5f, 0f)].GetComponent<Connector>().N) == 0)))
+                        {
+                            available.Add(neighbor);
+                        }
+                    }
+
+                    Debug.Log("<color=yellow>Tile Top Count" + available.Count + "</color>");
+                    Debug.Log("<color=green>Location: " + new Vector3(i, j, 0f).ToString() + "</color>");
+
+                    int selection = Random.Range(0, available.Count);
+                    if (available.Count > 0)
+                        selectedTile = available[selection];
+                    available.Clear();
 
                     GameObject tileInstance = GameObject.Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
@@ -304,7 +404,7 @@ public class Room
                     List<GameObject> available = new List<GameObject>();
                     
                     //Determine which tiles can be placed at current location
-                    for (int k = 0; k < temp.Capacity; k++)
+                    for (int k = 0; k < temp.Count; k++)
                     {
                         GameObject neighbor = temp[k];
                         

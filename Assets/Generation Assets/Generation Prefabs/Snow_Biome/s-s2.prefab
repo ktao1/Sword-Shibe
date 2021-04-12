@@ -95,6 +95,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   N: 1
-  S: 0
+  S: 1
   E: 0
-  W: 1
+  W: 0
+  NN: 0
+  SN: 0
+  EN: 0
+  WN: 0
