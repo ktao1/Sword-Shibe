@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2566901990907067466}
   - component: {fileID: 1716684386242041261}
+  - component: {fileID: 4095526366026842359}
+  - component: {fileID: 1812386998}
+  - component: {fileID: 4296316818643464367}
   m_Layer: 0
   m_Name: gate_base
   m_TagString: Untagged
@@ -67,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1240898125
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6aa3538745a88432b88b72ca303fd518, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -81,3 +84,57 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4095526366026842359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452771500083915487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e21b3623a33e6145bd96d59e8e78b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  red: 0
+  portal: {fileID: 7354985236784707891, guid: c912ed2a586ed0f4e8d759a62031183c, type: 3}
+--- !u!114 &1812386998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452771500083915487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4ecb34ce428c14086007c74d200f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRoom: {x: -Infinity, y: -Infinity}
+  nextRoom: {x: -Infinity, y: -Infinity}
+--- !u!61 &4296316818643464367
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452771500083915487}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.12263405, y: 0.012263298}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.5, y: 3.5}
+    newSize: {x: 3.5, y: 3.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.9629853, y: 1.9384575}
+  m_EdgeRadius: 0
