@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 185810143}
   - component: {fileID: 185810142}
   - component: {fileID: 185810145}
+  - component: {fileID: 185810146}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -406,6 +407,18 @@ MonoBehaviour:
   challengeMax: 8
   challengeRounds: 3
   challengeTimer: 5000
+--- !u!114 &185810146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185810139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64316912307d7ba44b48ce054774ff02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &222501068 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6710183287084529812, guid: 9d35025e4b3056049a5267b42bf3131c,
@@ -461,6 +474,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4434872678075396924, guid: e4588d2ee454a994983194f442e6ea68,
+        type: 3}
+      propertyPath: m_Depth
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434872678075396924, guid: e4588d2ee454a994983194f442e6ea68,
+        type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434872678075396924, guid: e4588d2ee454a994983194f442e6ea68,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434872678075396924, guid: e4588d2ee454a994983194f442e6ea68,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434872678075396924, guid: e4588d2ee454a994983194f442e6ea68,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4748123824111664043, guid: e4588d2ee454a994983194f442e6ea68,
         type: 3}
       propertyPath: m_RootOrder
@@ -893,6 +931,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fac3ec6127dccef47b12b61b809e50a5, type: 3}
+--- !u!1 &1683281398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4434872678075396913, guid: e4588d2ee454a994983194f442e6ea68,
+    type: 3}
+  m_PrefabInstance: {fileID: 859573094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1683281402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683281398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d65215d0a32c1469b05ec8a01ed733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
+  baseField: 60
+  zoomNum: 0.08
+  maxZoom: 25
 --- !u!114 &1748234121 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1280531905627202311, guid: 9d35025e4b3056049a5267b42bf3131c,

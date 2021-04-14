@@ -68,7 +68,7 @@ public class Biome : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(challengeCurRounds > 0)
+        if(challengeCurRounds > 0 && Time.timeScale == 1)
         {
             challengeCurTimer++;
             if(challengeCurTimer > challengeTimer)
@@ -376,6 +376,8 @@ public class Biome : MonoBehaviour
     {
         GameObject roomInstance = Instantiate(bossRoomArea, new Vector3(0f, 0f, 0f), Quaternion.identity) as GameObject;
         roomInstance.transform.SetParent(GameObject.Find("BiomeBoard").transform);
+        GameObject challengeEnemies = new GameObject("Challenge Enemies");
+        challengeEnemies.transform.SetParent(GameObject.Find("World").transform);
         GameObject.FindWithTag("Player").transform.position = new Vector3(0f, 0f, 0f);
         ChallengeLevelSpawnEnemies();
         challengeCurRounds = challengeRounds;
@@ -396,7 +398,8 @@ public class Biome : MonoBehaviour
         for(int i = 0; i < enemyAmount; i++)
         {
             Vector3 newEnemy = new Vector3(Random.Range(-9.2f, 9.2f), Random.Range(-5f, 5f), 0f);
-            Instantiate(enemies[Random.Range(0,enemies.Length)], newEnemy, Quaternion.identity);    
+            GameObject addEnemy = Instantiate(enemies[Random.Range(0,enemies.Length)], newEnemy, Quaternion.identity) as GameObject;
+            addEnemy.transform.SetParent(GameObject.Find("Challenge Enemies").transform);                            
         }
     }
     #endregion

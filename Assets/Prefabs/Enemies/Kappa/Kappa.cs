@@ -268,7 +268,9 @@ public GameObject bullet;
 
                         for (int i = 0; i < ShotPattern.childCount; i++)    {
                             Transform shotPosition = ShotPattern.GetChild(i);
-                            Instantiate(bullet, transform.position, shotPosition.rotation);
+                            GameObject addBullet = Instantiate(bullet, transform.position, shotPosition.rotation) as GameObject;
+                            addBullet.transform.SetParent(GameObject.Find("All Bullets").transform);                    
+                            
                         }
     }
 

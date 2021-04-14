@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class pauseAndPlay : MonoBehaviour
 {
+int counter = 0;
 public static bool gameIsPaused;
-
 void Update()
     {
-        if (Input.GetKey("p"))
+        if (Input.GetKey("p") && counter == 0)
         {
             gameIsPaused = !gameIsPaused;
             PauseGame();
+            counter ++;
+        }
+        else if(Input.GetKey("p"))
+        {
+            counter++;            
+        }
+        else
+        {
+            counter = 0;
         }
     }
 
