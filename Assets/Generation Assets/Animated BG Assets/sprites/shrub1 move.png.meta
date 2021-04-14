@@ -1,0 +1,584 @@
+fileFormatVersion: 2
+guid: 31a56a1e0b3fe9d47bf907a3218fbffb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5361253640993086994
+    second: shrub1 move_0
+  - first:
+      213: 8530199552942452335
+    second: shrub1 move_1
+  - first:
+      213: -2786799713664965937
+    second: shrub1 move_2
+  - first:
+      213: -4148493521875992291
+    second: shrub1 move_3
+  - first:
+      213: -8222466051363965953
+    second: shrub1 move_4
+  - first:
+      213: 5924900313194972852
+    second: shrub1 move_5
+  - first:
+      213: 8459381574207892040
+    second: shrub1 move_6
+  - first:
+      213: -8250465622795058788
+    second: shrub1 move_7
+  - first:
+      213: -3232842462509177455
+    second: shrub1 move_8
+  - first:
+      213: 6655009837789305495
+    second: shrub1 move_9
+  - first:
+      213: 5455693317824183533
+    second: shrub1 move_10
+  - first:
+      213: 2043036787989235347
+    second: shrub1 move_11
+  - first:
+      213: -1355713279163150539
+    second: shrub1 move_12
+  - first:
+      213: 5789034385310384894
+    second: shrub1 move_13
+  - first:
+      213: 6941321295786777655
+    second: shrub1 move_14
+  - first:
+      213: -2823097350971535543
+    second: shrub1 move_15
+  - first:
+      213: 4062918391267705925
+    second: shrub1 move_16
+  - first:
+      213: 6292382842777758176
+    second: shrub1 move_17
+  - first:
+      213: -876574790145092410
+    second: shrub1 move_18
+  - first:
+      213: 2035317987363134181
+    second: shrub1 move_19
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shrub1 move_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1053
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee166d9f7300995b0800000000000000
+      internalID: -5361253640993086994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_1
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 1053
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6ea4586c4b516670800000000000000
+      internalID: 8530199552942452335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_2
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 1053
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc2e6deec6c4359d0800000000000000
+      internalID: -2786799713664965937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_3
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 1053
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d11829b1f179d66c0800000000000000
+      internalID: -4148493521875992291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_4
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 1053
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff3fdb6d0bee3ed80800000000000000
+      internalID: -8222466051363965953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 702
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b646918179793250800000000000000
+      internalID: 5924900313194972852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_6
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 702
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84a6526d8b2c56570800000000000000
+      internalID: 8459381574207892040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_7
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 702
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c918ab99a35708d80800000000000000
+      internalID: -8250465622795058788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_8
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 702
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 195675f98e2a223d0800000000000000
+      internalID: -3232842462509177455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_9
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 702
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79a592e00385b5c50800000000000000
+      internalID: 6655009837789305495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 351
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: decf164ca2486bb40800000000000000
+      internalID: 5455693317824183533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_11
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 351
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 396472b52235a5c10800000000000000
+      internalID: 2043036787989235347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_12
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 351
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f433a94f98f2de0800000000000000
+      internalID: -1355713279163150539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_13
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 351
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef282f01a18c65050800000000000000
+      internalID: 5789034385310384894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_14
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 351
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73c993b11f6845060800000000000000
+      internalID: 6941321295786777655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94fcefcaae752d8d0800000000000000
+      internalID: -2823097350971535543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_16
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 0
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 544c9e620c2626830800000000000000
+      internalID: 4062918391267705925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_17
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 0
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e9e7866bd8035750800000000000000
+      internalID: 6292382842777758176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_18
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 0
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c4d6566fd7c5d3f0800000000000000
+      internalID: -876574790145092410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shrub1 move_19
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 0
+        width: 351
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ea1eb90de6ee3c10800000000000000
+      internalID: 2035317987363134181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
