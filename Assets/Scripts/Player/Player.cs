@@ -376,11 +376,11 @@ public class Player : MonoBehaviour
     {
         if (isDashing && !isTakeingDamage && !isDead)
         {
-            col2d.enabled = false;
+            
             string dashAnimation = dir + "Dash";
             ChangeAnimationState(dashAnimation);
             rb.MovePosition(rb.position + movement * dashSpeed * Time.fixedDeltaTime);
-            Invoke("OnDashComplete", animator.GetCurrentAnimatorStateInfo(0).length);
+            Invoke("OnDashComplete", animator.GetCurrentAnimatorStateInfo(0).length * 1.5f);
         }
     }
     public void OnDashComplete()
@@ -490,6 +490,14 @@ public class Player : MonoBehaviour
         {
             Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
             GameObject.FindWithTag("Editor").SendMessage("nextStage");
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy" && isDashing)
+        {
+            col2d.enabled = false;
         }
     }
 
