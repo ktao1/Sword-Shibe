@@ -38,9 +38,19 @@ public class SkillTree_UI : MonoBehaviour
     public void setSkillButtonsList()
     {
         skillButtonsList = new List<SkillButton>();
+        // Health
         skillButtonsList.Add(new SkillButton(transform.Find("HealthTrack").Find("HealthUp1Btn"), playerSkills, PlayerSkills.SkillType.HealthUp_1));
         skillButtonsList.Add(new SkillButton(transform.Find("HealthTrack").Find("HealthUp2Btn"), playerSkills, PlayerSkills.SkillType.HealthUp_2));
         skillButtonsList.Add(new SkillButton(transform.Find("HealthTrack").Find("HealthUp3Btn"), playerSkills, PlayerSkills.SkillType.HealthUp_3));
+        // Dash
+        skillButtonsList.Add(new SkillButton(transform.Find("DashFasterTrack").Find("DashFaster1Btn"), playerSkills, PlayerSkills.SkillType.DashFaster_1));
+        skillButtonsList.Add(new SkillButton(transform.Find("DashFasterTrack").Find("DashFaster2Btn"), playerSkills, PlayerSkills.SkillType.DashFaster_2));
+        skillButtonsList.Add(new SkillButton(transform.Find("DashFasterTrack").Find("DashFaster3Btn"), playerSkills, PlayerSkills.SkillType.DashFaster_3));
+        // Attack
+        skillButtonsList.Add(new SkillButton(transform.Find("AttackTrack").Find("Attack1Btn"), playerSkills, PlayerSkills.SkillType.AttackSpeed_1));
+        skillButtonsList.Add(new SkillButton(transform.Find("AttackTrack").Find("Attack2Btn"), playerSkills, PlayerSkills.SkillType.AttackSpeed_2));
+        skillButtonsList.Add(new SkillButton(transform.Find("AttackTrack").Find("Attack3Btn"), playerSkills, PlayerSkills.SkillType.AttackSpeed_3));
+
     }
 
     private void PlayerSkills_OnSkillUnlocked(object sender, PlayerSkills.OnskillUnlockedEventArgs e)

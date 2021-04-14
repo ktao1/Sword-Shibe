@@ -17,6 +17,12 @@ public class PlayerSkills
         HealthUp_1,
         HealthUp_2,
         HealthUp_3,
+        DashFaster_1,
+        DashFaster_2,
+        DashFaster_3,
+        AttackSpeed_1,
+        AttackSpeed_2,
+        AttackSpeed_3,
     }
 
     private List<SkillType> unlockedSkillTypeList;
@@ -79,6 +85,14 @@ public class PlayerSkills
                 return SkillType.HealthUp_1;
             case SkillType.HealthUp_3: 
                 return SkillType.HealthUp_2;
+            case SkillType.DashFaster_2:
+                return SkillType.DashFaster_1;
+            case SkillType.DashFaster_3:
+                return SkillType.DashFaster_2;
+            case SkillType.AttackSpeed_2:
+                return SkillType.AttackSpeed_1;
+            case SkillType.AttackSpeed_3:
+                return SkillType.AttackSpeed_2;
         }
         return SkillType.None;
     }

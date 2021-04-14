@@ -7,10 +7,15 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    //inital component
+    private Rigidbody2D rb;
+    public Animator animator;
+    public SpriteRenderer sr;
+    public Transform attackPoint;
     private Player player;
     // Health System
     #region HealthSystem
-    public int health = 3;
+    public int health;
     public int numOfHearts;
     public Image[] hearts;
     public Sprite fullHeart;
@@ -24,91 +29,134 @@ public class Player : MonoBehaviour
     private LevelSystemUI levelSystemUI;
     #endregion
 
-    #region
+    // SkillSystem
+    #region SkillSystem
     // SkillSystem
     private PlayerSkills playerSkills;
     private SkillTree_UI skillTree_UI;
     [SerializeField] private GameObject SkillTree;
     #endregion
 
+    //movement Direction State
+    #region MovementDirState
+
+    string dir = "";
+    const string D_ = "D_";
+    const string L_ = "L_";
+    const string R_ = "R_";
+    const string U_ = "U_";
+
+    #endregion
+    // Animation state
+    #region Animation State
+    string currentState = "R_Idle";
+
+    // Level Up effect
+    const string LEVEL_UP_EFFECT = "LevelUp";
+
+    // Death Animation
+    const string DEATH_ANIMATOIN = "Death anim";
+    const string DEATH_LOOP = "Death Loop";
+/*
+    // Down animation
+    const string D_ATTACK = "D_Attack";
+    const string D_DASH = "D_Dash";
+    const string D_HURT = "D_Hurt";
+    const string D_IDLE = "D_Idle";
+    const string D_RUN = "D_Run";
+    // Left aniamtion
+    const string L_ATTACK = "L_Attack";
+    const string L_DASH = "L_Dash";
+    const string L_HURT = "L_Hurt";
+    const string L_IDLE = "L_Idle";
+    const string L_RUN = "L_Run";
+    // Right Animation
+    const string R_ATTACK = "R_Attack";
+    const string R_DASH = "R_Dash";
+    const string R_HURT = "R_Hurt";
+    const string R_IDLE = "R_Idle";
+    const string R_RUN = "R_Run";
+    // Up Animation
+    const string U_ATTACK = "U_Attack";
+    const string U_DASH = "U_Dash";
+    const string U_HURT = "U_Hurt";
+    const string U_IDLE = "U_Idle";
+    const string U_RUN = "U_Run";
+    */
+    #endregion
 
 
-    public float speed = 5; 
-    public int immortalLayer = 13;  //The layer where the player can't take damage
-    public int playerLayer = 12;    //The layer where the player can collide with things the player should collide with
-    public AudioClip swordSound;
-    private AudioSource source;
+    // Player movement data
+    #region MovementDate
 
-    public int attackLimit = 50;
-    public int dashLimit = 50;      //How long the player can dash for, timer counter limit
-    private int dashMulti = 3;      //When dashing, speed *= dashMulti
-    public bool immortal = false;   //Is the game in betatesting mode (can't take damage)
-    public int immuneLimit = 100;   //How long the invincibility frames are, timer counter limit
-    public GameObject attack;       //Type of attack
-    public Animator animator;       //Use when animating, set triggers, bools, ints, and floats for the animations
+    // movement bool
+    bool isMoving = false;
+    bool isDashing = false;
+    bool isAttacking = false;
+    bool isTakeingDamage = false;
+    bool isDead = false;
+    public bool isInvincible = false;
 
-    //Status bools
-    private bool immune = false;
-    bool dashing = false;    
-    bool attacking = false;
-    bool canAttack = true;
-    bool canDash = true;
-    bool hurt = false;
-    bool dead = false;
+    // movement
+    public float moveSpeed = 5f;
+    public float dashSpeed = 10f;
+    public float dashTimer = 2f;
+    private float dashCD = 0f;
+    Vector2 movement;
 
-    //Timer counters                  How counters work: set them to 0 and count up to the limit
-    private int dashTime = 0;   
-    private int immuneTime = 0;
-    private int attackTime = 0;
-    private int damageTime = 0;
+    // attack
+    public int damage = 1;
+    public float attackSpeed = 2f;
+    private float attackCD = 0f;
+    public float attackRange = 0.5f;
+    public LayerMask[] attackableLayers;
 
-enum dir
-{
-  up,
-  down,
-  left,
-  right
-}
+    public Animator effects;
 
-float curDir = 1;
 
+    #endregion
 
     private void Awake()
     {
-        
+
     }
 
     void Start()
     {
+        // Get Component
         player = this.GetComponent<Player>();
+        rb = this.GetComponent<Rigidbody2D>();
+        animator = this.GetComponent<Animator>();
+        sr = this.GetComponent<SpriteRenderer>();
+        attackPoint = transform.Find("AttackPoint");
+
+        dir = D_;
 
         LevelSystemStartSetting();
         SkillSystemStartSetting();
 
-
-        source = GetComponent<AudioSource>();
-
-      if(immortal)
-      {
-        gameObject.layer = immortalLayer;
-      }
     }
 
-    void Update ()    //Every frame...
+    void Update()    //Every frame...
     {
+        if (!isDead) {
+            OpenCloseSkillMenu();
+            UpdateHealth();
+            CheckInput();
+            Attack();
+        }
+    }
 
-        OpenCloseSkillMenu();
+    private void FixedUpdate()
+    {
+        if (!isDead)
+        {
+            dashCD -= Time.deltaTime;
+            attackCD -= Time.deltaTime;
 
-      if (!dead)   //not paused
-      {
-        UpdateHealth();     //Update player's health
-        manageTimers();     //Put all timer loop stuff in here
-        moveAndAttack();    //Groups together move and attack into one function
-      }
-      else
-      {
-          animator.SetTrigger("Dead");
-      }
+            Move();
+            Dash();
+        }
     }
 
     // health System
@@ -170,13 +218,14 @@ float curDir = 1;
         // set full health
         health = numOfHearts;
         playerSkills.addSkillPoint();
-        Debug.Log("Lvel Up!");
+
+        effects.Play(LEVEL_UP_EFFECT);
+
     }
     #endregion
 
     // skill System
     #region SkillSystem
-
     public void SkillSystemStartSetting()
     {
 
@@ -203,6 +252,7 @@ float curDir = 1;
     {
         switch (e.skillType)
         {
+            // Health
             case PlayerSkills.SkillType.HealthUp_1:
                 SetHealthAmount(5);
                 break;
@@ -211,6 +261,26 @@ float curDir = 1;
                 break;
             case PlayerSkills.SkillType.HealthUp_3:
                 SetHealthAmount(10);
+                break;
+            // DashSpeed
+            case PlayerSkills.SkillType.DashFaster_1:
+                SetDashCD();
+                break;
+            case PlayerSkills.SkillType.DashFaster_2:
+                SetDashCD();
+                break;
+            case PlayerSkills.SkillType.DashFaster_3:
+                SetDashCD();
+                break;
+            // Attack Speed
+            case PlayerSkills.SkillType.AttackSpeed_1:
+                SetAttackSpeed();
+                break;
+            case PlayerSkills.SkillType.AttackSpeed_2:
+                SetAttackSpeed();
+                break;
+            case PlayerSkills.SkillType.AttackSpeed_3:
+                SetAttackSpeed();
                 break;
         }
     }
@@ -221,207 +291,204 @@ float curDir = 1;
         health = numOfHearts;
     }
 
+    private void SetDashCD()
+    {
+        dashTimer *= 1.5f;
+    }
 
+    private void SetAttackSpeed()
+    {
+        attackSpeed *= 1.5f;
+    }
+
+    #endregion
+
+    // player movement
+    #region Movement
+    public void CheckInput()
+    {
+        if (!isDashing && !isAttacking && !isTakeingDamage && !isDead)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                dir = U_;
+                isMoving = true;
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                dir = D_;
+                isMoving = true;
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                dir = L_;
+                isMoving = true;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                dir = R_;
+                isMoving = true;
+            }
+
+        }
+
+        if (!isDashing && !isTakeingDamage && !isAttacking && !isDead && dashCD <= 0f)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.RightControl))
+            {
+                isDashing = true;
+            }
+        }
+
+        if (!isAttacking && !isDashing && !isTakeingDamage && !isDead && attackCD <= 0f)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                isAttacking = true;
+            }
+        }
+    }
+    public void Move()
+    {
+        // basic movement and animation
+        // Idle when no movement 
+        if (movement.x == 0 && movement.y == 0 && !isDashing && !isAttacking && !isTakeingDamage && !isDead)
+        {
+            isMoving = false;
+            string idleAnimation = dir + "Idle";
+            //Debug.Log(idleAnimation);
+            ChangeAnimationState(idleAnimation);
+        }
+        else if (isMoving && !isDashing && !isAttacking && !isTakeingDamage && !isDead)
+        {
+            string runAnimation = dir + "Run";
+            ChangeAnimationState(runAnimation);
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
+    }
+    public void Dash()
+    {
+        if (isDashing && !isAttacking && !isTakeingDamage && !isDead)
+        {
+ 
+            string dashAnimation = dir + "Dash";
+            ChangeAnimationState(dashAnimation);
+            rb.MovePosition(rb.position + movement * dashSpeed * Time.fixedDeltaTime);
+            Invoke("OnDashComplete", animator.GetCurrentAnimatorStateInfo(0).length);
+        }
+    }
+    public void OnDashComplete()
+    {
+        CancelInvoke();
+        isDashing = false;
+        dashCD = 1 / dashTimer;
+    }
+
+    #endregion
+
+    // player attack
+    #region Attack
+
+    public void Attack()
+    {
+        if (isAttacking)
+        {
+            string attackAnimation = dir + "Attack";
+            ChangeAnimationState(attackAnimation);
+            // detect object in range of attack
+
+            Collider2D[] hitObjects;
+
+            for (int i = 0; i < attackableLayers.Length; i++)
+            {
+                hitObjects = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, attackableLayers[i]);
+                foreach (Collider2D attackableObject in hitObjects)
+                {
+                    attackableObject.SendMessage("takeDamage", damage);
+                }
+            }
+            Invoke("OnAttackComplete", animator.GetCurrentAnimatorStateInfo(0).length);
+        }
+    }
+
+    public void OnAttackComplete()
+    {
+        if(!isTakeingDamage)
+            CancelInvoke();
+        isAttacking = false;
+        attackCD = 1 / attackSpeed;
+    }
+
+    #endregion
+
+    // player taking damge
+    #region TakingDamge
+
+    public void takeDamage(int damage)
+    {
+
+
+        if (!isDashing && !isTakeingDamage && !isInvincible)
+        {
+            health -= damage;
+            if (health <= 0)
+            {
+                isDead = true;
+                ChangeAnimationState(DEATH_ANIMATOIN);
+                SceneManager.LoadScene("DeadScreen");
+            }
+            else
+            {
+                isTakeingDamage = true;
+                string hurtAnimation = dir + "Hurt";
+                ChangeAnimationState(hurtAnimation);
+                sr.color = new Color(255, 0, 0);
+                Invoke("OnTakeDamgeComplete", animator.GetCurrentAnimatorStateInfo(0).length);
+            }
+        }
+    }
+
+    public void OnTakeDamgeComplete()
+    {
+        string idleAnimation = dir + "Idle";
+        ChangeAnimationState(idleAnimation);
+        sr.color = new Color(255, 255, 255);
+        isTakeingDamage = false;
+    }
 
     #endregion
 
 
-    void moveAndAttack()
+    void ChangeAnimationState(string newState)
     {
-  		float x = Input.GetAxisRaw ("Horizontal");  //Horizontal input 		
-	  	float y = Input.GetAxisRaw ("Vertical");    //Vertical input		
-      attacking = false;
+        // stop same animation interuuping each other
+        if (currentState == newState)
+            return;
+        // play new animation 
+        animator.Play(newState);
+        // set the current state
+        currentState = newState;
+    }
 
-      if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)) && !dashing && canDash && !attacking)     //Set up dashing
-      {
-        hurt = false;
-        dashing = true;
-        gameObject.layer = immortalLayer;
-        dashTime = 0;
-        speed *= dashMulti;       //dash speed = 3 x normal speed
-      }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Portal")
+        {
+            Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+            GameObject.FindWithTag("Editor").SendMessage("nextStage");
+        }
+    }
 
-		  Vector2 direction = new Vector2 (x, y).normalized;		
-		  GetComponent<Rigidbody2D>().velocity = direction * speed;
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
 
-
-if(x == 0 && y == 0)
-{
-  animator.SetFloat("curDir", curDir);
-}
-else
-{
-      animator.SetFloat("Horizontal", x);
-      animator.SetFloat("Vertical", y);
-      if(x == 0 && y > 0) curDir = (float)dir.up;
-      if(x == 0 && y < 0) curDir = (float)dir.down;
-      if(x < 0 && y == 0) curDir = (float)dir.left;
-      if(x > 0 && y == 0) curDir = (float)dir.right;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
 
 }
-        animator.SetInteger("speed", (int)(Mathf.Abs(direction[0])+Mathf.Abs(direction[1])));
-
-        //Animation Setup 
-        //      Motion: Prioritize up/down over left/right
-
-        //      Dashing
-        if(Input.GetMouseButtonDown(0) && !dashing && canAttack)
-        {
-            attacking = true;
-            
-            canAttack = false;
-            attackTime = 0;
-
-            hurt = false;
-            animator.SetTrigger("Attacking");
-
-            Vector3 attackOffset = transform.position;
-
-            if(x < 0)
-            {
-            attackOffset[0] -= 1;
-            }
-            if(x > 0)
-            {
-            attackOffset[0] += 1;
-            }
-
-            if(y < 0)
-            {
-              attackOffset[1] -= 1;
-            }
-            if(y > 0)
-            {
-              attackOffset[1] += 1;
-            }
-
-            if(x == 0 && y == 0)
-            {
-              if(curDir == (float)dir.up)
-              {
-                attackOffset[1] +=1;
-              }
-              if(curDir == (float)dir.down)
-              {
-                attackOffset[1] -=1;
-              }
-              if(curDir == (float)dir.left)
-              {
-                attackOffset[0] -= 1;
-              }
-              if(curDir == (float)dir.right)
-              {
-                attackOffset[0] += 1;
-              }
-            }
-
-            Instantiate (attack, attackOffset, transform.rotation);
-        }
-        else if(dashing && !attacking)
-        {
-          hurt = false;
-          animator.SetTrigger("Dashing");
-        }
-        else if(hurt)
-        {
-          animator.SetTrigger("Damaged");
-        }
-      }
-
-    
-
-    public void manageTimers()
-  {
-    if(immune)
-    {
-      gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-      if(immuneTime < immuneLimit)  immuneTime++;
-      else
-      {
-        gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.white);
-        
-        immune = false;
-        if(!dashing && !immune)
-        {
-        gameObject.layer = playerLayer;
-        }
-      } 
-    }
-    if(hurt)
-    {
-        if(damageTime < immuneLimit)        damageTime++;
-        else{
-          hurt = false;
-        }
-    }
-    if(dashing)
-    {
-      if(dashTime < dashLimit) dashTime ++;
-      else
-      {
-        speed /= 3;
-        dashing = false;
-        if(!immortal && !immune)
-        {
-        gameObject.layer = playerLayer;
-        }
-      }
-    }
-    if(!canAttack)
-    {
-      if(attackTime < attackLimit) attackTime ++;
-      else
-      {
-        canAttack = true;
-      }
-    }
-    if(!canDash)
-    {
-      if(dashTime < dashLimit) dashTime ++;
-      else
-      {
-        canDash = true;
-      }
-
-    }
-  }
-
-    public void takeDamage(int damage)
-    {
-      if(!immune && !immortal)
-      {
-        damageTime = 0;
-        hurt = true;
-        health -= damage;
-      
-        if(health == 0)  
-        {
-      animator.ResetTrigger("Attacking");
-      animator.ResetTrigger("Dashing");
-      animator.ResetTrigger("Damaged");
-      animator.SetInteger("speed", 0);
-      GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
-          dead = true;
-          animator.SetTrigger("Dead");
-          SceneManager.LoadScene("DeadScreen");
-        }
-      
-        immune = true;
-        immuneTime = 0;
-
-        gameObject.layer = immortalLayer;
-      }
-    }    
-void OnTriggerEnter2D(Collider2D col)
-{
-  if(col.gameObject.tag == "Portal")
-  {    
-    Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-    GameObject.FindWithTag("Editor").SendMessage("nextStage");
-  }
-}
-
-}
-
-   
-
