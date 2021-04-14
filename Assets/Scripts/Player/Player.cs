@@ -410,7 +410,14 @@ public class Player : MonoBehaviour
                     attackableObject.SendMessage("takeDamage", damage);
                 }
             }
-            Invoke("OnAttackComplete", animator.GetCurrentAnimatorStateInfo(0).length);
+            if (isDashing)
+            {
+                Invoke("OnAttackComplete", 0f);
+            }
+            else
+            { 
+                Invoke("OnAttackComplete", animator.GetCurrentAnimatorStateInfo(0).length);
+            }
         }
     }
 
