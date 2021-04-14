@@ -307,7 +307,7 @@ public class Player : MonoBehaviour
     #region Movement
     public void CheckInput()
     {
-        if (!isDashing && !isAttacking && !isTakeingDamage && !isDead)
+        if (!isDashing && !isTakeingDamage && !isDead)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -336,7 +336,7 @@ public class Player : MonoBehaviour
 
         }
 
-        if (!isDashing && !isTakeingDamage && !isAttacking && !isDead && dashCD <= 0f)
+        if (!isDashing && !isTakeingDamage && !isDead && dashCD <= 0f)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.RightControl))
             {
@@ -372,9 +372,8 @@ public class Player : MonoBehaviour
     }
     public void Dash()
     {
-        if (isDashing && !isAttacking && !isTakeingDamage && !isDead)
+        if (isDashing && !isTakeingDamage && !isDead)
         {
- 
             string dashAnimation = dir + "Dash";
             ChangeAnimationState(dashAnimation);
             rb.MovePosition(rb.position + movement * dashSpeed * Time.fixedDeltaTime);
