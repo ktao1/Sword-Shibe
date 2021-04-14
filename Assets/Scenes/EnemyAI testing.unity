@@ -5510,6 +5510,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3619c1e971ab3f4c88fcf029ae6c0c6, type: 3}
+--- !u!61 &1801897838 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4818181438337094616, guid: 49632af7a24ba8a4c8f499fe95f18192,
+    type: 3}
+  m_PrefabInstance: {fileID: 4517939732172894996}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1801897844 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4818181438337094618, guid: 49632af7a24ba8a4c8f499fe95f18192,
+    type: 3}
+  m_PrefabInstance: {fileID: 4517939732172894996}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1809420960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6976,6 +6988,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4818181438337094596, guid: 49632af7a24ba8a4c8f499fe95f18192,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 37c0193dd2051d14cbc4cfb91e30ffc6, type: 3}
     - target: {fileID: 4818181438337094619, guid: 49632af7a24ba8a4c8f499fe95f18192,
         type: 3}
       propertyPath: m_RootOrder
@@ -7036,6 +7053,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4818181438337094622, guid: 49632af7a24ba8a4c8f499fe95f18192,
+        type: 3}
+      propertyPath: sr
+      value: 
+      objectReference: {fileID: 1801897844}
+    - target: {fileID: 4818181438337094622, guid: 49632af7a24ba8a4c8f499fe95f18192,
+        type: 3}
+      propertyPath: col2d
+      value: 
+      objectReference: {fileID: 1801897838}
     - target: {fileID: 4818181438337094622, guid: 49632af7a24ba8a4c8f499fe95f18192,
         type: 3}
       propertyPath: SkillTree

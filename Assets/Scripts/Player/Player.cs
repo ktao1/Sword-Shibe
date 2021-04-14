@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public SpriteRenderer sr;
     public Transform attackPoint;
     private Player player;
+    public Collider2D col2d;
+
     // Health System
     #region HealthSystem
     public int health;
@@ -374,6 +376,7 @@ public class Player : MonoBehaviour
     {
         if (isDashing && !isTakeingDamage && !isDead)
         {
+            col2d.enabled = false;
             string dashAnimation = dir + "Dash";
             ChangeAnimationState(dashAnimation);
             rb.MovePosition(rb.position + movement * dashSpeed * Time.fixedDeltaTime);
@@ -383,6 +386,7 @@ public class Player : MonoBehaviour
     public void OnDashComplete()
     {
         CancelInvoke();
+        col2d.enabled = true;
         isDashing = false;
         dashCD = 1 / dashTimer;
     }
