@@ -13,8 +13,6 @@ public class Player : MonoBehaviour
     public SpriteRenderer sr;
     public Transform attackPoint;
     private Player player;
-    public Collider2D col2d;
-
     // Health System
     #region HealthSystem
     public int health;
@@ -309,7 +307,7 @@ public class Player : MonoBehaviour
     #region Movement
     public void CheckInput()
     {
-        if (!isDashing && !isTakeingDamage && !isDead)
+        if (!isDashing && !isAttacking && !isTakeingDamage && !isDead)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -338,7 +336,7 @@ public class Player : MonoBehaviour
 
         }
 
-        if (!isDashing && !isTakeingDamage && !isDead && dashCD <= 0f)
+        if (!isDashing && !isTakeingDamage && !isAttacking && !isDead && dashCD <= 0f)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.RightControl))
             {
@@ -374,19 +372,18 @@ public class Player : MonoBehaviour
     }
     public void Dash()
     {
-        if (isDashing && !isTakeingDamage && !isDead)
+        if (isDashing && !isAttacking && !isTakeingDamage && !isDead)
         {
-            
+ 
             string dashAnimation = dir + "Dash";
             ChangeAnimationState(dashAnimation);
             rb.MovePosition(rb.position + movement * dashSpeed * Time.fixedDeltaTime);
-            Invoke("OnDashComplete", animator.GetCurrentAnimatorStateInfo(0).length * 1.5f);
+            Invoke("OnDashComplete", animator.GetCurrentAnimatorStateInfo(0).length);
         }
     }
     public void OnDashComplete()
     {
         CancelInvoke();
-        col2d.enabled = true;
         isDashing = false;
         dashCD = 1 / dashTimer;
     }
@@ -414,14 +411,7 @@ public class Player : MonoBehaviour
                     attackableObject.SendMessage("takeDamage", damage);
                 }
             }
-            if (isDashing)
-            {
-                Invoke("OnAttackComplete", 0f);
-            }
-            else
-            { 
-                Invoke("OnAttackComplete", animator.GetCurrentAnimatorStateInfo(0).length);
-            }
+            Invoke("OnAttackComplete", animator.GetCurrentAnimatorStateInfo(0).length);
         }
     }
 
@@ -490,14 +480,6 @@ public class Player : MonoBehaviour
         {
             Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
             GameObject.FindWithTag("Editor").SendMessage("nextStage");
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Enemy" && isDashing)
-        {
-            col2d.enabled = false;
         }
     }
 
