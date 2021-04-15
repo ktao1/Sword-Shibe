@@ -82,6 +82,13 @@ public class GenerateWorld : MonoBehaviour
     //Loads the next biome once a boss is defeated, if no more biomes, game is over
     public void NextLevel()
     {
+        foreach(Transform child in gameObject.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        Debug.Log("Moving to next biome");
+
         currentBiome += 1;
         if (currentBiome == biomes.Count)
             EndGame();
@@ -89,6 +96,8 @@ public class GenerateWorld : MonoBehaviour
         //Link each biomes rooms together
         biomes[currentBiome].LinkRooms();
         biomes[currentBiome].DisplayRooms();
+
+        Debug.Log("Starting first level");
 
         //Instantiate first biomes starting room
         biomes[currentBiome].StartFirstLevel();

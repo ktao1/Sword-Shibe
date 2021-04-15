@@ -86,6 +86,7 @@ public class Room
     {
         //Unique name for current room. This allows us to save room data
         roomBoard = new GameObject(point.ToString()).transform;
+        Debug.Log("Room: " + point.ToString());
         roomBoard.SetParent(GameObject.Find("BiomeBoard").transform);
 
 
@@ -275,8 +276,7 @@ public class Room
                             available.Add(neighbor);
                         }
                     }
-
-                    Debug.Log("<color=yellow>Tile Left Count" + available.Count + "</color>");
+                    
 
                     int selection = Random.Range(0, available.Count);
                     if (available.Count > 0)
@@ -311,8 +311,7 @@ public class Room
                             available.Add(neighbor);
                         }
                     }
-
-                    Debug.Log("<color=yellow>Tile Right Count" + available.Count + "</color>");
+                    
 
                     int selection = Random.Range(0, available.Count);
                     if (available.Count > 0)
@@ -347,9 +346,7 @@ public class Room
                             available.Add(neighbor);
                         }
                     }
-
-                    Debug.Log("<color=yellow>Tile Bottom Count" + available.Count + "</color>");
-
+                    
                     int selection = Random.Range(0, available.Count);
                     if (available.Count > 0)
                         selectedTile = available[selection];
@@ -374,7 +371,6 @@ public class Room
                     for (int k = 0; k < temp.Count; k++)
                     {
                         GameObject neighbor = temp[k];
-                        Debug.Log("Validating Tile: " + neighbor.name);
                         if ((!grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i - 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().W.CompareTo(grid[new Vector3(i - 3.5f, j, 0f)].GetComponent<Connector>().E) == 0)) &&
                             (!grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) || (grid.ContainsKey(new Vector3(i + 3.5f, j, 0f)) && neighbor.GetComponent<Connector>().E.CompareTo(grid[new Vector3(i + 3.5f, j, 0f)].GetComponent<Connector>().W) == 0)) &&
                             (!grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) || (grid.ContainsKey(new Vector3(i, j + 3.5f, 0f)) && neighbor.GetComponent<Connector>().N.CompareTo(grid[new Vector3(i, j + 3.5f, 0f)].GetComponent<Connector>().S) == 0)) &&
@@ -383,10 +379,7 @@ public class Room
                             available.Add(neighbor);
                         }
                     }
-
-                    Debug.Log("<color=yellow>Tile Top Count" + available.Count + "</color>");
-                    Debug.Log("<color=green>Location: " + new Vector3(i, j, 0f).ToString() + "</color>");
-
+                    
                     int selection = Random.Range(0, available.Count);
                     if (available.Count > 0)
                         selectedTile = available[selection];
@@ -421,7 +414,9 @@ public class Room
                     if(available.Count > 0)
                         selectedTile = available[selection];
                     available.Clear();
-                    
+
+                    Debug.Log("Instantiating Tiles");
+
                     GameObject tileInstance = GameObject.Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
 

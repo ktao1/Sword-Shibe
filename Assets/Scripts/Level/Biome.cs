@@ -45,6 +45,8 @@ public class Biome : MonoBehaviour
     //Transform holding all relevant objects belonging to the biome
     private Transform biomeBoard;
 
+    private bool challengeStart = false;
+
     //Dictionary which holds all rooms and their associated locations within the biome
     private Dictionary<Vector2, Room> biomeRooms = new Dictionary<Vector2, Room>();
 
@@ -77,6 +79,10 @@ public class Biome : MonoBehaviour
                 challengeCurTimer = 0;
                 challengeCurRounds--;
             }
+        }
+        if (challengeStart && challengeCurRounds == 0 && GameObject.Find("Challenge Enemies").transform.childCount == 0)
+        {
+            SendMessageUpwards("NextLevel");
         }
     }
 
@@ -339,16 +345,20 @@ public class Biome : MonoBehaviour
     #region Room Transition
     public void ActivateRoom(Room room)
     {
+        
+
         if(room.point == bossRoom.point)
         {
             ProduceChallengeLevel();
         }   
         else if (room.isInstantiated)
         {
+            Debug.Log("Activating room");
             room.Activate();
         }
         else
         {
+            Debug.Log("Instantiating Room");
             room.InstantiateRoom(groundTiles, cornerTiles, edgeTiles, enemies, obstacles, exit);
         }
 
@@ -381,6 +391,7 @@ public class Biome : MonoBehaviour
         GameObject.FindWithTag("Player").transform.position = new Vector3(0f, 0f, 0f);
         ChallengeLevelSpawnEnemies();
         challengeCurRounds = challengeRounds;
+        challengeStart = true;
     }
 
     /*
