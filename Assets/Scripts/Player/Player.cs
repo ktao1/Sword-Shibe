@@ -338,7 +338,7 @@ public class Player : MonoBehaviour
 
         }
 
-        if (!isDashing && !isTakeingDamage && !isDead && dashCD <= 0f)
+        if (!isDashing && !isTakeingDamage && !isDead && isMoving && dashCD <= 0f)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.RightControl))
             {
@@ -374,7 +374,7 @@ public class Player : MonoBehaviour
     }
     public void Dash()
     {
-        if (isDashing && !isTakeingDamage && !isDead)
+        if (isDashing && !isTakeingDamage && !isDead && isMoving)
         {
             
             string dashAnimation = dir + "Dash";
