@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 /*
@@ -33,17 +34,26 @@ public class Biome : MonoBehaviour
     public GameObject bossRoomArea;
     #endregion
 
+    #region Room Details
     //Number of rooms this biome holds
     public int numOfRooms;
+
+    //Maximum rows and columns of a room
+    public int maxRows = 10;
+    public int maxColumns = 10;
 
     //Room dictating where the player starts
     private Room startRoom;
 
     //Final room to exit the Biome
     private Room bossRoom;
-    
+    #endregion
+
     //Transform holding all relevant objects belonging to the biome
     private Transform biomeBoard;
+
+    //Holds bullets launched from enemies
+    private Transform AllBullets;
 
     private bool challengeStart = false;
 
@@ -62,11 +72,13 @@ public class Biome : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        GenerateRooms(maxRows, maxColumns);
+        LinkRooms();
+        StartFirstLevel();
+        AllBullets = new GameObject("AllBullets").transform;
+        AllBullets.SetParent(gameObject.transform);
     }
-
-//Challenge room values
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -82,7 +94,7 @@ public class Biome : MonoBehaviour
         }
         if (challengeStart && challengeCurRounds == 0 && GameObject.Find("Challenge Enemies").transform.childCount == 0)
         {
-            SendMessageUpwards("NextLevel");
+            NextLevel();
         }
     }
 
@@ -92,6 +104,11 @@ public class Biome : MonoBehaviour
         biomeBoard.SetParent(gameObject.transform);
         GameObject.FindWithTag("Player").transform.position = new Vector3(0f, 0f, 0f);
         ActivateRoom(startRoom);
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void TravelNextRoom(List<Vector2> rooms)

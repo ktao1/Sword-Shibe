@@ -6,7 +6,7 @@ using UnityEngine;
 public class buttonControl : MonoBehaviour
 {
     public void playGame() {
-        SceneManager.LoadScene("Procedural Testing");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
  
     public void options() {
