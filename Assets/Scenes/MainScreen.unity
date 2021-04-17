@@ -836,6 +836,130 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153560767}
   m_CullTransparentMesh: 0
+--- !u!1001 &1388176075
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.06467
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2635843
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -938.3869
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[0].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[0].name
+      value: Theme
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6b2fc26a9ce66934c90e7b62428c246d, type: 3}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[1].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[1].name
+      value: Player Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6457c249ad9e1914d8c47db2c5df67e1, type: 3}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[2].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: Theme
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876755, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: be491891cffc99549ab7fc949edd2247, type: 3}
 --- !u!1 &1521487364
 GameObject:
   m_ObjectHideFlags: 0

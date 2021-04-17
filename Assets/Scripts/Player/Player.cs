@@ -348,6 +348,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                FindObjectOfType<AudioManager>().Play("Player Attack");
                 isAttacking = true;
             }
         }
@@ -438,6 +439,9 @@ public class Player : MonoBehaviour
             if (health <= 0)
             {
                 isDead = true;
+
+                FindObjectOfType<AudioManager>().Play("GAME_OVER_sound");
+
                 ChangeAnimationState(DEATH_ANIMATOIN);
                 SceneManager.LoadScene("DeadScreen");
             }
