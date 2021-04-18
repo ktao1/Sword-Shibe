@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
     private float attackCD = 0f;
     public float attackRange = 0.5f;
     public float invincibleCD = 0f;
-    private float invincibleTimer = 1f;
+    private float invincibleTimer = 1.5f;
     public LayerMask[] attackableLayers;
 
     public Animator effects;
