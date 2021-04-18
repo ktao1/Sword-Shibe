@@ -484,7 +484,7 @@ public class Player : MonoBehaviour
         ChangeAnimationState(idleAnimation);
         sr.color = new Color(255, 255, 255);
         isTakeingDamage = false;
-        isInvincible = true;
+        // isInvincible = true;
     }
 
 
@@ -513,7 +513,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet" && isDashing)
+        if((collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet") && isDashing)
         {
             this.GetComponent<BoxCollider2D>().enabled = false;
         }
