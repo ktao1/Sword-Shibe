@@ -36,6 +36,7 @@ public class Oni : MonoBehaviour
 
     bool canAttack = true;
     bool canHurt = true;
+    bool isAttacking = false;
     public float attackCD;
     public float recoveryCD;
     public float flashDuration;
@@ -267,6 +268,7 @@ public class Oni : MonoBehaviour
         {
             canMove = false;
             canAttack = false;
+            isAttacking = true;
             ChangeAnimationState(ATTACK);
             Invoke("OnAttackFinished", animator.GetCurrentAnimatorStateInfo(0).length + .5f);
         }
@@ -275,6 +277,7 @@ public class Oni : MonoBehaviour
 
     void OnAttackFinished()
     {
+        isAttacking = false;
         ChangeAnimationState(WALK);
         Invoke("waitForCD", attackCD);
     }
@@ -379,7 +382,7 @@ public class Oni : MonoBehaviour
     // Use collider to do the attack
     void OnCollisionEnter2D(Collision2D c)
     {
-        if (c.gameObject.tag == "Player" && c.gameObject.layer != 13)
+        if (c.gameObject.tag == "Player" && c.gameObject.layer != 13 && isAttacking)
         {
             c.gameObject.SendMessage("takeDamage", damage);
         }

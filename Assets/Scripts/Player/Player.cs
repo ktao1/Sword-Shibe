@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
     private float attackCD = 0f;
     public float attackRange = 0.5f;
     public float invincibleCD = 0f;
-    private float invincibleTimer = 1f;
+    private float invincibleTimer = 1.5f;
     public LayerMask[] attackableLayers;
 
     public Animator effects;
@@ -158,11 +158,14 @@ public class Player : MonoBehaviour
 
         if (isInvincible)
         {
-            invincibleCD -= Time.deltaTime;
-            if(invincibleCD < 0)
+            if(invincibleTimer > 0)
             {
+                invincibleTimer -= Time.deltaTime;
+            }
+            else
+            {
+                invincibleTimer = 1;
                 isInvincible = false;
-                invincibleCD = invincibleTimer;
             }
         }
     }
@@ -473,6 +476,7 @@ public class Player : MonoBehaviour
                 string hurtAnimation = dir + "Hurt";
                 ChangeAnimationState(hurtAnimation);
                 sr.color = new Color(255, 0, 0);
+                isInvincible = true;
                 Invoke("OnTakeDamgeComplete", animator.GetCurrentAnimatorStateInfo(0).length);
             }
         }
@@ -484,7 +488,7 @@ public class Player : MonoBehaviour
         ChangeAnimationState(idleAnimation);
         sr.color = new Color(255, 255, 255);
         isTakeingDamage = false;
-        isInvincible = true;
+        // isInvincible = true;
     }
 
 
@@ -513,7 +517,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet" && isDashing)
+        if((collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet") && isDashing)
         {
             this.GetComponent<BoxCollider2D>().enabled = false;
         }
