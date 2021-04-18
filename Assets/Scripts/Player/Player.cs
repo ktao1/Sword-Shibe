@@ -158,11 +158,14 @@ public class Player : MonoBehaviour
 
         if (isInvincible)
         {
-            invincibleCD -= Time.deltaTime;
-            if(invincibleCD < 0)
+            if(invincibleTimer > 0)
             {
+                invincibleTimer -= Time.deltaTime;
+            }
+            else
+            {
+                invincibleTimer = 1;
                 isInvincible = false;
-                invincibleCD = invincibleTimer;
             }
         }
     }
@@ -473,6 +476,7 @@ public class Player : MonoBehaviour
                 string hurtAnimation = dir + "Hurt";
                 ChangeAnimationState(hurtAnimation);
                 sr.color = new Color(255, 0, 0);
+                isInvincible = true;
                 Invoke("OnTakeDamgeComplete", animator.GetCurrentAnimatorStateInfo(0).length);
             }
         }
