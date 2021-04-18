@@ -36,6 +36,7 @@ public class KasaObakeAI : MonoBehaviour
     bool canAttack = true;
     bool canHurt = true;
     bool canDamage = true;
+    bool isAttacking = false;
     public float attackCD;
     public float recoveryCD;
     public float flashDuration;
@@ -268,6 +269,7 @@ public class KasaObakeAI : MonoBehaviour
         if (canAttack)
         {
             canAttack = false;
+            isAttacking = true;
             speed = 7f;
             ChangeAnimationState(ATTACKING);
             attackDelay = animator.GetCurrentAnimatorStateInfo(0).length;
@@ -281,6 +283,7 @@ public class KasaObakeAI : MonoBehaviour
     {
         speed = 3f;
         ChangeAnimationState(HOPPING);
+        isAttacking = false;
         Invoke("waitForCD", attackCD);
     }
     // attack CD
@@ -385,7 +388,7 @@ public class KasaObakeAI : MonoBehaviour
     // Use collider to do the attack
     void OnCollisionEnter2D(Collision2D c)
     {
-        if (c.gameObject.tag == "Player" && c.gameObject.layer != 13)
+        if (c.gameObject.tag == "Player" && c.gameObject.layer != 13 && isAttacking)
         {
             c.gameObject.SendMessage("takeDamage", damage);
         }
