@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class pauseAndPlay : MonoBehaviour
 {
-int counter = 0;
 public static bool gameIsPaused;
+[SerializeField] private GameObject pause;
+
+void Start()
+{
+                pause = GameObject.FindGameObjectWithTag("pauseMenu");
+                pause.SetActive(false);
+}
 void Update()
     {
-        if (Input.GetKey("p") && counter == 0)
+        if(Input.GetKeyDown("p"))
         {
             gameIsPaused = !gameIsPaused;
             PauseGame();
-            counter ++;
-        }
-        else if(Input.GetKey("p"))
-        {
-            counter++;            
-        }
-        else
-        {
-            counter = 0;
         }
     }
 
@@ -28,10 +25,14 @@ void Update()
     {
         if(gameIsPaused)
         {
+                pause.SetActive(true);
+                AudioListener.pause = true;
             Time.timeScale = 0f;
         }
         else 
         {
+                pause.SetActive(false);
+                AudioListener.pause = false;
             Time.timeScale = 1;
         }
     }
