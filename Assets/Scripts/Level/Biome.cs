@@ -32,6 +32,8 @@ public class Biome : MonoBehaviour
 
     //The premade challenge/boss arena
     public GameObject bossRoomArea;
+
+    public bool isFinal = false;
     #endregion
 
     #region Room Details
@@ -95,6 +97,8 @@ public class Biome : MonoBehaviour
         }
         if (challengeStart && challengeCurRounds == 0 && GameObject.Find("Challenge Enemies").transform.childCount == 0)
         {
+            if (isFinal)
+                Application.Quit();
             NextLevel();
         }
     }

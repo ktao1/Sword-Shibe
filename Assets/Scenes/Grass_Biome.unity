@@ -218,14 +218,20 @@ MonoBehaviour:
   - {fileID: 2763387642361644032, guid: a7a931e8e9f77b34f84e785626261c1b, type: 3}
   - {fileID: 6741116665421499102, guid: 6c55330d3a1bde14f9ab5c4a928cd446, type: 3}
   obstacles:
-  - {fileID: 1378282287286071371, guid: b66833f55046ff745ab43b3024c93a82, type: 3}
-  - {fileID: 6541598668672096553, guid: d95d85ebfee13b944920c6e10fb41a49, type: 3}
+  - {fileID: 6874420509131143286, guid: 8bfd0dfdec59b8c449f6fc3a029bd520, type: 3}
+  - {fileID: 3667976337512140513, guid: c9a1a04f10b779942a7955208e3fa029, type: 3}
+  - {fileID: 9212475408645041066, guid: d782639e130f5e743ab40c8efe184532, type: 3}
+  - {fileID: 5738221514704566902, guid: f6487df79b46e084993aced20f7b75ea, type: 3}
+  - {fileID: 1277037142557501574, guid: 89bbe35073f5f424b816477201446e24, type: 3}
+  - {fileID: 7494445942594385581, guid: c50ac90d3cba208499f4896540a3637b, type: 3}
   exit: {fileID: 5452771500083915487, guid: b2c3ce0dc2b5f8f4fafa8cd57db41d96, type: 3}
-  bossRoomArea: {fileID: 3291513513664716310, guid: 3e493a4cec860f54cb91a0a8c2be3e9b,
+  bossRoomArea: {fileID: 7361962794752550901, guid: 34acbd47c783b764e9e169f9b12aba3e,
     type: 3}
+  isFinal: 0
   numOfRooms: 4
   maxRows: 10
   maxColumns: 10
+  numOfObstacles: 10
   challengeMin: 1
   challengeMax: 1
   challengeRounds: 3

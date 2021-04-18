@@ -211,11 +211,12 @@ MonoBehaviour:
   obstacles:
   - {fileID: 6541598668672096553, guid: d95d85ebfee13b944920c6e10fb41a49, type: 3}
   exit: {fileID: 1803885712776336110, guid: cc5d21ddf573af84185abfe41dd37a28, type: 3}
-  bossRoomArea: {fileID: 3291513513664716310, guid: 3e493a4cec860f54cb91a0a8c2be3e9b,
+  bossRoomArea: {fileID: 5184543082107715149, guid: 6ee7fee7d5f93cc41b4b1f3c3c1d0268,
     type: 3}
   numOfRooms: 5
   maxRows: 10
   maxColumns: 10
+  numOfObstacles: 10
   challengeMin: 5
   challengeMax: 8
   challengeRounds: 3
