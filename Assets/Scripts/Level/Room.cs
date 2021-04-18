@@ -52,12 +52,12 @@ public class Room
      * @_columns Number of columns in room
      * @_point x,y coordinates of room
      */
-    public Room(int _rows, int _columns, Vector2 _point)
+    public Room(int _rows, int _columns, Vector2 _point, int obstacleCount)
     {
         rows = _rows;
         columns = _columns;
         point = _point;
-        numOfObstacles = Random.Range(5, 20);
+        numOfObstacles = obstacleCount;
         numOfOpenTiles = rows * columns - (rows * 2 + ((columns - 2) * 2));
 
     }

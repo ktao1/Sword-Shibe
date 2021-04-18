@@ -41,6 +41,7 @@ public class Biome : MonoBehaviour
     //Maximum rows and columns of a room
     public int maxRows = 10;
     public int maxColumns = 10;
+    public int numOfObstacles = 10;
 
     //Room dictating where the player starts
     private Room startRoom;
@@ -138,7 +139,7 @@ public class Biome : MonoBehaviour
                 randomPosition = new Vector2(Random.Range(0, maxRows * numOfRooms), Random.Range(0, maxColumns * numOfRooms));
             }
 
-            biomeRooms.Add(randomPosition, new Room(Random.Range(maxRows / 2, maxRows), Random.Range(maxColumns / 2, maxColumns), randomPosition));
+            biomeRooms.Add(randomPosition, new Room(Random.Range(maxRows / 2, maxRows), Random.Range(maxColumns / 2, maxColumns), randomPosition, numOfObstacles));
 
         }
         SetBeginEnd();
@@ -336,7 +337,7 @@ public class Biome : MonoBehaviour
     {
         if (position.Equals(Vector2.negativeInfinity) || !biomeRooms.ContainsKey(position))
         {
-            return new Room(0, 0, Vector2.negativeInfinity);
+            return new Room(0, 0, Vector2.negativeInfinity, numOfObstacles);
         }
         return biomeRooms[position];
     }
