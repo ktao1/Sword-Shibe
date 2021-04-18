@@ -133,7 +133,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 185810141}
-  - component: {fileID: 185810144}
   - component: {fileID: 185810142}
   - component: {fileID: 185810146}
   m_Layer: 0
@@ -214,7 +213,7 @@ MonoBehaviour:
   bossRoomArea: {fileID: 5184543082107715149, guid: 6ee7fee7d5f93cc41b4b1f3c3c1d0268,
     type: 3}
   isFinal: 0
-  numOfRooms: 5
+  numOfRooms: 10
   maxRows: 8
   maxColumns: 8
   numOfObstacles: 8
@@ -222,22 +221,6 @@ MonoBehaviour:
   challengeMax: 8
   challengeRounds: 3
   challengeTimer: 4000
---- !u!114 &185810144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 185810139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717778d679c1b2948bccc7112f0cbaf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seed: 0
-  maxRows: 7
-  maxColumns: 7
-  roomsPerBiome: 2
 --- !u!114 &185810146
 MonoBehaviour:
   m_ObjectHideFlags: 0
