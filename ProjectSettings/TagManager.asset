@@ -12,6 +12,7 @@ TagManager:
   - Editor
   - KasaObake
   - Shirime
+  - pauseMenu
   layers:
   - Default
   - TransparentFX

@@ -428,7 +428,7 @@ public class ShirimeAI : MonoBehaviour
     {
         if (c.gameObject.tag == "Player" && c.gameObject.layer != 13)
         {
-            c.gameObject.SendMessage("takeDamage", damage);
+            // c.gameObject.SendMessage("takeDamage", damage);
         }
     }
 
