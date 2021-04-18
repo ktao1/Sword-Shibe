@@ -229,11 +229,11 @@ MonoBehaviour:
     type: 3}
   isFinal: 0
   numOfRooms: 4
-  maxRows: 10
-  maxColumns: 10
+  maxRows: 14
+  maxColumns: 14
   numOfObstacles: 10
-  challengeMin: 1
-  challengeMax: 1
+  challengeMin: 2
+  challengeMax: 5
   challengeRounds: 3
   challengeTimer: 3500
 --- !u!114 &185810146
@@ -332,6 +332,11 @@ PrefabInstance:
       propertyPath: SkillTree
       value: 
       objectReference: {fileID: 989967966}
+    - target: {fileID: 4818181438337094622, guid: 49632af7a24ba8a4c8f499fe95f18192,
+        type: 3}
+      propertyPath: attackSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4818181438337094622, guid: 49632af7a24ba8a4c8f499fe95f18192,
         type: 3}
       propertyPath: hearts.Array.size

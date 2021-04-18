@@ -227,11 +227,11 @@ MonoBehaviour:
     type: 3}
   isFinal: 1
   numOfRooms: 5
-  maxRows: 10
-  maxColumns: 10
+  maxRows: 20
+  maxColumns: 20
   numOfObstacles: 10
   challengeMin: 5
-  challengeMax: 8
+  challengeMax: 10
   challengeRounds: 3
   challengeTimer: 5000
 --- !u!114 &185810146
