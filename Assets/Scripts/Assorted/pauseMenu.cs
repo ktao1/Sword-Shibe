@@ -1,40 +1,19 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class pauseMenu : MonoBehaviour
 {
-bool paused = false;
-int started = 0;
-
-    // Start is called before the first frame update
-    void Start()
+    public void playAgain()
     {
-        
+        GameObject.FindWithTag("World").SendMessage("callToPause");
     }
-
-    // Update is called once per frame
-    void Update()
+    public void returnToMenu()
     {
-        if(paused && started == 0)
-        {
-            for(int i = 0; i < transform.childCount; i++)
-            {
-                transform.GetChild(i).gameObject.SetActive(true);
-            }
-            started++;
-        }
-        else
-        {
-            for(int i = 0; i < transform.childCount; i++)
-            {
-                transform.GetChild(i).gameObject.SetActive(false);
-            }
-        }
-    }
-
-    void isPaused()
-    {
-        paused = true;
+        Destroy(GameObject.FindGameObjectWithTag("Player"));    
+        Destroy(GameObject.FindGameObjectWithTag("pauseMenu"));
+        Destroy(GameObject.FindGameObjectWithTag("playerUI"));       
+        SceneManager.LoadScene("MainScreen");
     }
 }

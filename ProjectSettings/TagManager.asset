@@ -13,6 +13,7 @@ TagManager:
   - KasaObake
   - Shirime
   - pauseMenu
+  - playerUI
   layers:
   - Default
   - TransparentFX
