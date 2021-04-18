@@ -109,6 +109,8 @@ public class Player : MonoBehaviour
     public float attackSpeed = 2f;
     private float attackCD = 0f;
     public float attackRange = 0.5f;
+    public float invincibleCD = 0f;
+    private float invincibleTimer = 1f;
     public LayerMask[] attackableLayers;
 
     public Animator effects;
@@ -144,6 +146,16 @@ public class Player : MonoBehaviour
             UpdateHealth();
             CheckInput();
             Attack();
+        }
+
+        if (isInvincible)
+        {
+            invincibleCD -= Time.deltaTime;
+            if(invincibleCD < 0)
+            {
+                isInvincible = false;
+                invincibleCD = invincibleTimer;
+            }
         }
     }
 
@@ -336,7 +348,7 @@ public class Player : MonoBehaviour
 
         }
 
-        if (!isDashing && !isTakeingDamage && !isAttacking && !isDead && dashCD <= 0f)
+        if (!isDashing && !isTakeingDamage && !isDead && isMoving && dashCD <= 0f)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.RightControl))
             {
@@ -373,7 +385,7 @@ public class Player : MonoBehaviour
     }
     public void Dash()
     {
-        if (isDashing && !isAttacking && !isTakeingDamage && !isDead)
+        if (isDashing && !isTakeingDamage && isMoving && !isDead)
         {
  
             string dashAnimation = dir + "Dash";
@@ -385,6 +397,7 @@ public class Player : MonoBehaviour
     public void OnDashComplete()
     {
         CancelInvoke();
+        this.GetComponent<BoxCollider2D>().enabled = true;
         isDashing = false;
         dashCD = 1 / dashTimer;
     }
@@ -396,7 +409,7 @@ public class Player : MonoBehaviour
 
     public void Attack()
     {
-        if (isAttacking)
+        if (isAttacking && !isDashing)
         {
             string attackAnimation = dir + "Attack";
             ChangeAnimationState(attackAnimation);
@@ -462,7 +475,9 @@ public class Player : MonoBehaviour
         ChangeAnimationState(idleAnimation);
         sr.color = new Color(255, 255, 255);
         isTakeingDamage = false;
+        isInvincible = true;
     }
+
 
     #endregion
 
@@ -484,6 +499,14 @@ public class Player : MonoBehaviour
         {
             Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
             GameObject.FindWithTag("Editor").SendMessage("nextStage");
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy" && isDashing)
+        {
+            this.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
