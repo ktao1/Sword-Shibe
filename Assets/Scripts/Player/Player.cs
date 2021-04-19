@@ -457,7 +457,7 @@ public class Player : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        if (!isDashing && !isTakeingDamage && !isInvincible)
+        if (!isDashing && !isTakeingDamage && !isInvincible && !isDead)
         {
             source.PlayOneShot(beenHit, .5f);
             health -= damage;
@@ -466,9 +466,8 @@ public class Player : MonoBehaviour
                 isDead = true;
 
                 FindObjectOfType<AudioManager>().Play("GAME_OVER_sound");
-
                 ChangeAnimationState(DEATH_ANIMATOIN);
-                SceneManager.LoadScene("DeadScreen");
+                GameObject.FindGameObjectWithTag("MainCamera").SendMessage("deadZoom");
             }
             else
             {

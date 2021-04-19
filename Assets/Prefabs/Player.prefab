@@ -66,6 +66,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -142,6 +143,7 @@ GameObject:
   - component: {fileID: 4517939731590077250}
   - component: {fileID: 4517939731590077260}
   - component: {fileID: 4517939731590077251}
+  - component: {fileID: 1157357995}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -214,6 +216,22 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4517939731590077249}
   m_Enabled: 1
+--- !u!114 &1157357995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4517939731590077249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d65215d0a32c1469b05ec8a01ed733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
+  baseField: 60
+  zoomNum: 0.1
+  maxZoom: 20
 --- !u!1 &4818181438337094620
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +287,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -357,6 +376,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c08dadf92066e4498721668b83ef657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swing: {fileID: 8300000, guid: 37c0193dd2051d14cbc4cfb91e30ffc6, type: 3}
+  dash: {fileID: 8300000, guid: 5c433d503bab87e459599bc757a42f18, type: 3}
+  beenHit: {fileID: 8300000, guid: 6afe6e4f3cd5a6145b9a16e4f63a6c34, type: 3}
   animator: {fileID: 4818181438337094617}
   sr: {fileID: 0}
   attackPoint: {fileID: 886026440}
@@ -383,6 +405,7 @@ MonoBehaviour:
   damage: 1
   attackSpeed: 2
   attackRange: 0.75
+  invincibleCD: 0
   attackableLayers:
   - serializedVersion: 2
     m_Bits: 1024

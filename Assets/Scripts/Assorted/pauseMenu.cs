@@ -11,6 +11,8 @@ public class pauseMenu : MonoBehaviour
     }
     public void returnToMenu()
     {
+        Time.timeScale = 1;
+        AudioListener.pause = false;
         Destroy(GameObject.FindGameObjectWithTag("Player"));    
         Destroy(GameObject.FindGameObjectWithTag("pauseMenu"));
         Destroy(GameObject.FindGameObjectWithTag("playerUI"));       
