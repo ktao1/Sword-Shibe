@@ -9,6 +9,9 @@ public class Navigator : MonoBehaviour
     public Vector2 currentRoom = Vector2.negativeInfinity;
     public Vector2 nextRoom = Vector2.negativeInfinity;
 
+    //0 for W, 1 for N, 2 for E, 3 for S
+    public int portalLocation = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +29,19 @@ public class Navigator : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            object[] args = new object[4];
+            args[0] = currentRoom;
+            args[1] = nextRoom;
+            args[2] = portalLocation;
+
+            /*
             List<Vector2> rooms = new List<Vector2>();
+
             rooms.Add(currentRoom);
             rooms.Add(nextRoom);
+            */
 
-            SendMessageUpwards("TravelNextRoom", rooms);
+            SendMessageUpwards("TravelNextRoom", args);
         }
     }
 }

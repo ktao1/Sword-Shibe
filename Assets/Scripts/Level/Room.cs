@@ -102,6 +102,7 @@ public class Room
                 Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = N;
+                nav.portalLocation = 1;
             }
             else
             {
@@ -112,6 +113,7 @@ public class Room
                 Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = N;
+                nav.portalLocation = 1;
             }
 
         }
@@ -127,6 +129,7 @@ public class Room
                 Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = S;
+                nav.portalLocation = 3;
             }
             else
             {
@@ -137,6 +140,7 @@ public class Room
                 Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = S;
+                nav.portalLocation = 3;
             }
 
         }
@@ -153,6 +157,7 @@ public class Room
                 Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = E;
+                nav.portalLocation = 2;
             }
             else
             {
@@ -163,6 +168,7 @@ public class Room
                 Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = E;
+                nav.portalLocation = 2;
             }
 
         }
@@ -178,6 +184,7 @@ public class Room
                 Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = W;
+                nav.portalLocation = 0;
             }
             else
             {
@@ -188,6 +195,7 @@ public class Room
                 Navigator nav = exitInstance.GetComponent<Navigator>();
                 nav.currentRoom = point;
                 nav.nextRoom = W;
+                nav.portalLocation = 0;
             }
         }
 

@@ -212,7 +212,7 @@ MonoBehaviour:
   numOfRooms: 8
   maxRows: 20
   maxColumns: 20
-  numOfObstacles: 10
+  numOfObstacles: 12
   challengeMin: 5
   challengeMax: 10
   challengeRounds: 3
@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64316912307d7ba44b48ce054774ff02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pause: {fileID: 0}
 --- !u!1001 &1569923627
 PrefabInstance:
   m_ObjectHideFlags: 0

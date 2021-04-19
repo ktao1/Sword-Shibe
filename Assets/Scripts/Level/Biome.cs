@@ -116,11 +116,32 @@ public class Biome : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void TravelNextRoom(List<Vector2> rooms)
+    public void TravelNextRoom(object args)
     {
-        DeactivateRoom(GetRoom(rooms[0]));
+        object[] arguments = (object[])args;
+        Room previous = GetRoom((Vector2)arguments[0]);
+        Room next = GetRoom((Vector2)arguments[1]);
+        int portalLocation = (int)arguments[2];
+
+        DeactivateRoom(previous);
         GameObject.FindWithTag("Player").transform.position = new Vector3(0f, 0f, 0f);
-        ActivateRoom(GetRoom(rooms[1]));
+        ActivateRoom(next);
+        if(portalLocation == 0)
+        {
+            GameObject.FindWithTag("Player").transform.position = new Vector3(next.rows / 2f, 0f, 0f);
+        }
+        else if(portalLocation == 1)
+        {
+            GameObject.FindWithTag("Player").transform.position = new Vector3(next.rows, next.columns / 2f, 0f);
+        }
+        else if(portalLocation == 2)
+        {
+            GameObject.FindWithTag("Player").transform.position = new Vector3(next.rows / 2f, next.columns, 0f);
+        }
+        else if(portalLocation == 3)
+        {
+            GameObject.FindWithTag("Player").transform.position = new Vector3(0f, next.columns / 2f, 0f);
+        }
     }
 
     /*
