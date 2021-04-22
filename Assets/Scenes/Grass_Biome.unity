@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -98,8 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: b39e87de7662e7e49b61253e1a6ec983,
-    type: 2}
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -119,8 +118,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    maxJobWorkers: 0
-    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -902,6 +899,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a5dd6ec121c72347b4f61789df3252c, type: 3}
+--- !u!1001 &2108860611
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.06467
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2635843
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -938.3869
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876716, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876755, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: be491891cffc99549ab7fc949edd2247, type: 3}
 --- !u!1 &2134489349
 GameObject:
   m_ObjectHideFlags: 0
