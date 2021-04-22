@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScreen.unity
     guid: 819f8334729ef474184e399719ca443e
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Grass_Biome.unity
-    guid: 7216ca850d6318049830172eb4a1f78a
+    guid: f85dd066c5387b8488206fe33eb668d8
   - enabled: 1
     path: Assets/Scenes/Snow_Biome.unity
     guid: e03199f6fe76f6d40b5f2458dae15f80

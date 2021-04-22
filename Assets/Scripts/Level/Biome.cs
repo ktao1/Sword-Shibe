@@ -128,19 +128,19 @@ public class Biome : MonoBehaviour
         ActivateRoom(next);
         if(portalLocation == 0)
         {
-            GameObject.FindWithTag("Player").transform.position = new Vector3(next.rows / 2f, 0f, 0f);
+            GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns / 2f * 3.5f, 0f, 0f);
         }
         else if(portalLocation == 1)
         {
-            GameObject.FindWithTag("Player").transform.position = new Vector3(next.rows, next.columns / 2f, 0f);
+            GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns * 3.5f, next.rows / 2f * 3.5f, 0f);
         }
         else if(portalLocation == 2)
         {
-            GameObject.FindWithTag("Player").transform.position = new Vector3(next.rows / 2f, next.columns, 0f);
+            GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns / 2f * 3.5f, next.rows * 3.5f, 0f);
         }
         else if(portalLocation == 3)
         {
-            GameObject.FindWithTag("Player").transform.position = new Vector3(0f, next.columns / 2f, 0f);
+            GameObject.FindWithTag("Player").transform.position = new Vector3(0f, next.rows / 2f * 3.5f, 0f);
         }
     }
 
