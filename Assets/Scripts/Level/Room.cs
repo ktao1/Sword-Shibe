@@ -22,6 +22,9 @@ public class Room
     //Parent asset of room for readability/debugging
     private Transform roomBoard;
 
+    private Biome parentBiome = GameObject.Find("World").GetComponent<Biome>();
+
+    private bool finalRoom;
     private int numOfObstacles;
     private int numOfOpenTiles;
 
@@ -59,7 +62,7 @@ public class Room
         point = _point;
         numOfObstacles = obstacleCount;
         numOfOpenTiles = rows * columns - (rows * 2 + ((columns - 2) * 2));
-
+        finalRoom = false;
     }
 
     /*
@@ -82,121 +85,127 @@ public class Room
      * tile type
      * 
      */
-    public void InstantiateRoom(GameObject[] groundTiles, GameObject[] cornerTiles, GameObject[] edgeTiles, GameObject[] enemies, GameObject[] obstacles, GameObject exit)
+    public void InstantiateRoom(GameObject[] groundTiles, GameObject[] cornerTiles, GameObject[] edgeTiles, GameObject[] enemies, GameObject[] obstacles, GameObject[] exit)
     {
         //Unique name for current room. This allows us to save room data
         roomBoard = new GameObject(point.ToString()).transform;
-        Debug.Log("Room: " + point.ToString());
         roomBoard.SetParent(GameObject.Find("BiomeBoard").transform);
 
 
         //Following statements place exits at each direction to next room
         if (!N.Equals(Vector2.negativeInfinity))
         {
+            GameObject chosenExit;
+
+            if (parentBiome.GetRoom(N).isFinal())
+                chosenExit = exit[1];
+            else
+                chosenExit = exit[0];
+
+            GameObject exitInstance;
             if (columns % 2 == 1)
             {
-                GameObject exitInstance = GameObject.Instantiate(exit, new Vector3((columns * spriteMultiplier / 2) + 1.75f, rows * spriteMultiplier, 0f), Quaternion.identity);
-                exitInstance.transform.SetParent(roomBoard);
-
-                //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.GetComponent<Navigator>();
-                nav.currentRoom = point;
-                nav.nextRoom = N;
-                nav.portalLocation = 1;
+                exitInstance = GameObject.Instantiate(chosenExit, new Vector3((columns * spriteMultiplier / 2) + 1.75f, rows * spriteMultiplier, 0f), Quaternion.identity);
+                
             }
             else
             {
-                GameObject exitInstance = GameObject.Instantiate(exit, new Vector3((columns * spriteMultiplier / 2), rows * spriteMultiplier, 0f), Quaternion.identity);
-                exitInstance.transform.SetParent(roomBoard);
-
-                //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.GetComponent<Navigator>();
-                nav.currentRoom = point;
-                nav.nextRoom = N;
-                nav.portalLocation = 1;
+                exitInstance = GameObject.Instantiate(chosenExit, new Vector3((columns * spriteMultiplier / 2), rows * spriteMultiplier, 0f), Quaternion.identity);
             }
+            exitInstance.transform.SetParent(roomBoard);
+
+            //Add component to exit and modify to define neighbor
+            Navigator nav = exitInstance.GetComponent<Navigator>();
+            nav.currentRoom = point;
+            nav.nextRoom = N;
+            nav.portalLocation = 1;
 
         }
 
         if (!S.Equals(Vector2.negativeInfinity))
         {
+            GameObject chosenExit;
+
+            if (parentBiome.GetRoom(S).isFinal())
+                chosenExit = exit[1];
+            else
+                chosenExit = exit[0];
+
+            GameObject exitInstance;
             if (columns % 2 == 1)
             {
-                GameObject exitInstance = GameObject.Instantiate(exit, new Vector3((columns * spriteMultiplier / 2) + 1.75f, 0f, 0f), Quaternion.identity);
-                exitInstance.transform.SetParent(roomBoard);
-
-                //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.GetComponent<Navigator>();
-                nav.currentRoom = point;
-                nav.nextRoom = S;
-                nav.portalLocation = 3;
+                exitInstance = GameObject.Instantiate(chosenExit, new Vector3((columns * spriteMultiplier / 2) + 1.75f, 0f, 0f), Quaternion.identity);
+                
             }
             else
             {
-                GameObject exitInstance = GameObject.Instantiate(exit, new Vector3((columns * spriteMultiplier / 2), 0f, 0f), Quaternion.identity);
-                exitInstance.transform.SetParent(roomBoard);
-
-                //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.GetComponent<Navigator>();
-                nav.currentRoom = point;
-                nav.nextRoom = S;
-                nav.portalLocation = 3;
+                exitInstance = GameObject.Instantiate(chosenExit, new Vector3((columns * spriteMultiplier / 2), 0f, 0f), Quaternion.identity);
             }
+            exitInstance.transform.SetParent(roomBoard);
 
+            //Add component to exit and modify to define neighbor
+            Navigator nav = exitInstance.GetComponent<Navigator>();
+            nav.currentRoom = point;
+            nav.nextRoom = S;
+            nav.portalLocation = 3;
         }
 
         if (!E.Equals(Vector2.negativeInfinity))
         {
+            GameObject chosenExit;
+
+            if (parentBiome.GetRoom(E).isFinal())
+                chosenExit = exit[1];
+            else
+                chosenExit = exit[0];
+
+            GameObject exitInstance;
             //Sets the E exit
             if (rows % 2 == 1)
             {
-                GameObject exitInstance = GameObject.Instantiate(exit, new Vector3(columns * spriteMultiplier, (rows * spriteMultiplier / 2) + 1.75f, 0f), Quaternion.identity);
-                exitInstance.transform.SetParent(roomBoard);
-
-                //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.GetComponent<Navigator>();
-                nav.currentRoom = point;
-                nav.nextRoom = E;
-                nav.portalLocation = 2;
+                exitInstance = GameObject.Instantiate(chosenExit, new Vector3(columns * spriteMultiplier, (rows * spriteMultiplier / 2) + 1.75f, 0f), Quaternion.identity);
             }
             else
             {
-                GameObject exitInstance = GameObject.Instantiate(exit, new Vector3(columns * spriteMultiplier, (rows * spriteMultiplier / 2), 0f), Quaternion.identity);
-                exitInstance.transform.SetParent(roomBoard);
-
-                //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.GetComponent<Navigator>();
-                nav.currentRoom = point;
-                nav.nextRoom = E;
-                nav.portalLocation = 2;
+                exitInstance = GameObject.Instantiate(chosenExit, new Vector3(columns * spriteMultiplier, (rows * spriteMultiplier / 2), 0f), Quaternion.identity);
             }
+
+            exitInstance.transform.SetParent(roomBoard);
+
+            //Add component to exit and modify to define neighbor
+            Navigator nav = exitInstance.GetComponent<Navigator>();
+            nav.currentRoom = point;
+            nav.nextRoom = E;
+            nav.portalLocation = 2;
 
         }
 
         if (!W.Equals(Vector2.negativeInfinity))
         {
+            GameObject chosenExit;
+
+            if (parentBiome.GetRoom(W).isFinal())
+                chosenExit = exit[1];
+            else
+                chosenExit = exit[0];
+
+            GameObject exitInstance;
             if (rows % 2 == 1)
             {
-                GameObject exitInstance = GameObject.Instantiate(exit, new Vector3(0f, (rows * spriteMultiplier / 2) + 1.75f, 0f), Quaternion.identity);
-                exitInstance.transform.SetParent(roomBoard);
-
-                //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.GetComponent<Navigator>();
-                nav.currentRoom = point;
-                nav.nextRoom = W;
-                nav.portalLocation = 0;
+                exitInstance = GameObject.Instantiate(chosenExit, new Vector3(0f, (rows * spriteMultiplier / 2) + 1.75f, 0f), Quaternion.identity);
             }
             else
             {
-                GameObject exitInstance = GameObject.Instantiate(exit, new Vector3(0f, (rows * spriteMultiplier / 2), 0f), Quaternion.identity);
-                exitInstance.transform.SetParent(roomBoard);
-
-                //Add component to exit and modify to define neighbor
-                Navigator nav = exitInstance.GetComponent<Navigator>();
-                nav.currentRoom = point;
-                nav.nextRoom = W;
-                nav.portalLocation = 0;
+                exitInstance = GameObject.Instantiate(chosenExit, new Vector3(0f, (rows * spriteMultiplier / 2), 0f), Quaternion.identity);
             }
+
+            exitInstance.transform.SetParent(roomBoard);
+
+            //Add component to exit and modify to define neighbor
+            Navigator nav = exitInstance.GetComponent<Navigator>();
+            nav.currentRoom = point;
+            nav.nextRoom = W;
+            nav.portalLocation = 0;
         }
 
         int obstacleCount = numOfObstacles;
@@ -463,6 +472,16 @@ public class Room
         
         //Set room to active
         isInstantiated = true;
+    }
+
+    public void markFinal(bool status)
+    {
+        finalRoom = status;
+    }
+
+    public bool isFinal()
+    {
+        return finalRoom;
     }
 
     public void Activate()

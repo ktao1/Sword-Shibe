@@ -28,7 +28,7 @@ public class Biome : MonoBehaviour
     public GameObject[] obstacles;
 
     //Holds the portal to allow transitions between rooms
-    public GameObject exit;
+    public GameObject[] exit;
 
     //The premade challenge/boss arena
     public GameObject bossRoomArea;
@@ -126,21 +126,26 @@ public class Biome : MonoBehaviour
         DeactivateRoom(previous);
         GameObject.FindWithTag("Player").transform.position = new Vector3(0f, 0f, 0f);
         ActivateRoom(next);
-        if(portalLocation == 0)
+
+        if(next == bossRoom)
         {
-            GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns / 2f * 3.5f, 0f, 0f);
+            GameObject.FindWithTag("Player").transform.position = new Vector3(1f, 1f, 0f);
+        }
+        else if(portalLocation == 0)
+        {
+            GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns * 3.5f - 3.5f, next.rows / 2f * 3.5f, 0f);
         }
         else if(portalLocation == 1)
         {
-            GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns * 3.5f, next.rows / 2f * 3.5f, 0f);
+            GameObject.FindWithTag("Player").transform.position = new Vector3(3.5f, next.rows / 2f * 3.5f, 0f);
         }
         else if(portalLocation == 2)
         {
-            GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns / 2f * 3.5f, next.rows * 3.5f, 0f);
+            GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns / 2f * 3.5f + 3.5f, 0f, 0f);
         }
         else if(portalLocation == 3)
         {
-            GameObject.FindWithTag("Player").transform.position = new Vector3(0f, next.rows / 2f * 3.5f, 0f);
+            GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns / 2f * 3.5f - 3.5f, next.rows * 3.5f, 0f);
         }
     }
 
@@ -358,7 +363,7 @@ public class Biome : MonoBehaviour
      * 
      * @position Location of room
      */
-    private Room GetRoom(Vector2 position)
+    public Room GetRoom(Vector2 position)
     {
         if (position.Equals(Vector2.negativeInfinity) || !biomeRooms.ContainsKey(position))
         {
@@ -383,6 +388,8 @@ public class Biome : MonoBehaviour
                 }
             }
         }
+
+        bossRoom.markFinal(true);
     }
 
     #region Room Transition

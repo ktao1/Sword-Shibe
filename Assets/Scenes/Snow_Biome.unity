@@ -209,7 +209,9 @@ MonoBehaviour:
   - {fileID: 4649361288683292797, guid: 186bf3ec8a87e03429e5418daae3090f, type: 3}
   obstacles:
   - {fileID: 6541598668672096553, guid: d95d85ebfee13b944920c6e10fb41a49, type: 3}
-  exit: {fileID: 1803885712776336110, guid: cc5d21ddf573af84185abfe41dd37a28, type: 3}
+  exit:
+  - {fileID: 5452771500083915487, guid: b2c3ce0dc2b5f8f4fafa8cd57db41d96, type: 3}
+  - {fileID: 1803885712776336110, guid: cc5d21ddf573af84185abfe41dd37a28, type: 3}
   bossRoomArea: {fileID: 5184543082107715149, guid: 6ee7fee7d5f93cc41b4b1f3c3c1d0268,
     type: 3}
   isFinal: 0
