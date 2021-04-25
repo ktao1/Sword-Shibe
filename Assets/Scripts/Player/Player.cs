@@ -392,6 +392,10 @@ public class Player : MonoBehaviour
             string dashAnimation = dir + "Dash";
             ChangeAnimationState(dashAnimation);
             rb.MovePosition(rb.position + movement * dashSpeed * Time.fixedDeltaTime);
+            Physics2D.IgnoreLayerCollision(9, 12, true);
+            Physics2D.IgnoreLayerCollision(10, 12, true);
+
+
             Invoke("OnDashComplete", dashTime);
         }
     }
@@ -399,9 +403,10 @@ public class Player : MonoBehaviour
     {
         if (!isTakeingDamage && !isInvincible)
             CancelInvoke();
-        this.GetComponent<BoxCollider2D>().enabled = true;
         isDashing = false;
         dashCD = 1 / dashTimer;
+        Physics2D.IgnoreLayerCollision(9, 12, false);
+        Physics2D.IgnoreLayerCollision(10, 12, false);
     }
 
     #endregion
@@ -511,10 +516,12 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        /*
         if((collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet") && isDashing)
         {
             this.GetComponent<BoxCollider2D>().enabled = false;
         }
+        */
     }
 
     private void OnDrawGizmosSelected()
