@@ -474,13 +474,14 @@ public class Player : MonoBehaviour
     {
         string idleAnimation = dir + "Idle";
         ChangeAnimationState(idleAnimation);
-        sr.color = new Color(255, 255, 255);
+        sr.color = new Color32(255, 255, 255, 77);
         isTakeingDamage = false;
 
         Invoke("OnInvincibleComplete", invincibleCD);
     }
     public void OnInvincibleComplete()
     {
+        sr.color = new Color32(255, 255, 255, 255);
         isInvincible = false;
     }
 
