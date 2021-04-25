@@ -108,6 +108,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 5f;
     public float dashSpeed = 10f;
     public float dashTimer = 2f;
+    public float dashTime = 0.5f;
     private float dashCD = 0f;
     Vector2 movement;
 
@@ -115,9 +116,8 @@ public class Player : MonoBehaviour
     public int damage = 1;
     public float attackSpeed = 2f;
     private float attackCD = 0f;
-    public float attackRange = 0.5f;
-    public float invincibleCD = 0f;
-    private float invincibleTimer = 1.5f;
+    public float attackRange = 1f;
+    public float invincibleCD = 2f;
     public LayerMask[] attackableLayers;
 
     public Animator effects;
@@ -156,18 +156,6 @@ public class Player : MonoBehaviour
             Attack();
         }
 
-        if (isInvincible)
-        {
-            if(invincibleTimer > 0)
-            {
-                invincibleTimer -= Time.deltaTime;
-            }
-            else
-            {
-                invincibleTimer = 1;
-                isInvincible = false;
-            }
-        }
     }
 
     private void FixedUpdate()
@@ -330,7 +318,7 @@ public class Player : MonoBehaviour
     #region Movement
     public void CheckInput()
     {
-        if (!isDashing && !isAttacking && !isTakeingDamage && !isDead)
+        if (!isDashing && !isTakeingDamage && !isDead)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -404,12 +392,13 @@ public class Player : MonoBehaviour
             string dashAnimation = dir + "Dash";
             ChangeAnimationState(dashAnimation);
             rb.MovePosition(rb.position + movement * dashSpeed * Time.fixedDeltaTime);
-            Invoke("OnDashComplete", animator.GetCurrentAnimatorStateInfo(0).length);
+            Invoke("OnDashComplete", dashTime);
         }
     }
     public void OnDashComplete()
     {
-        CancelInvoke();
+        if (!isTakeingDamage && !isInvincible)
+            CancelInvoke();
         this.GetComponent<BoxCollider2D>().enabled = true;
         isDashing = false;
         dashCD = 1 / dashTimer;
@@ -444,7 +433,7 @@ public class Player : MonoBehaviour
 
     public void OnAttackComplete()
     {
-        if(!isTakeingDamage)
+        if(!isTakeingDamage && !isInvincible)
             CancelInvoke();
         isAttacking = false;
         attackCD = 1 / attackSpeed;
@@ -487,7 +476,12 @@ public class Player : MonoBehaviour
         ChangeAnimationState(idleAnimation);
         sr.color = new Color(255, 255, 255);
         isTakeingDamage = false;
-        // isInvincible = true;
+
+        Invoke("OnInvincibleComplete", invincibleCD);
+    }
+    public void OnInvincibleComplete()
+    {
+        isInvincible = false;
     }
 
 

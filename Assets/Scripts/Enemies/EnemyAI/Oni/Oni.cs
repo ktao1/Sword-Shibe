@@ -37,6 +37,7 @@ public class Oni : MonoBehaviour
     bool canAttack = true;
     bool canHurt = true;
     bool isAttacking = false;
+    bool death = false;
     public float attackCD;
     public float recoveryCD;
     public float flashDuration;
@@ -94,25 +95,28 @@ public class Oni : MonoBehaviour
     // Use state to do the enemy AI
     void Update()
     {
-        switch (state)
+        if (!death)
         {
-            default:
-            case State.Romaing:
-                // enemy start roaming and try to find the player.
-                RoamPath();
-                break;
-            case State.ChaseTarget:
-                ChasePlayer();
-                break;
-            case State.Attack:
-                attackLogic();
-                break;
-            case State.Hurt:
-                hurt();
-                break;
+            switch (state)
+            {
+                default:
+                case State.Romaing:
+                    // enemy start roaming and try to find the player.
+                    RoamPath();
+                    break;
+                case State.ChaseTarget:
+                    ChasePlayer();
+                    break;
+                case State.Attack:
+                    attackLogic();
+                    break;
+                case State.Hurt:
+                    hurt();
+                    break;
+            }
+            findTarget();
+            Move();
         }
-        findTarget();
-        Move();
     }
 
     // Default setting
@@ -360,10 +364,19 @@ public class Oni : MonoBehaviour
         // if enemy health drop to 0 destory the enemy
         if (health < 1)
         {
+            death = true;
             _player.levelSystem.AddXP(XP);
-            Destroy(gameObject);
+            ChangeAnimationState("POOF");
+            this.GetComponent<BoxCollider2D>().enabled = false;
+            Invoke("onDeathComplete", 1f);
         }
     }
+
+    void onDeathComplete()
+    {
+        Destroy(gameObject);
+    }
+
     #endregion
 
 

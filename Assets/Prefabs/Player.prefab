@@ -66,7 +66,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -287,7 +286,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -404,7 +402,7 @@ MonoBehaviour:
   dashTimer: 2
   damage: 1
   attackSpeed: 2
-  attackRange: 0.75
+  attackRange: 1
   invincibleCD: 0
   attackableLayers:
   - serializedVersion: 2

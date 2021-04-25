@@ -39,6 +39,7 @@ public class ShirimeAI : MonoBehaviour
     bool canHurt = true;
     bool canCharging = false;
     bool canTransformed = true;
+    bool death = false;
     public float attackCD;
     public float recoveryCD;
     public float flashDuration;
@@ -102,29 +103,32 @@ public class ShirimeAI : MonoBehaviour
     // Use state to do the enemy AI
     void Update()
     {
-        switch (state)
+        if (!death)
         {
-            default:
-            case State.Romaing:
-                // enemy start roaming and try to find the player.
-                RoamPath();          
-                break;
-            // if enemy find the player, start chase player.
-            case State.Transform:
-                ShirimeTransform();
-                break;
-            case State.ChaseTarget:
-                ChasePlayer();
-                break;
-            case State.Attack:
-                attackLogic();
-                break;
-            case State.Hurt:
-                hurt();
-                break;
+            switch (state)
+            {
+                default:
+                case State.Romaing:
+                    // enemy start roaming and try to find the player.
+                    RoamPath();
+                    break;
+                // if enemy find the player, start chase player.
+                case State.Transform:
+                    ShirimeTransform();
+                    break;
+                case State.ChaseTarget:
+                    ChasePlayer();
+                    break;
+                case State.Attack:
+                    attackLogic();
+                    break;
+                case State.Hurt:
+                    hurt();
+                    break;
+            }
+            findTarget();
+            Move();
         }
-        findTarget();
-        Move();
     }
 
     // Default setting
@@ -404,9 +408,17 @@ public class ShirimeAI : MonoBehaviour
         // if enemy health drop to 0 destory the enemy
         if (health < 1)
         {
+            death = true;
             _player.levelSystem.AddXP(XP);
-            Destroy(gameObject);
+            ChangeAnimationState("POOF");
+            this.GetComponent<BoxCollider2D>().enabled = false;
+            Invoke("onDeathComplete", 1f);
         }
+    }
+
+    void onDeathComplete()
+    {
+        Destroy(gameObject);
     }
     #endregion
 
