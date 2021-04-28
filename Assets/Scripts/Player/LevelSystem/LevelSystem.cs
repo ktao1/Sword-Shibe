@@ -33,8 +33,9 @@ public class LevelSystem
             xp += amount;
             while (!isMaxLevel() && xp >= GetXPtoNextLevel(level))
             {
-                level++;
                 xp -= GetXPtoNextLevel(level);
+                level++;
+                
                 if (OnLevelChanged != null) OnLevelChanged(this, EventArgs.Empty);
             }
             if (OnXPChanged != null) OnXPChanged(this, EventArgs.Empty);

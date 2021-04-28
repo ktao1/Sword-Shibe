@@ -30,6 +30,8 @@ public class KasaObakeAI : MonoBehaviour
     public int health;
     // enemy XP
     public int XP;
+    // enemy Soul;
+    public int soul;
     // enemy attack's damge
     public int damage;
 
@@ -370,6 +372,7 @@ public class KasaObakeAI : MonoBehaviour
         {
             death = true;
             _player.levelSystem.AddXP(XP);
+            _player.soulSystem.AddSoul(soul);
             ChangeAnimationState("POOF");
             this.GetComponent<BoxCollider2D>().enabled = false;
             Invoke("onDeathComplete", 1f);
