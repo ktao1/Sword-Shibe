@@ -44,6 +44,13 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject SkillTree;
     #endregion
 
+    // SoulSystem
+    #region SoulSystem
+    public SoulSystem soulSystem;
+    private SoulSystemAnimator soulSystemAnimator;
+    private SoulSystemUI soulSystemUI;
+    #endregion
+
     //movement Direction State
     #region MovementDirState
 
@@ -143,6 +150,7 @@ public class Player : MonoBehaviour
         dir = D_;
 
         LevelSystemStartSetting();
+        soulSystemStartSetting();
         SkillSystemStartSetting();
 
     }
@@ -234,6 +242,43 @@ public class Player : MonoBehaviour
 
     }
     #endregion
+
+    // soul System
+    #region SoulSystem
+    public void soulSystemStartSetting()
+    {
+        soulSystemUI = GameObject.Find("SoulSystem_UI").GetComponent<SoulSystemUI>();
+        soulSystem = new SoulSystem();
+        soulSystemUI.SetSoulSystem(soulSystem);
+        soulSystemAnimator = new SoulSystemAnimator(soulSystem);
+        soulSystemUI.SetSoulSystemAnimator(soulSystemAnimator);
+        player.SetSoulSystem(soulSystem);
+        player.SetSoulSystemAnmator(soulSystemAnimator);
+
+    }
+    public void SetSoulSystem(SoulSystem soulSystem)
+    {
+        this.soulSystem = soulSystem;
+    }
+    public void  SetSoulSystemAnmator(SoulSystemAnimator soulSystemAnimator)
+    {
+        this.soulSystemAnimator = soulSystemAnimator;
+        soulSystemAnimator.OnStageChanged += SoulSystemAnimator_OnStageChanged;
+        soulSystemAnimator.OnSoulChanged += SoulSystemAnimator_OnSoulChanged;
+    }
+
+    private void SoulSystemAnimator_OnSoulChanged(object sender, EventArgs e)
+    {
+        Debug.Log("Soul: " + soulSystem.getSoul());
+    }
+
+    private void SoulSystemAnimator_OnStageChanged(object sender, EventArgs e)
+    {
+        Debug.Log("Stage changed. Current stage: " + soulSystem.getStage());
+    }
+
+    #endregion
+
 
     // skill System
     #region SkillSystem
@@ -462,6 +507,7 @@ public class Player : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("GAME_OVER_sound");
                 ChangeAnimationState(DEATH_ANIMATOIN);
                 GameObject.FindGameObjectWithTag("MainCamera").SendMessage("deadZoom");
+                SceneManager.LoadScene(4);
             }
             else
             {
