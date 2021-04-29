@@ -507,6 +507,7 @@ public class Player : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("GAME_OVER_sound");
                 ChangeAnimationState(DEATH_ANIMATOIN);
                 GameObject.FindGameObjectWithTag("MainCamera").SendMessage("deadZoom");
+                SceneManager.LoadScene(4);
             }
             else
             {
