@@ -43,7 +43,9 @@ public class Biome : MonoBehaviour
     //Maximum rows and columns of a room
     public int maxRows = 10;
     public int maxColumns = 10;
-    public int numOfObstacles = 10;
+    public int maxNumOfEnemies = 10;
+    public int maxNumOfItems = 3;
+    public int maxNumOfObstacles = 5;
 
     //Room dictating where the player starts
     private Room startRoom;
@@ -169,7 +171,7 @@ public class Biome : MonoBehaviour
                 randomPosition = new Vector2(Random.Range(0, maxRows * numOfRooms), Random.Range(0, maxColumns * numOfRooms));
             }
 
-            biomeRooms.Add(randomPosition, new Room(Random.Range(maxRows / 2, maxRows), Random.Range(maxColumns / 2, maxColumns), randomPosition, numOfObstacles));
+            biomeRooms.Add(randomPosition, new Room(Random.Range(maxRows / 2, maxRows), Random.Range(maxColumns / 2, maxColumns), randomPosition, maxNumOfEnemies, maxNumOfItems, maxNumOfObstacles));
 
         }
         SetBeginEnd();
@@ -367,7 +369,7 @@ public class Biome : MonoBehaviour
     {
         if (position.Equals(Vector2.negativeInfinity) || !biomeRooms.ContainsKey(position))
         {
-            return new Room(0, 0, Vector2.negativeInfinity, numOfObstacles);
+            return new Room(0, 0, Vector2.negativeInfinity, maxNumOfEnemies, maxNumOfItems, maxNumOfObstacles);
         }
         return biomeRooms[position];
     }
@@ -410,6 +412,7 @@ public class Biome : MonoBehaviour
         {
             Debug.Log("Instantiating Room");
             room.InstantiateRoom(groundTiles, cornerTiles, edgeTiles, enemies, obstacles, exit);
+            room.PlaceObjects(enemies, items, obstacles);
         }
 
         AstarData data = AstarPath.active.data;

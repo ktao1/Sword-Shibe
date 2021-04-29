@@ -25,15 +25,20 @@ public class Room
     private Biome parentBiome = GameObject.Find("World").GetComponent<Biome>();
 
     private bool finalRoom;
-    private int numOfObstacles;
-    private int numOfOpenTiles;
 
     /*
      * Grid
      * @Vector3 Point in grid
-     * @int Type of tile to place. 0 for ground, 1 for enemy, 2 for obstacle
+     * @GameObject Tile placed in room
      */
     private Dictionary<Vector3, GameObject> grid = new Dictionary<Vector3, GameObject>();
+
+    /*
+     * RoomObjects
+     * @Vector3 Point in grid
+     * @GameObject item, enemy or obstacle placed in room
+     */ 
+    private Dictionary<Vector3, GameObject> roomObjects = new Dictionary<Vector3, GameObject>();
 
     //Neighbors to room
     public Vector2 N = Vector2.negativeInfinity;
@@ -55,13 +60,11 @@ public class Room
      * @_columns Number of columns in room
      * @_point x,y coordinates of room
      */
-    public Room(int _rows, int _columns, Vector2 _point, int obstacleCount)
+    public Room(int _rows, int _columns, Vector2 _point, int enemyCount, int itemCount, int obstacleCount)
     {
         rows = _rows;
         columns = _columns;
         point = _point;
-        numOfObstacles = obstacleCount;
-        numOfOpenTiles = rows * columns - (rows * 2 + ((columns - 2) * 2));
         finalRoom = false;
     }
 
@@ -106,11 +109,12 @@ public class Room
             if (columns % 2 == 1)
             {
                 exitInstance = GameObject.Instantiate(chosenExit, new Vector3((columns * spriteMultiplier / 2) + 1.75f, rows * spriteMultiplier, 0f), Quaternion.identity);
-                
+                roomObjects.Add(new Vector3((columns * spriteMultiplier / 2) + 1.75f, rows * spriteMultiplier, 0f), exitInstance);
             }
             else
             {
                 exitInstance = GameObject.Instantiate(chosenExit, new Vector3((columns * spriteMultiplier / 2), rows * spriteMultiplier, 0f), Quaternion.identity);
+                roomObjects.Add(new Vector3((columns * spriteMultiplier / 2), rows * spriteMultiplier, 0f), exitInstance);
             }
             exitInstance.transform.SetParent(roomBoard);
 
@@ -135,11 +139,12 @@ public class Room
             if (columns % 2 == 1)
             {
                 exitInstance = GameObject.Instantiate(chosenExit, new Vector3((columns * spriteMultiplier / 2) + 1.75f, 0f, 0f), Quaternion.identity);
-                
+                roomObjects.Add(new Vector3((columns * spriteMultiplier / 2) + 1.75f, 0f, 0f), exitInstance);
             }
             else
             {
                 exitInstance = GameObject.Instantiate(chosenExit, new Vector3((columns * spriteMultiplier / 2), 0f, 0f), Quaternion.identity);
+                roomObjects.Add(new Vector3((columns * spriteMultiplier / 2), 0f, 0f), exitInstance);
             }
             exitInstance.transform.SetParent(roomBoard);
 
@@ -164,10 +169,12 @@ public class Room
             if (rows % 2 == 1)
             {
                 exitInstance = GameObject.Instantiate(chosenExit, new Vector3(columns * spriteMultiplier, (rows * spriteMultiplier / 2) + 1.75f, 0f), Quaternion.identity);
+                roomObjects.Add(new Vector3(columns * spriteMultiplier, (rows * spriteMultiplier / 2) + 1.75f, 0f), exitInstance);
             }
             else
             {
                 exitInstance = GameObject.Instantiate(chosenExit, new Vector3(columns * spriteMultiplier, (rows * spriteMultiplier / 2), 0f), Quaternion.identity);
+                roomObjects.Add(new Vector3(columns * spriteMultiplier, (rows * spriteMultiplier / 2), 0f), exitInstance);
             }
 
             exitInstance.transform.SetParent(roomBoard);
@@ -193,10 +200,12 @@ public class Room
             if (rows % 2 == 1)
             {
                 exitInstance = GameObject.Instantiate(chosenExit, new Vector3(0f, (rows * spriteMultiplier / 2) + 1.75f, 0f), Quaternion.identity);
+                roomObjects.Add(new Vector3(0f, (rows * spriteMultiplier / 2) + 1.75f, 0f), exitInstance);
             }
             else
             {
                 exitInstance = GameObject.Instantiate(chosenExit, new Vector3(0f, (rows * spriteMultiplier / 2), 0f), Quaternion.identity);
+                roomObjects.Add(new Vector3(0f, (rows * spriteMultiplier / 2), 0f), exitInstance);
             }
 
             exitInstance.transform.SetParent(roomBoard);
@@ -207,12 +216,7 @@ public class Room
             nav.nextRoom = W;
             nav.portalLocation = 0;
         }
-
-        int obstacleCount = numOfObstacles;
-        int tileCount = numOfOpenTiles;
-
-        obstacleProbability = ((float)numOfObstacles) / numOfOpenTiles;
-
+        
         float i = 0f;
         while (i < (columns + 1) * 3.5f)
         {
@@ -432,46 +436,101 @@ public class Room
                         selectedTile = available[selection];
                     available.Clear();
 
-                    Debug.Log("Instantiating Tiles");
-
                     GameObject tileInstance = GameObject.Instantiate(selectedTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     grid.Add(new Vector3(i, j, 0f), tileInstance);
 
-                    if (Random.Range(0f, 1f) <= obstacleProbability)
-                    {
-                        GameObject obstacleTile;
-                        if (Random.Range(0f, 1f) <= 0.55f)
-                        {
-
-                            obstacleTile = GameObject.Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(i, j, 0f), Quaternion.identity);
-
-                            obstacleTile.transform.SetParent(roomBoard);
-
-                            numOfObstacles = numOfObstacles - 1;
-                        }
-                        else
-                        {
-                            obstacleTile = GameObject.Instantiate(obstacles[Random.Range(0, obstacles.Length)], new Vector3(i, j, 0f), Quaternion.identity);
-
-                        }
-
-                        obstacleTile.transform.SetParent(roomBoard);
-                        obstacleCount = obstacleCount - 1;
-
-                    }
-
                     tileInstance.transform.SetParent(roomBoard);
-                    tileCount = tileCount - 1;
                 }
                 j += 3.5f;
             }
             i += 3.5f;
-            if (tileCount != 0)
-                obstacleProbability = ((float)obstacleCount) / tileCount;
         }
         
         //Set room to active
         isInstantiated = true;
+        
+    }
+
+    public void PlaceObjects(GameObject[] roomEnemies, GameObject[] roomItems, GameObject[] roomObstacles)
+    {
+        //Current number of obstacles
+        int obstacleTotal = roomObjects.Count;
+
+        //Current available tiles to place objects
+        int tilesRemaining = grid.Count - roomObjects.Count;
+
+        //Number of items, enemies and obstacles to be placed
+        int items = roomItems.Length;
+        int enemies = roomEnemies.Length;
+        int obstacles = roomObstacles.Length;
+
+        //Keep track of placed objects
+        int itemCount = 0;
+        int enemyCount = 0;
+        int obstacleCount = 0;
+
+        
+        //Maximum number of objects in room
+        int maxObjects = items + enemies + obstacles;
+
+        //Decides on the type of object to place
+        float objectType = 0.5f;
+        
+        foreach (KeyValuePair<Vector3, GameObject> pair in grid)
+        {
+
+            //Probabilty to place an object at a location
+            float objectProbability = Mathf.PerlinNoise((float)obstacleTotal, (float)tilesRemaining);
+
+            if(objectProbability < 0f)
+            {
+                objectProbability = 0f;
+            }
+            else if(objectProbability > 1f)
+            {
+                objectProbability = 1f;
+            }
+            
+            //Check if an object exists at location and ignore 0,0,0 as player starting point
+            if (!roomObjects.ContainsKey(pair.Key) && !pair.Key.Equals(new Vector3(0f, 0f, 0f)) && objectProbability <= .5f)
+            {
+                objectType = Random.Range(0f, 1f);
+                GameObject obstacleTile;
+
+                if (objectType <= (float)items / maxObjects && roomItems.Length != 0 && itemCount != items)
+                {
+                    //Place items
+                    obstacleTile = GameObject.Instantiate(roomItems[Random.Range(0, roomItems.Length)], pair.Key, Quaternion.identity);
+
+                    obstacleTile.GetComponent<SpriteRenderer>().sortingOrder = (int)(rows - (pair.Key.y / 3.5) + 1f);
+                    obstacleTile.transform.SetParent(roomBoard);
+                    roomObjects.Add(pair.Key, obstacleTile);
+                    itemCount++;
+                }
+                else if (objectType <= ((float)items + (float)enemies) / maxObjects && roomEnemies.Length != 0 && enemyCount != enemies)
+                {
+                    //Place enemies
+                    obstacleTile = GameObject.Instantiate(roomEnemies[Random.Range(0, roomEnemies.Length)], pair.Key, Quaternion.identity);
+
+                    obstacleTile.transform.SetParent(roomBoard);
+                    roomObjects.Add(pair.Key, obstacleTile);
+                    enemyCount++;
+                }
+                else if (objectType <= 1f && roomObstacles.Length != 0 && obstacleCount != obstacles)
+                {
+                    //Place obstacles
+                    obstacleTile = GameObject.Instantiate(roomObstacles[Random.Range(0, roomObstacles.Length)], pair.Key, Quaternion.identity);
+
+                    obstacleTile.GetComponent<SpriteRenderer>().sortingOrder = (int)(rows - (pair.Key.y / 3.5) + 1f);
+                    obstacleTile.transform.SetParent(roomBoard);
+                    roomObjects.Add(pair.Key, obstacleTile);
+                    obstacleCount++;
+                }
+            }
+
+            tilesRemaining--;
+            obstacleTotal = roomObjects.Count;
+        }
     }
 
     public void markFinal(bool status)

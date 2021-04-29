@@ -8,9 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScreen.unity
     guid: 819f8334729ef474184e399719ca443e
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Grass_Biome.unity
     guid: f85dd066c5387b8488206fe33eb668d8
@@ -23,10 +20,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DeadScreen.unity
     guid: fe9202f95180afd479d5926f3aa6edb2
-  - enabled: 0
-    path: Assets/Scenes/Room1.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/Procedural Testing.unity
-    guid: fe8967e1f0a290b45989e20ae0a68452
   m_configObjects: {}

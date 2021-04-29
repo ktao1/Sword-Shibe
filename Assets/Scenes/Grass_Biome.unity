@@ -200,7 +200,9 @@ MonoBehaviour:
   - {fileID: 53153414867505132, guid: 52cc16291482eb743bf224955202c5a6, type: 3}
   - {fileID: 1305385380336196003, guid: d9f2a25f73a24e6488b90d8ceb196ba0, type: 3}
   - {fileID: 358442253390471829, guid: e001f08f935c7c34aacba6ca470089a3, type: 3}
-  items: []
+  items:
+  - {fileID: 8210904734653328869, guid: 910678f9cc74b1241a15c9ee9ee579e2, type: 3}
+  - {fileID: 5148098154682929910, guid: 4c2ccc1daa359294f9fc727550d7606d, type: 3}
   enemies:
   - {fileID: 158036453907044805, guid: 15e8b7ecab459874da0386e2903b98ed, type: 3}
   - {fileID: 9003709334094499170, guid: e565d9ed2c1a9724bb0c7a6d8c4eafb2, type: 3}
@@ -225,7 +227,9 @@ MonoBehaviour:
   numOfRooms: 10
   maxRows: 8
   maxColumns: 8
-  numOfObstacles: 5
+  maxNumOfEnemies: 5
+  maxNumOfItems: 3
+  maxNumOfObstacles: 5
   challengeMin: 3
   challengeMax: 8
   challengeRounds: 3
@@ -317,13 +321,18 @@ PrefabInstance:
       objectReference: {fileID: 1638063352}
     - target: {fileID: 4818181438337094622, guid: 49632af7a24ba8a4c8f499fe95f18192,
         type: 3}
+      propertyPath: attackSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4818181438337094622, guid: 49632af7a24ba8a4c8f499fe95f18192,
+        type: 3}
       propertyPath: invincibleCD
-      value: 500
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4818181438337094622, guid: 49632af7a24ba8a4c8f499fe95f18192,
         type: 3}
       propertyPath: isInvincible
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4818181438337094622, guid: 49632af7a24ba8a4c8f499fe95f18192,
         type: 3}
