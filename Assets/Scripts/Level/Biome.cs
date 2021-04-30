@@ -397,7 +397,20 @@ public class Biome : MonoBehaviour
     #region Room Transition
     public void ActivateRoom(Room room)
     {
-        
+        GameObject snowSystem;
+        if (GameObject.Find("SnowSystem") != null)
+        {
+            snowSystem = GameObject.Find("Snow Particles");
+            snowSystem.transform.position = new Vector3(room.columns * 3.5f / 2f, 3.5f * room.rows + 3.5f, 0f);
+
+            //Modify the property values
+            var snow = snowSystem.GetComponent<ParticleSystem>();
+            var snowShape = snow.shape;
+            var snowEmission = snow.emission;
+
+            snowShape.scale = new Vector3(room.columns * 7f, 1f, 0f);
+            snowEmission.rateOverTime = room.rows * room.columns / 2;
+        }
 
         if(room.point == bossRoom.point)
         {
