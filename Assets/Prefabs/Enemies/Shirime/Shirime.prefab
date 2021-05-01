@@ -179,6 +179,7 @@ MonoBehaviour:
   damage: 1
   health: 2
   XP: 25
+  soul: 5
   attackCD: 1
   recoveryCD: 0.5
   flashDuration: 0.1

@@ -33,6 +33,7 @@ public class Oni : MonoBehaviour
     public int health;
     // enemy XP
     public int XP;
+    public int soul;
 
     bool canAttack = true;
     bool canHurt = true;
@@ -272,13 +273,18 @@ public class Oni : MonoBehaviour
         {
             canMove = false;
             canAttack = false;
-            isAttacking = true;
+            // isAttacking = true;
             ChangeAnimationState(ATTACK);
+            Invoke("SetAttack", .7f);
             Invoke("OnAttackFinished", animator.GetCurrentAnimatorStateInfo(0).length + .5f);
         }
         // check does it need to charging;
     }
 
+    void SetAttack()
+    {
+        isAttacking = true;
+    }
     void OnAttackFinished()
     {
         isAttacking = false;
@@ -366,6 +372,7 @@ public class Oni : MonoBehaviour
         {
             death = true;
             _player.levelSystem.AddXP(XP);
+            _player.soulSystem.AddSoul(soul);
             ChangeAnimationState("POOF");
             this.GetComponent<BoxCollider2D>().enabled = false;
             Invoke("onDeathComplete", 1f);

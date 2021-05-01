@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
 
     // Level Up effect
     const string LEVEL_UP_EFFECT = "LevelUp";
+    const string DOUBLE_DAMAGE = "Double DMG aura";
 
     // Death Animation
     const string DEATH_ANIMATOIN = "Death anim";
@@ -129,7 +130,10 @@ public class Player : MonoBehaviour
 
     public Animator effects;
 
-
+    // buff
+    public bool isSwordPowerUp = false;
+    public float swordPowerUpDuration = 10f;
+    private float swordPowerUpReset;
     #endregion
 
     private void Awake()
@@ -148,6 +152,8 @@ public class Player : MonoBehaviour
         attackPoint = transform.Find("AttackPoint");
 
         dir = D_;
+
+        swordPowerUpReset = swordPowerUpDuration;
 
         LevelSystemStartSetting();
         soulSystemStartSetting();
@@ -175,8 +181,28 @@ public class Player : MonoBehaviour
 
             Move();
             Dash();
+            buffCheck();
         }
     }
+
+    // buff system
+    #region BuffSystem
+    public void buffCheck()
+    {
+        if (isSwordPowerUp)
+        {
+            swordPowerUpDuration -= Time.deltaTime;
+            if(swordPowerUpDuration <= 0)
+            {
+                isSwordPowerUp = false;
+                --damage;
+                swordPowerUpDuration = swordPowerUpReset;
+            }
+        }
+    }
+    
+    #endregion
+
 
     // health System
     #region HealthSystem
@@ -239,8 +265,8 @@ public class Player : MonoBehaviour
         playerSkills.addSkillPoint();
 
         effects.Play(LEVEL_UP_EFFECT);
-
     }
+
     #endregion
 
     // soul System
@@ -558,10 +584,29 @@ public class Player : MonoBehaviour
             Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
             GameObject.FindWithTag("Editor").SendMessage("nextStage");
         }
+
+        if (col.gameObject.tag == "Health_Item")
+        {
+            if (health < numOfHearts)
+            {
+                ++health;
+                Destroy(col.gameObject);
+            }
+        }
+
+        if (col.gameObject.tag == "Sword_PowerUp" && !isSwordPowerUp)
+        {
+            isSwordPowerUp = true;
+            ++damage;
+            effects.Play(DOUBLE_DAMAGE);
+            Destroy(col.gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
+
         /*
         if((collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bullet") && isDashing)
         {

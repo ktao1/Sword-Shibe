@@ -34,6 +34,8 @@ public class ShirimeAI : MonoBehaviour
     public int health;
     // enemy XP
     public int XP;
+    public int soul;
+
 
     bool canAttack = true;
     bool canHurt = true;
@@ -410,6 +412,7 @@ public class ShirimeAI : MonoBehaviour
         {
             death = true;
             _player.levelSystem.AddXP(XP);
+            _player.soulSystem.AddSoul(soul);
             ChangeAnimationState("POOF");
             this.GetComponent<BoxCollider2D>().enabled = false;
             Invoke("onDeathComplete", 1f);
