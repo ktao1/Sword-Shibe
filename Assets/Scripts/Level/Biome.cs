@@ -100,7 +100,7 @@ public class Biome : MonoBehaviour
         if (challengeStart && challengeCurRounds == 0 && GameObject.Find("Challenge Enemies").transform.childCount == 0)
         {
             if (isFinal)
-                Application.Quit();
+                Application.Quit(); //Change to the final boss scene
             NextLevel();
         }
     }

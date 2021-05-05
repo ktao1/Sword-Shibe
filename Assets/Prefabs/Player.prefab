@@ -400,6 +400,7 @@ MonoBehaviour:
   moveSpeed: 5
   dashSpeed: 10
   dashTimer: 2
+  dashTime: 0.5
   damage: 1
   attackSpeed: 2
   attackRange: 1
@@ -410,6 +411,10 @@ MonoBehaviour:
   - serializedVersion: 2
     m_Bits: 512
   effects: {fileID: 581902927}
+  isSwordPowerUp: 0
+  swordPowerUpDuration: 10
+  slowingDuration: 1
+  slowAmount: 1.5
 --- !u!114 &4818181438337094621
 MonoBehaviour:
   m_ObjectHideFlags: 0
