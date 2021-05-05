@@ -18,6 +18,8 @@ TagManager:
   - Health_Item
   - Sword_PowerUp
   - Boss
+  - Ground_Slow
+  - Ground_Burn
   layers:
   - Default
   - TransparentFX
