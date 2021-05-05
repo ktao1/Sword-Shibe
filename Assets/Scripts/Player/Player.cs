@@ -565,7 +565,7 @@ public class Player : MonoBehaviour
                 ChangeAnimationState(hurtAnimation);
                 sr.color = new Color(255, 0, 0);
                 isInvincible = true;
-                Invoke("OnTakeDamgeComplete", animator.GetCurrentAnimatorStateInfo(0).length);
+                Invoke("OnTakeDamgeComplete", animator.GetCurrentAnimatorStateInfo(0).length/2);
             }
         }
     }
