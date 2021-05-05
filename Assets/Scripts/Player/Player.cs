@@ -128,12 +128,19 @@ public class Player : MonoBehaviour
     public float invincibleCD = 2f;
     public LayerMask[] attackableLayers;
 
+
     public Animator effects;
 
     // buff
     public bool isSwordPowerUp = false;
     public float swordPowerUpDuration = 10f;
     private float swordPowerUpReset;
+
+    bool isSlowing = false;
+    public float slowingDuration = 2f;
+    private float slowingTimer = 0f;
+    public float slowAmount = 1.5f;
+
     #endregion
 
     private void Awake()
@@ -198,6 +205,21 @@ public class Player : MonoBehaviour
                 --damage;
                 effects.Play("New State");
                 swordPowerUpDuration = swordPowerUpReset;
+            }
+        }
+        if (isSlowing)
+        {
+            if (slowingTimer < slowingDuration)
+            {
+                slowingTimer += Time.deltaTime;
+            }
+            else
+            {
+                slowingTimer = 0;
+                moveSpeed *= slowAmount;
+                dashSpeed *= slowAmount;
+                isSlowing = false;
+                sr.color = new Color(255, 255, 255);
             }
         }
     }
@@ -432,7 +454,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                FindObjectOfType<AudioManager>().Play("Player Attack");
+                // FindObjectOfType<AudioManager>().Play("Player Attack");
                 isAttacking = true;
                 source.PlayOneShot(swing);
             }
@@ -602,8 +624,20 @@ public class Player : MonoBehaviour
             effects.Play(DOUBLE_DAMAGE);
             Destroy(col.gameObject);
         }
+        if (col.gameObject.tag == "Ground_Slow" && !isSlowing)
+        {
+            slowEffect();
+        }
+
     }
 
+    public void slowEffect()
+    {
+        isSlowing = true;
+        moveSpeed /= slowAmount;
+        dashSpeed /= slowAmount;
+        sr.color = new Color(0, 125, 255);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
