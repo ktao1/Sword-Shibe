@@ -48,7 +48,6 @@ public class Komainu : MonoBehaviour
 
 
     public float attackCD;
-    public float recoveryCD;
     public float flashDuration;
 
     public float idleCD = 2f;
@@ -65,7 +64,9 @@ public class Komainu : MonoBehaviour
     private float scratchTimer = 0f;
     public float roarCD = 2f;
     private float roarTimer = 0f;
-
+    public float recoveryCD = 2f;
+    private float recoveryTimer = 0f;
+    
 
     // how far enemy can see the player
     public float detectDistance;
@@ -171,6 +172,19 @@ public class Komainu : MonoBehaviour
             }
             //UpdatePath(player.position);
             Move();
+
+            if(!canDamage)
+            {
+                if(recoveryTimer < recoveryCD)
+                {
+                    recoveryTimer += Time.deltaTime;
+                }
+                else
+                {
+                    recoveryTimer = 0;
+                    canDamage = true;
+                }
+            }
         }
     }
 
@@ -487,7 +501,9 @@ public class Komainu : MonoBehaviour
         if (canDamage)
         {
             health -= damage;
-            state = State.Hurt;
+            canDamage = false;
+            flash();
+            isDeath();
         }
     }
 
@@ -497,11 +513,8 @@ public class Komainu : MonoBehaviour
         if (canHurt)
         {
             canHurt = false;
-            canMove = false;
-            canDamage = false;
-            ChangeAnimationState(HURT);
             flash();
-            Invoke("recovery", recoveryCD);
+            isDeath();
         }
     }
 
@@ -509,15 +522,7 @@ public class Komainu : MonoBehaviour
     void recovery()
     {
         CancelInvoke();
-        canMove = true;
-        canHurt = true;
-        canDamage = true;
-        speed = 3f;
-        if (!canAttack)
-            Invoke("waitForCD", attackCD);
-        ChangeAnimationState(HOPPING);
         isDeath();
-        findTarget();
     }
 
     // function that makes sprite flash
@@ -554,7 +559,9 @@ public class Komainu : MonoBehaviour
             _player.levelSystem.AddXP(XP);
             _player.soulSystem.AddSoul(soul);
             ChangeAnimationState("POOF");
-            this.GetComponent<BoxCollider2D>().enabled = false;
+            col2d.enabled = false;
+            effectCol.enabled = false;
+            attackCol.enabled = false;
             Invoke("onDeathComplete", 1f);
         }
     }

@@ -17,6 +17,7 @@ TagManager:
   - World
   - Health_Item
   - Sword_PowerUp
+  - Boss
   layers:
   - Default
   - TransparentFX

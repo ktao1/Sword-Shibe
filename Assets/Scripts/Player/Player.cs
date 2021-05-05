@@ -196,6 +196,7 @@ public class Player : MonoBehaviour
             {
                 isSwordPowerUp = false;
                 --damage;
+                effects.Play("New State");
                 swordPowerUpDuration = swordPowerUpReset;
             }
         }
