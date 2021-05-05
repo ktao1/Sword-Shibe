@@ -628,6 +628,10 @@ public class Player : MonoBehaviour
         {
             slowEffect();
         }
+        if (col.gameObject.tag == "Ground_Burn")
+        {
+            takeDamage(1);
+        }
 
     }
 
