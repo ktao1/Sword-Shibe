@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -98,8 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 21d49d5a0b9b754439ffa036eb30ed3d,
-    type: 2}
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -119,8 +118,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    maxJobWorkers: 0
-    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -199,12 +196,14 @@ MonoBehaviour:
   - {fileID: 1392801481270659851, guid: b856b31703e97ee4198c237ef4664aac, type: 3}
   - {fileID: 3535224721935072349, guid: 3590b0b4114e5a047ba469d717ea0ce9, type: 3}
   - {fileID: 6454928883884786719, guid: f708aa75536a9c74aa9d0f96b557bd55, type: 3}
-  items: []
+  items:
+  - {fileID: 8210904734653328869, guid: 910678f9cc74b1241a15c9ee9ee579e2, type: 3}
+  - {fileID: 5148098154682929910, guid: 4c2ccc1daa359294f9fc727550d7606d, type: 3}
   enemies:
   - {fileID: 9003709334094499170, guid: e565d9ed2c1a9724bb0c7a6d8c4eafb2, type: 3}
   - {fileID: 6741116665421499102, guid: 6c55330d3a1bde14f9ab5c4a928cd446, type: 3}
   obstacles:
-  - {fileID: 1378282287286071371, guid: b66833f55046ff745ab43b3024c93a82, type: 3}
+  - {fileID: 1450482112123922387, guid: 84eb3ac49a4829448b28052d77b6be4b, type: 3}
   exit:
   - {fileID: 5452771500083915487, guid: b2c3ce0dc2b5f8f4fafa8cd57db41d96, type: 3}
   - {fileID: 1803885712776336110, guid: cc5d21ddf573af84185abfe41dd37a28, type: 3}
@@ -214,7 +213,9 @@ MonoBehaviour:
   numOfRooms: 8
   maxRows: 20
   maxColumns: 20
-  numOfObstacles: 12
+  maxNumOfEnemies: 10
+  maxNumOfItems: 3
+  maxNumOfObstacles: 5
   challengeMin: 5
   challengeMax: 10
   challengeRounds: 3

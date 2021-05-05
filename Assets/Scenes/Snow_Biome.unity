@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -98,8 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: b39e87de7662e7e49b61253e1a6ec983,
-    type: 2}
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -119,8 +118,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    maxJobWorkers: 0
-    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -199,7 +196,9 @@ MonoBehaviour:
   - {fileID: 7493655380720587399, guid: 63bf5318d7ec19246bd13246389345c2, type: 3}
   - {fileID: 7210564700372957237, guid: 1ca3dd293f7121e4fb31d7c96f8962ad, type: 3}
   - {fileID: 2808419788558027141, guid: 9f996cd6db1345b4eb76b2f9d1bad3bc, type: 3}
-  items: []
+  items:
+  - {fileID: 8210904734653328869, guid: 910678f9cc74b1241a15c9ee9ee579e2, type: 3}
+  - {fileID: 5148098154682929910, guid: 4c2ccc1daa359294f9fc727550d7606d, type: 3}
   enemies:
   - {fileID: 158036453907044805, guid: 15e8b7ecab459874da0386e2903b98ed, type: 3}
   - {fileID: 9003709334094499170, guid: e565d9ed2c1a9724bb0c7a6d8c4eafb2, type: 3}
@@ -208,7 +207,7 @@ MonoBehaviour:
   - {fileID: 2763387642361644032, guid: a7a931e8e9f77b34f84e785626261c1b, type: 3}
   - {fileID: 4649361288683292797, guid: 186bf3ec8a87e03429e5418daae3090f, type: 3}
   obstacles:
-  - {fileID: 6541598668672096553, guid: d95d85ebfee13b944920c6e10fb41a49, type: 3}
+  - {fileID: 3254200332184137419, guid: c76fa55fa831ff440bd550305c6b3f6c, type: 3}
   exit:
   - {fileID: 5452771500083915487, guid: b2c3ce0dc2b5f8f4fafa8cd57db41d96, type: 3}
   - {fileID: 1803885712776336110, guid: cc5d21ddf573af84185abfe41dd37a28, type: 3}
@@ -218,7 +217,7 @@ MonoBehaviour:
   numOfRooms: 10
   maxRows: 8
   maxColumns: 8
-  maxNumOfEnemies: 10
+  maxNumOfEnemies: 6
   maxNumOfItems: 3
   maxNumOfObstacles: 5
   challengeMin: 3
@@ -317,7 +316,6 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -359,8 +357,6 @@ ParticleSystemRenderer:
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
-  m_FreeformStretching: 0
-  m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
@@ -374,7 +370,7 @@ ParticleSystem:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263662840}
-  serializedVersion: 7
+  serializedVersion: 6
   lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
@@ -2460,62 +2456,6 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  LifetimeByEmitterSpeedModule:
-    enabled: 0
-    m_Curve:
-      serializedVersion: 2
-      minMaxState: 1
-      scalar: 1
-      minScalar: 1
-      maxCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 1
-          inSlope: 0
-          outSlope: -0.8
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 0.2
-          inSlope: -0.8
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      minCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-    m_Range: {x: 0, y: 1}
   ForceModule:
     enabled: 0
     x:
@@ -3946,14 +3886,19 @@ ParticleSystem:
     range: {x: 0, y: 1}
   CollisionModule:
     enabled: 0
-    serializedVersion: 4
+    serializedVersion: 3
     type: 0
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    m_Planes: []
+    plane0: {fileID: 0}
+    plane1: {fileID: 0}
+    plane2: {fileID: 0}
+    plane3: {fileID: 0}
+    plane4: {fileID: 0}
+    plane5: {fileID: 0}
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
@@ -4127,14 +4072,17 @@ ParticleSystem:
     interiorCollisions: 0
   TriggerModule:
     enabled: 0
-    serializedVersion: 2
+    collisionShape0: {fileID: 0}
+    collisionShape1: {fileID: 0}
+    collisionShape2: {fileID: 0}
+    collisionShape3: {fileID: 0}
+    collisionShape4: {fileID: 0}
+    collisionShape5: {fileID: 0}
     inside: 1
     outside: 0
     enter: 0
     exit: 0
-    colliderQueryMode: 0
     radiusScale: 1
-    primitives: []
   SubModule:
     serializedVersion: 2
     enabled: 0
