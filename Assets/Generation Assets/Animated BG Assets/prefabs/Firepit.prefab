@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2504786667087863788}
   m_Layer: 0
   m_Name: Firepit
-  m_TagString: Untagged
+  m_TagString: Ground_Burn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
