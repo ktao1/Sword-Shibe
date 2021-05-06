@@ -558,7 +558,7 @@ public class Komainu : MonoBehaviour
             death = true;
             _player.levelSystem.AddXP(XP);
             _player.soulSystem.AddSoul(soul);
-            ChangeAnimationState("POOF");
+            ChangeAnimationState("BossPOOF");
             col2d.enabled = false;
             effectCol.enabled = false;
             attackCol.enabled = false;
