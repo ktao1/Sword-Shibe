@@ -211,11 +211,11 @@ MonoBehaviour:
     type: 3}
   isFinal: 1
   numOfRooms: 8
-  maxRows: 20
-  maxColumns: 20
-  maxNumOfEnemies: 10
-  maxNumOfItems: 3
-  maxNumOfObstacles: 5
+  maxRows: 15
+  maxColumns: 15
+  maxNumOfEnemies: 15
+  maxNumOfItems: 5
+  maxNumOfObstacles: 8
   challengeMin: 5
   challengeMax: 10
   challengeRounds: 3

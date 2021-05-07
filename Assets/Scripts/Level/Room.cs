@@ -49,8 +49,11 @@ public class Room
     //Defines if room has been generated with tiles placed
     internal bool isInstantiated = false;
 
+    //Object placement variables
     private float obstacleProbability;
-
+    private int itemCount;
+    private int enemyCount;
+    private int obstacleCount;
 
 
     /*
@@ -60,12 +63,15 @@ public class Room
      * @_columns Number of columns in room
      * @_point x,y coordinates of room
      */
-    public Room(int _rows, int _columns, Vector2 _point, int enemyCount, int itemCount, int obstacleCount)
+    public Room(int _rows, int _columns, Vector2 _point, int _enemyCount, int _itemCount, int _obstacleCount)
     {
         rows = _rows;
         columns = _columns;
         point = _point;
         finalRoom = false;
+        enemyCount = _enemyCount;
+        itemCount = _itemCount;
+        obstacleCount = _obstacleCount;
     }
 
     /*
@@ -459,19 +465,14 @@ public class Room
         //Current available tiles to place objects
         int tilesRemaining = grid.Count - roomObjects.Count;
 
-        //Number of items, enemies and obstacles to be placed
-        int items = roomItems.Length;
-        int enemies = roomEnemies.Length;
-        int obstacles = roomObstacles.Length;
-
         //Keep track of placed objects
-        int itemCount = 0;
-        int enemyCount = 0;
-        int obstacleCount = 0;
+        int items = 0;
+        int enemies = 0;
+        int obstacles = 0;
 
         
         //Maximum number of objects in room
-        int maxObjects = items + enemies + obstacles;
+        int maxObjects = itemCount + enemyCount + obstacleCount;
 
         //Decides on the type of object to place
         float objectType = 0.5f;
@@ -481,7 +482,7 @@ public class Room
 
             //Probabilty to place an object at a location
             float objectProbability = Mathf.PerlinNoise((float)obstacleTotal, (float)tilesRemaining);
-
+            objectProbability = Random.Range(0f, 1f);
             if(objectProbability < 0f)
             {
                 objectProbability = 0f;
@@ -497,7 +498,7 @@ public class Room
                 objectType = Random.Range(0f, 1f);
                 GameObject obstacleTile;
 
-                if (objectType <= (float)items / maxObjects && roomItems.Length != 0 && itemCount != items)
+                if (objectType <= (float)itemCount / maxObjects && roomItems.Length != 0 && itemCount != items)
                 {
                     //Place items
                     obstacleTile = GameObject.Instantiate(roomItems[Random.Range(0, roomItems.Length)], pair.Key, Quaternion.identity);
@@ -505,26 +506,27 @@ public class Room
                     obstacleTile.GetComponent<SpriteRenderer>().sortingOrder = (int)(rows - (pair.Key.y / 3.5) + 1f);
                     obstacleTile.transform.SetParent(roomBoard);
                     roomObjects.Add(pair.Key, obstacleTile);
-                    itemCount++;
+                    items++;
                 }
-                else if (objectType <= ((float)items + (float)enemies) / maxObjects && roomEnemies.Length != 0 && enemyCount != enemies)
+                else if (objectType <= ((float)itemCount + (float)enemyCount) / maxObjects && roomEnemies.Length != 0 && enemyCount != enemies)
                 {
                     //Place enemies
                     obstacleTile = GameObject.Instantiate(roomEnemies[Random.Range(0, roomEnemies.Length)], pair.Key, Quaternion.identity);
 
                     obstacleTile.transform.SetParent(roomBoard);
                     roomObjects.Add(pair.Key, obstacleTile);
-                    enemyCount++;
+                    enemies++;
                 }
                 else if (objectType <= 1f && roomObstacles.Length != 0 && obstacleCount != obstacles)
                 {
                     //Place obstacles
                     obstacleTile = GameObject.Instantiate(roomObstacles[Random.Range(0, roomObstacles.Length)], pair.Key, Quaternion.identity);
 
-                    obstacleTile.GetComponent<SpriteRenderer>().sortingOrder = (int)(rows - (pair.Key.y / 3.5) + 1f);
+                    if(obstacleTile.tag != "Ground_Burn")
+                        obstacleTile.GetComponent<SpriteRenderer>().sortingOrder = (int)(rows - (pair.Key.y / 3.5) + 1f);
                     obstacleTile.transform.SetParent(roomBoard);
                     roomObjects.Add(pair.Key, obstacleTile);
-                    obstacleCount++;
+                    obstacles++;
                 }
             }
 
