@@ -83,7 +83,6 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
-  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -115,12 +114,9 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
-  flipbookRows: 1
-  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -155,11 +151,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1500
+        y: 850
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,11 +172,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 500
-        y: 1500
+        y: 850
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,11 +193,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1000
-        y: 1500
+        y: 850
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,11 +214,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1500
-        y: 1500
+        y: 850
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -239,11 +235,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2000
-        y: 1500
+        y: 850
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -259,12 +255,12 @@ TextureImporter:
       name: tree2 move_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1000
+        x: 2500
+        y: 850
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -280,12 +276,12 @@ TextureImporter:
       name: tree2 move_6
       rect:
         serializedVersion: 2
-        x: 500
-        y: 1000
+        x: 3000
+        y: 850
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -301,12 +297,12 @@ TextureImporter:
       name: tree2 move_7
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 1000
+        x: 3500
+        y: 850
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -322,12 +318,12 @@ TextureImporter:
       name: tree2 move_8
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 1000
+        x: 4000
+        y: 850
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -343,12 +339,12 @@ TextureImporter:
       name: tree2 move_9
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 1000
+        x: 4500
+        y: 850
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -365,11 +361,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 500
+        y: 0
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -386,11 +382,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 500
-        y: 500
+        y: 0
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -407,11 +403,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1000
-        y: 500
+        y: 0
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -428,11 +424,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1500
-        y: 500
+        y: 0
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -449,11 +445,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2000
-        y: 500
+        y: 0
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -469,12 +465,12 @@ TextureImporter:
       name: tree2 move_15
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2500
         y: 0
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -490,12 +486,12 @@ TextureImporter:
       name: tree2 move_16
       rect:
         serializedVersion: 2
-        x: 500
+        x: 3000
         y: 0
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -511,12 +507,12 @@ TextureImporter:
       name: tree2 move_17
       rect:
         serializedVersion: 2
-        x: 1000
+        x: 3500
         y: 0
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -532,12 +528,12 @@ TextureImporter:
       name: tree2 move_18
       rect:
         serializedVersion: 2
-        x: 1500
+        x: 4000
         y: 0
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -553,12 +549,12 @@ TextureImporter:
       name: tree2 move_19
       rect:
         serializedVersion: 2
-        x: 2000
+        x: 4500
         y: 0
         width: 500
-        height: 500
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
+        height: 850
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
