@@ -405,8 +405,8 @@ MonoBehaviour:
   dashTime: 0.5
   damage: 1
   attackSpeed: 2
-  attackRange: 1
-  invincibleCD: 0
+  attackRange: 1.5
+  invincibleCD: 2
   attackableLayers:
   - serializedVersion: 2
     m_Bits: 1024

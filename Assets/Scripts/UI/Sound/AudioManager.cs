@@ -1,14 +1,44 @@
 ﻿using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
 
     public Sounds[] sounds;
 
+    private bool isPlay = true; 
+
     public static AudioManager instance;
 
+    private void Update()
+    {
+        if(SceneManager.GetActiveScene().name == "EndingVideo" || SceneManager.GetActiveScene().name == "EndingVideo 1" || SceneManager.GetActiveScene().name == "prologue")
+        {
+            foreach (Sounds s in sounds)
+            {
+                if (isPlay)
+                {
+                    s.source.Stop();
+                    isPlay = false;
+                }
+                
+            }
+        }
+        else
+        {
+            foreach (Sounds s in sounds)
+            {
+                if (!isPlay)
+                {
+                    s.source.Play();
+                    isPlay = true;
+                }
+                
+            }
+        }
+    }
     void Awake()
     {
         if (instance == null)
