@@ -505,7 +505,6 @@ public class Room
 
                     if (tempDistance < minDistance)
                         minDistance = tempDistance;
-
                 }
 
                 if(minDistance > bestDistance)
@@ -551,8 +550,6 @@ public class Room
             }
 
         }
-
-       
     }
 
     public void markFinal(bool status)

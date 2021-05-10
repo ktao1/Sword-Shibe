@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class pauseAndPlay : MonoBehaviour
 {
-public static bool gameIsPaused;
-[SerializeField] private GameObject pause;
-float curTime;
+    public static bool gameIsPaused;
+    [SerializeField] private GameObject pause;
+    float curTime;
 
-void Start()
-{
-    pause = GameObject.FindGameObjectWithTag("pauseMenu");
-    pause.SetActive(false);
-    curTime = Time.timeScale;
-}
+    void Start()
+    {
+        pause = GameObject.FindGameObjectWithTag("pauseMenu");
+        pause.SetActive(false);
+        curTime = Time.timeScale;
+    }
 
 
-void Update()
+    void Update()
     {
         if(Input.GetKeyDown("p") && Time.timeScale == 1)
         {
@@ -40,9 +40,10 @@ void Update()
         }
         else 
         {
+            curTime = Time.timeScale = 1f;
             pause.SetActive(false);
             AudioListener.pause = false;
-            curTime = Time.timeScale = 1f;
+            
         }
     }
 

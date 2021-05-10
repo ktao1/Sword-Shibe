@@ -122,9 +122,9 @@ public class Player : MonoBehaviour
 
     // attack
     public int damage = 1;
-    public float attackSpeed = 2f;
+    public float attackSpeed = 5f;
     private float attackCD = 0f;
-    public float attackRange = 1f;
+    public float attackRange = 2f;
     public float invincibleCD = 2f;
     public LayerMask[] attackableLayers;
 

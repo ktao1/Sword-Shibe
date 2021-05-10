@@ -100,7 +100,7 @@ public class Biome : MonoBehaviour
         if (challengeStart && challengeCurRounds == 0 && GameObject.Find("Challenge Enemies").transform.childCount == 0)
         {
             if (isFinal)
-                Application.Quit(); //Change to the final boss scene
+                SceneManager.LoadScene("Final_Boss"); //Change to the final boss scene
             NextLevel();
         }
     }
@@ -135,18 +135,23 @@ public class Biome : MonoBehaviour
         }
         else if(portalLocation == 0)
         {
+            //West
             GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns * 3.5f - 3.5f, next.rows / 2f * 3.5f, 0f);
         }
         else if(portalLocation == 1)
         {
-            GameObject.FindWithTag("Player").transform.position = new Vector3(3.5f, next.rows / 2f * 3.5f, 0f);
+            //North
+            GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns / 2f * 3.5f, 3.5f, 0f);
+            
         }
         else if(portalLocation == 2)
         {
-            GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns / 2f * 3.5f + 3.5f, 0f, 0f);
+            //East
+            GameObject.FindWithTag("Player").transform.position = new Vector3(3.5f, next.rows / 2f * 3.5f, 0f);
         }
         else if(portalLocation == 3)
         {
+            //South
             GameObject.FindWithTag("Player").transform.position = new Vector3(next.columns / 2f * 3.5f - 3.5f, next.rows * 3.5f, 0f);
         }
     }

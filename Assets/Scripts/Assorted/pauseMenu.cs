@@ -7,7 +7,8 @@ public class pauseMenu : MonoBehaviour
 {
     public void playAgain()
     {
-        GameObject.FindWithTag("World").SendMessage("callToPause");
+        Debug.Log("Resuming Play");
+        GameObject.Find("World").SendMessage("callToPause");
     }
     public void returnToMenu()
     {

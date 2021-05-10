@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Volcanic_Biome.unity
     guid: e93378ee5b6c9d04fa36ada76409bea4
   - enabled: 1
+    path: Assets/Scenes/Final_Boss.unity
+    guid: 5a7ea0af68fdccc419a33bdfbb9d4d09
+  - enabled: 1
     path: Assets/Scenes/DeadScreen.unity
     guid: fe9202f95180afd479d5926f3aa6edb2
   - enabled: 1
