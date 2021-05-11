@@ -367,6 +367,11 @@ PrefabInstance:
       propertyPath: hearts.Array.data[9]
       value: 
       objectReference: {fileID: 1638063353}
+    - target: {fileID: 4818181438337094623, guid: 49632af7a24ba8a4c8f499fe95f18192,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49632af7a24ba8a4c8f499fe95f18192, type: 3}
 --- !u!1001 &669961654
