@@ -27,9 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/DeadScreen.unity
     guid: fe9202f95180afd479d5926f3aa6edb2
   - enabled: 1
-    path: Assets/Scenes/VideoScene/EndingVideo 1.unity
-    guid: af86034b82a4b734dab47f1cabc916e5
-  - enabled: 1
     path: Assets/Scenes/VideoScene/EndingVideo.unity
     guid: 53ab75f1f7a690f4a8bac675a758e269
+  - enabled: 1
+    path: Assets/Scenes/VideoScene/EndingVideo 1.unity
+    guid: af86034b82a4b734dab47f1cabc916e5
   m_configObjects: {}

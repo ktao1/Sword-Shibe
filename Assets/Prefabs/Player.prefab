@@ -245,9 +245,9 @@ GameObject:
   - component: {fileID: 4818181438337094617}
   - component: {fileID: 4818181438337094623}
   - component: {fileID: 4818181438337094622}
-  - component: {fileID: 4818181438337094621}
   - component: {fileID: 4818181438337094596}
   - component: {fileID: 4818181438337094616}
+  - component: {fileID: 223859596}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -398,15 +398,15 @@ MonoBehaviour:
   fullHeart: {fileID: 21300000, guid: 3d689fe9125826a4b9b5f4531e3a8f28, type: 3}
   breakedHeart: {fileID: 21300000, guid: f80ebbc375a6be94aa6d1f54725934cf, type: 3}
   SkillTree: {fileID: 0}
-  isInvincible: 1
+  isInvincible: 0
   moveSpeed: 5
   dashSpeed: 10
   dashTimer: 2
   dashTime: 0.5
   damage: 1
-  attackSpeed: 2
-  attackRange: 1.5
-  invincibleCD: 2
+  attackSpeed: 5
+  attackRange: 2
+  invincibleCD: 0.5
   attackableLayers:
   - serializedVersion: 2
     m_Bits: 1024
@@ -417,18 +417,6 @@ MonoBehaviour:
   swordPowerUpDuration: 10
   slowingDuration: 1
   slowAmount: 1.5
---- !u!114 &4818181438337094621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4818181438337094620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4c44b635003bd47b3c62aac75d7543, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &4818181438337094596
 AudioSource:
   m_ObjectHideFlags: 0
@@ -551,3 +539,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5552368, y: 0.7827747}
   m_EdgeRadius: 0
+--- !u!114 &223859596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4818181438337094620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4c44b635003bd47b3c62aac75d7543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

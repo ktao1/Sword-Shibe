@@ -16,7 +16,9 @@ public class pauseMenu : MonoBehaviour
         AudioListener.pause = false;
         Destroy(GameObject.FindGameObjectWithTag("Player"));    
         Destroy(GameObject.FindGameObjectWithTag("pauseMenu"));
-        Destroy(GameObject.FindGameObjectWithTag("playerUI"));       
+        Destroy(GameObject.FindGameObjectWithTag("playerUI"));
+        Destroy(GameObject.Find("Cursor"));
+        Destroy(GameObject.Find("Canvas"));
         SceneManager.LoadScene("MainScreen");
     }
 }

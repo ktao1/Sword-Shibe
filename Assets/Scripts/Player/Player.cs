@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public SpriteRenderer sr;
     public Transform attackPoint;
     private Player player;
+    private GameObject destory;
     // Health System
     #region HealthSystem
     public int health;
@@ -162,6 +163,7 @@ public class Player : MonoBehaviour
 
         swordPowerUpReset = swordPowerUpDuration;
 
+        destory = GameObject.Find("DontDestroyOnLoad");
         LevelSystemStartSetting();
         soulSystemStartSetting();
         SkillSystemStartSetting();
@@ -556,6 +558,7 @@ public class Player : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("GAME_OVER_sound");
                 ChangeAnimationState(DEATH_ANIMATOIN);
                 GameObject.FindGameObjectWithTag("MainCamera").SendMessage("deadZoom");
+                destoryEverything();
                 SceneManager.LoadScene("DeadScreen");
             }
             else
@@ -642,6 +645,23 @@ public class Player : MonoBehaviour
         dashSpeed /= slowAmount;
         sr.color = new Color(0, 125, 255);
     }
+
+    public void destoryEverything()
+    {
+
+        GameObject canvas, soundManager ,pause, curor;
+        canvas = GameObject.Find("Canvas");
+        soundManager = GameObject.Find("SoundManager");
+        pause = GameObject.Find("Pause");
+       
+        curor = GameObject.Find("Cursor");
+        Destroy(canvas);
+        Destroy(soundManager);
+        Destroy(pause);
+        Destroy(curor);
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         

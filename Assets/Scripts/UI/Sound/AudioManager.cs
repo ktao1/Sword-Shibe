@@ -12,33 +12,7 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
-    private void Update()
-    {
-        if(SceneManager.GetActiveScene().name == "EndingVideo" || SceneManager.GetActiveScene().name == "EndingVideo 1" || SceneManager.GetActiveScene().name == "prologue")
-        {
-            foreach (Sounds s in sounds)
-            {
-                if (isPlay)
-                {
-                    s.source.Stop();
-                    isPlay = false;
-                }
-                
-            }
-        }
-        else
-        {
-            foreach (Sounds s in sounds)
-            {
-                if (!isPlay)
-                {
-                    s.source.Play();
-                    isPlay = true;
-                }
-                
-            }
-        }
-    }
+   
     void Awake()
     {
         if (instance == null)
@@ -49,7 +23,6 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        DontDestroyOnLoad(gameObject);
         foreach (Sounds s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -74,5 +47,13 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Play();
+    }
+
+    public void StopPlay()
+    {
+        foreach (Sounds s in sounds)
+        {
+            s.source.Stop();
+        }
     }
 }
