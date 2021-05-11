@@ -229,7 +229,7 @@ MonoBehaviour:
   maxNumOfItems: 3
   maxNumOfObstacles: 5
   challengeMin: 3
-  challengeMax: 6
+  challengeMax: 7
   challengeRounds: 3
   challengeTimer: 4000
 --- !u!114 &185810146
