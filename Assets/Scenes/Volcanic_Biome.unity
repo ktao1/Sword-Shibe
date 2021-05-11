@@ -217,7 +217,7 @@ MonoBehaviour:
   numOfRooms: 8
   maxRows: 15
   maxColumns: 15
-  maxNumOfEnemies: 15
+  maxNumOfEnemies: 12
   maxNumOfItems: 5
   maxNumOfObstacles: 8
   challengeMin: 5

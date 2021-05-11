@@ -204,12 +204,10 @@ MonoBehaviour:
   - {fileID: 8210904734653328869, guid: 910678f9cc74b1241a15c9ee9ee579e2, type: 3}
   - {fileID: 5148098154682929910, guid: 4c2ccc1daa359294f9fc727550d7606d, type: 3}
   enemies:
-  - {fileID: 158036453907044805, guid: 15e8b7ecab459874da0386e2903b98ed, type: 3}
   - {fileID: 9003709334094499170, guid: e565d9ed2c1a9724bb0c7a6d8c4eafb2, type: 3}
   - {fileID: 6741116665421499102, guid: 6c55330d3a1bde14f9ab5c4a928cd446, type: 3}
   - {fileID: 800105458804917874, guid: fe5485227347efa4fa7dd657600f9ef3, type: 3}
   - {fileID: 2763387642361644032, guid: a7a931e8e9f77b34f84e785626261c1b, type: 3}
-  - {fileID: 4649361288683292797, guid: 186bf3ec8a87e03429e5418daae3090f, type: 3}
   obstacles:
   - {fileID: 6874420509131143286, guid: 8bfd0dfdec59b8c449f6fc3a029bd520, type: 3}
   - {fileID: 3667976337512140513, guid: c9a1a04f10b779942a7955208e3fa029, type: 3}
@@ -224,14 +222,14 @@ MonoBehaviour:
   bossRoomArea: {fileID: 7361962794752550901, guid: 34acbd47c783b764e9e169f9b12aba3e,
     type: 3}
   isFinal: 0
-  numOfRooms: 10
+  numOfRooms: 7
   maxRows: 8
   maxColumns: 8
   maxNumOfEnemies: 5
   maxNumOfItems: 3
   maxNumOfObstacles: 5
   challengeMin: 3
-  challengeMax: 8
+  challengeMax: 6
   challengeRounds: 3
   challengeTimer: 4000
 --- !u!114 &185810146
@@ -864,7 +862,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2134489351}
     m_Modifications:
     - target: {fileID: 21031049961392531, guid: 2a5dd6ec121c72347b4f61789df3252c,
         type: 3}
@@ -874,22 +872,22 @@ PrefabInstance:
     - target: {fileID: 21031049961392540, guid: 2a5dd6ec121c72347b4f61789df3252c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 21031049961392540, guid: 2a5dd6ec121c72347b4f61789df3252c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.5795083
       objectReference: {fileID: 0}
     - target: {fileID: 21031049961392540, guid: 2a5dd6ec121c72347b4f61789df3252c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -5.571396
       objectReference: {fileID: 0}
     - target: {fileID: 21031049961392540, guid: 2a5dd6ec121c72347b4f61789df3252c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.06605722
       objectReference: {fileID: 0}
     - target: {fileID: 21031049961392540, guid: 2a5dd6ec121c72347b4f61789df3252c,
         type: 3}
@@ -899,17 +897,17 @@ PrefabInstance:
     - target: {fileID: 21031049961392540, guid: 2a5dd6ec121c72347b4f61789df3252c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 21031049961392540, guid: 2a5dd6ec121c72347b4f61789df3252c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 21031049961392540, guid: 2a5dd6ec121c72347b4f61789df3252c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 21031049961392540, guid: 2a5dd6ec121c72347b4f61789df3252c,
         type: 3}
@@ -928,6 +926,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a5dd6ec121c72347b4f61789df3252c, type: 3}
+--- !u!4 &1844765319 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 21031049961392540, guid: 2a5dd6ec121c72347b4f61789df3252c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1844765318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!850595691 &2079534128
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1108,6 +1112,7 @@ Transform:
   - {fileID: 1638063351}
   - {fileID: 669961655}
   - {fileID: 2108860612}
+  - {fileID: 1844765319}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
