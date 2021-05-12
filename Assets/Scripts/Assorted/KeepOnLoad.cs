@@ -9,7 +9,7 @@ public class KeepOnLoad : MonoBehaviour
     private void Start()
     {
         GameObject test = GameObject.Find("DontDestroyOnLoad");
-        Debug.Log(test);
+        //Debug.Log(test);
     }
 }
 

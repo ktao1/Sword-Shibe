@@ -100,7 +100,7 @@ public class SkillTree_UI : MonoBehaviour
         public SkillButton(Transform transform, PlayerSkills playerSkills, PlayerSkills.SkillType skillType)
         {
             this.transform = transform;
-            Debug.Log(transform);
+            //Debug.Log(transform);
             this.playerSkills = playerSkills;
             this.skillType = skillType;
             this.image = transform.Find("image").GetComponent<Image>();

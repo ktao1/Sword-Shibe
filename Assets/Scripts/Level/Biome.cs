@@ -428,7 +428,7 @@ public class Biome : MonoBehaviour
         }
         else
         {
-            Debug.Log("Instantiating Room");
+            //Debug.Log("Instantiating Room");
             room.InstantiateRoom(groundTiles, cornerTiles, edgeTiles, enemies, obstacles, exit);
             room.PlaceObjects(enemies, items, obstacles);
         }
