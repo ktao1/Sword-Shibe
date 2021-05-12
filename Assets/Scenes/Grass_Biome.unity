@@ -234,7 +234,7 @@ MonoBehaviour:
   bossRoomArea: {fileID: 7361962794752550901, guid: 34acbd47c783b764e9e169f9b12aba3e,
     type: 3}
   isFinal: 0
-  numOfRooms: 3
+  numOfRooms: 5
   maxRows: 8
   maxColumns: 8
   maxNumOfEnemies: 5

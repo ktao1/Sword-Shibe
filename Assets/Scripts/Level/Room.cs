@@ -530,6 +530,11 @@ public class Room
             }
             else if (objectType <= ((float)itemCount + (float)enemyCount) / maxObjects && roomEnemies.Length != 0 && enemyCount != enemies)
             {
+                if(Vector3.Distance(GameObject.Find("Player").transform.position, bestCandidate) < 9.8f)
+                {
+                    break;
+                }
+
                 //Place enemies
                 obstacleTile = GameObject.Instantiate(roomEnemies[Random.Range(0, roomEnemies.Length)], bestCandidate, Quaternion.identity);
 
