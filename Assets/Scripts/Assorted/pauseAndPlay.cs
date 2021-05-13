@@ -18,7 +18,7 @@ public class pauseAndPlay : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown("p") && Time.timeScale == 1)
+        if(Input.GetKeyDown("p"))
         {
             callToPause();
         }
