@@ -138,16 +138,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1139445903594102606, guid: cebe7a01685487d47b2063134bfeba2d,
-        type: 3}
-      propertyPath: m_Looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1139445903594102606, guid: cebe7a01685487d47b2063134bfeba2d,
-        type: 3}
-      propertyPath: m_WaitForFirstFrame
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1139445905066046610, guid: cebe7a01685487d47b2063134bfeba2d,
         type: 3}
       propertyPath: m_Name
