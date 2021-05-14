@@ -382,7 +382,7 @@ MonoBehaviour:
   animator: {fileID: 4818181438337094617}
   sr: {fileID: 0}
   attackPoint: {fileID: 886026440}
-  health: 4
+  health: 1
   numOfHearts: 4
   hearts:
   - {fileID: 0}
@@ -396,17 +396,20 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   fullHeart: {fileID: 21300000, guid: 3d689fe9125826a4b9b5f4531e3a8f28, type: 3}
-  breakedHeart: {fileID: 21300000, guid: f80ebbc375a6be94aa6d1f54725934cf, type: 3}
-  SkillTree: {fileID: 0}
-  isInvincible: 0
+  breakedHeart: {fileID: 21300000, guid: 25507c1d63fd5490d82d8fa493bc204c, type: 3}
+  xp: 0
+  nextLevel: 100
+  level: 0
+  skillPoint: 0
+  isInvincible: 1
   moveSpeed: 5
   dashSpeed: 10
   dashTimer: 2
   dashTime: 0.5
   damage: 1
-  attackSpeed: 5
-  attackRange: 2
-  invincibleCD: 0.5
+  attackSpeed: 3
+  attackRange: 1.5
+  invincibleCD: 2
   attackableLayers:
   - serializedVersion: 2
     m_Bits: 1024

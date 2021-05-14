@@ -26,7 +26,7 @@ public class Nurikabe : MonoBehaviour
             {
                 if(health < 1)
                 {
-                    player.GetComponent<Player>().levelSystem.AddXP(XP);
+                player.SendMessage("AddXP", XP);
                     Destroy(gameObject);
                 }
                 float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);

@@ -6,6 +6,31 @@ using UnityEngine.UI;
 
 public class LevelSystemUI : MonoBehaviour
 {
+    public Text levelText;
+    public Image XPBarImage;
+    public Player player;
+    private void Awake()
+    {
+        levelText = transform.Find("LevelText").GetComponent<Text>();
+        XPBarImage = transform.Find("XPBar").Find("XP").GetComponent<Image>();
+        player = GameObject.Find("Player").GetComponent<Player>();
+    }
+    public void Start()
+    {
+        SetLevel(player.level);
+        SetXPBarSize(player.NXP());
+        XPBarImage.fillAmount = player.NXP();
+    }
+
+    public void SetLevel(int level)
+    {
+        levelText.text = "Level " + (player.level + 1);
+    }
+    public void SetXPBarSize(float XPNormalized)
+    {
+        XPBarImage.fillAmount = XPNormalized;
+    }
+    /*
     private Text levelText;
     private Image XPBarImage;
     private LevelSystem levelSystem;
@@ -55,4 +80,5 @@ public class LevelSystemUI : MonoBehaviour
     {
         SetXPBarSize(levelSystemAnimator.GetXPNormalized());
     }
+    */
 }

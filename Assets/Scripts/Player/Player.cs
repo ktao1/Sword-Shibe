@@ -30,19 +30,29 @@ public class Player : MonoBehaviour
     public Sprite breakedHeart;
     #endregion
 
+
     // LevelSystem
+    public float xp = 0;
+    public float nextLevel = 100;
+    public int level = 0;
+    public int skillPoint = 0;
+    /*
     #region Level System
     public LevelSystem levelSystem;
     private LevelSystemAnimator levelSystemAnimator;
     private LevelSystemUI levelSystemUI;
     #endregion
+    */
 
     // SkillSystem
     #region SkillSystem
     // SkillSystem
+    /*
     private PlayerSkills playerSkills;
     private SkillTree_UI skillTree_UI;
     [SerializeField] private GameObject SkillTree;
+    */
+    private GameObject SkillTree;
     #endregion
 
     // SoulSystem
@@ -162,11 +172,12 @@ public class Player : MonoBehaviour
         dir = D_;
 
         swordPowerUpReset = swordPowerUpDuration;
-
+        SkillTree = GameObject.Find("SkillTree_UI");
+        SkillTree.SetActive(false);
         destory = GameObject.Find("DontDestroyOnLoad");
-        LevelSystemStartSetting();
+        // LevelSystemStartSetting();
         soulSystemStartSetting();
-        SkillSystemStartSetting();
+        //SkillSystemStartSetting();
 
     }
 
@@ -262,40 +273,33 @@ public class Player : MonoBehaviour
 
     // level System
     #region LevelSystem
-
-    public void LevelSystemStartSetting()
+    public void AddXP(int amount)
     {
-        levelSystemUI = GameObject.Find("LevelSystem_UI").GetComponent<LevelSystemUI>();
-        levelSystem = new LevelSystem();
-        levelSystemUI.SetLevelSystem(levelSystem);
-        levelSystemAnimator = new LevelSystemAnimator(levelSystem);
-        levelSystemUI.SetLevelSystemAnimator(levelSystemAnimator);
-        player.SetLevelSystem(levelSystem);
-        player.SetLevelSystemAnimator(levelSystemAnimator);
-    }
-    public void SetLevelSystem(LevelSystem levelSystem)
-    {
-        this.levelSystem = levelSystem;
-    }
-    public void SetLevelSystemAnimator(LevelSystemAnimator levelSystemAnimator)
-    {
-        this.levelSystemAnimator = levelSystemAnimator;
-        levelSystemAnimator.OnLevelChanged += LevelSystemAnimator_OnLevelChanged;
+        Debug.Log(level+ " "+ xp+ " "+ skillPoint);
+        xp += amount;
+        GameObject.Find("LevelSystem_UI").GetComponent<LevelSystemUI>().SetXPBarSize((float)xp / nextLevel);
+        while (xp >= nextLevel)
+        {
+            level++;
+            skillPoint++;
+            xp -= nextLevel;
+            GameObject.Find("LevelSystem_UI").GetComponent<LevelSystemUI>().SetXPBarSize((float)xp / nextLevel);
+            GameObject.Find("LevelSystem_UI").GetComponent<LevelSystemUI>().SetLevel(level);
+            SkillTree.GetComponent<SkillTree_UI>().UpdateSkillPoint();
+            effects.Play(LEVEL_UP_EFFECT);
+        }
     }
 
-    private void LevelSystemAnimator_OnLevelChanged(object sender, EventArgs e)
+    public float NXP()
     {
-        // set full health
-        health = numOfHearts;
-        playerSkills.addSkillPoint();
-
-        effects.Play(LEVEL_UP_EFFECT);
+        return (float)xp / nextLevel;
     }
-
+ 
     #endregion
 
     // soul System
     #region SoulSystem
+    
     public void soulSystemStartSetting()
     {
         soulSystemUI = GameObject.Find("SoulSystem_UI").GetComponent<SoulSystemUI>();
@@ -320,7 +324,7 @@ public class Player : MonoBehaviour
 
     private void SoulSystemAnimator_OnSoulChanged(object sender, EventArgs e)
     {
-        Debug.Log("Soul: " + soulSystem.getSoul());
+        // Debug.Log("Soul: " + soulSystem.getSoul());
     }
 
     private void SoulSystemAnimator_OnStageChanged(object sender, EventArgs e)
@@ -333,6 +337,57 @@ public class Player : MonoBehaviour
 
     // skill System
     #region SkillSystem
+
+    private void OpenCloseSkillMenu()
+    {
+        if (SkillTree == null)
+        {
+            SkillTree = GameObject.Find("SkillTree_UI");
+        }
+
+        if (Input.GetButtonDown("SkillsTree"))
+        {
+            SkillTree.SetActive(!SkillTree.activeSelf);
+        }
+    }
+
+    public void addHealth()
+    {
+        if (skillPoint >= 1)
+        {
+            if (numOfHearts < 10)
+            {
+                numOfHearts += 1;
+                health = numOfHearts;
+            }
+            else
+            {
+                health = numOfHearts;
+            }
+            skillPoint--;
+        }
+        
+    }
+
+    public void addAttackSpeed()
+    {
+        if (skillPoint >= 1)
+        {
+            attackSpeed *= 1.5f;
+            skillPoint--;
+        }
+    }
+
+    public void addDashSpeed()
+    {
+        if (skillPoint >= 1)
+        {
+            dashTimer *= 1.5f;
+            skillPoint--;
+        }
+            
+    }
+    /*
     public void SkillSystemStartSetting()
     {
 
@@ -407,8 +462,9 @@ public class Player : MonoBehaviour
     {
         attackSpeed *= 1.5f;
     }
-
+    */
     #endregion
+
 
     // player movement
     #region Movement

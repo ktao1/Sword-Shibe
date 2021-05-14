@@ -14,19 +14,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: a50bf3183a1925e418be084517a01f2a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Load_Grass.unity
     guid: 5020da42dde31e64c9617eb62076e4e8
   - enabled: 1
     path: Assets/Scenes/Grass_Biome.unity
     guid: f85dd066c5387b8488206fe33eb668d8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Load_Snow.unity
     guid: 847b53e63f1d30a4d937b5e40a3a2ee4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Snow_Biome.unity
     guid: e03199f6fe76f6d40b5f2458dae15f80
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Load_Volcanic.unity
     guid: 210a662e5965e8140bd0fb66235cddeb
   - enabled: 1

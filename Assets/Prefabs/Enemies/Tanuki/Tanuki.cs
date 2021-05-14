@@ -29,7 +29,7 @@ GameObject player;
         {
             if(health < 1)
             {
-                player.GetComponent<Player>().levelSystem.AddXP(XP);
+                player.SendMessage("AddXP", XP);
                 Destroy(gameObject);
             }
             attackPlayer();

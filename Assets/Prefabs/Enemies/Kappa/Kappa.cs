@@ -372,7 +372,7 @@ public GameObject bullet;
         // if enemy health drop to 0 destory the enemy
         if (health < 1)
         {
-            _player.levelSystem.AddXP(XP);
+            _player.SendMessage("AddXP", XP);
             Destroy(gameObject);
         }
     }

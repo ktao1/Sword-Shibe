@@ -5,6 +5,39 @@ using UnityEngine.UI;
 using CodeMonkey.Utils;
 public class SkillTree_UI : MonoBehaviour
 {
+    public int skillPoint;
+    public Player player;
+    public Text skillPontsText;
+    public void Start()
+    {
+        player = GameObject.Find("Player").GetComponent<Player>();
+        UpdateSkillPoint();
+        Debug.Log("test skill ui");
+    }
+    public void HealthUp()
+    {
+        player.SendMessage("addHealth");
+        UpdateSkillPoint();
+    }
+
+    public void AttackSpeedUp()
+    {
+        player.SendMessage("addAttackSpeed");
+        UpdateSkillPoint();
+    }
+
+    public void DashSpeed()
+    {
+        player.SendMessage("addDashSpeed");
+        UpdateSkillPoint();
+    }
+
+    public void UpdateSkillPoint()
+    {
+        skillPoint = player.skillPoint;
+        skillPontsText.text = skillPoint.ToString();
+    }
+    /*
     private PlayerSkills playerSkills;
     private List<SkillButton> skillButtonsList;
 
@@ -141,4 +174,5 @@ public class SkillTree_UI : MonoBehaviour
         public PlayerSkills.SkillType SkillType;
         public Image[] linkImageArray;
     }
+    */
 }

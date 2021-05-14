@@ -556,7 +556,7 @@ public class Komainu : MonoBehaviour
         if (health < 1)
         {
             death = true;
-            _player.levelSystem.AddXP(XP);
+            _player.SendMessage("AddXP", XP);
             _player.soulSystem.AddSoul(soul);
             ChangeAnimationState("BossPOOF");
             col2d.enabled = false;
