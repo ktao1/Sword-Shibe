@@ -14,6 +14,13 @@ public class SkillTree_UI : MonoBehaviour
         UpdateSkillPoint();
         Debug.Log("test skill ui");
     }
+    public void Update()
+    {
+        if(gameObject.activeSelf)
+        {
+            Debug.Log("Skill Tree Active");
+        }
+    }
     public void HealthUp()
     {
         player.SendMessage("addHealth");
