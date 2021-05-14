@@ -22,7 +22,7 @@ public class SkipVideo : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (SceneManager.GetActiveScene().name != "EndingVideo1")
+            if (SceneManager.GetActiveScene().name != "EndingVideo 1")
             {   
                 if(SceneManager.GetActiveScene().name == "prologue")
                 {
