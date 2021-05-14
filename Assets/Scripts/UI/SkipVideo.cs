@@ -22,7 +22,7 @@ public class SkipVideo : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (SceneManager.GetActiveScene().name != "EndingVideo")
+            if (SceneManager.GetActiveScene().name != "EndingVideo1")
             {   
                 if(SceneManager.GetActiveScene().name == "prologue")
                 {
@@ -39,7 +39,7 @@ public class SkipVideo : MonoBehaviour
     }
     void CheckOver(UnityEngine.Video.VideoPlayer vp)
     {
-        if (SceneManager.GetActiveScene().name != "EndingVideo") {
+        if (SceneManager.GetActiveScene().name != "EndingVideo 1") {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);//the scene that you want to load after the video has ended.
         }
         else
