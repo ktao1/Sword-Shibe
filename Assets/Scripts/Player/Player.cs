@@ -57,9 +57,7 @@ public class Player : MonoBehaviour
 
     // SoulSystem
     #region SoulSystem
-    public SoulSystem soulSystem;
-    private SoulSystemAnimator soulSystemAnimator;
-    private SoulSystemUI soulSystemUI;
+    public int soul = 0;
     #endregion
 
     //movement Direction State
@@ -176,7 +174,7 @@ public class Player : MonoBehaviour
         SkillTree.SetActive(false);
         destory = GameObject.Find("DontDestroyOnLoad");
         // LevelSystemStartSetting();
-        soulSystemStartSetting();
+        // soulSystemStartSetting();
         //SkillSystemStartSetting();
 
     }
@@ -294,42 +292,29 @@ public class Player : MonoBehaviour
     {
         return (float)xp / nextLevel;
     }
- 
+
     #endregion
 
     // soul System
     #region SoulSystem
-    
-    public void soulSystemStartSetting()
-    {
-        soulSystemUI = GameObject.Find("SoulSystem_UI").GetComponent<SoulSystemUI>();
-        soulSystem = new SoulSystem();
-        soulSystemUI.SetSoulSystem(soulSystem);
-        soulSystemAnimator = new SoulSystemAnimator(soulSystem);
-        soulSystemUI.SetSoulSystemAnimator(soulSystemAnimator);
-        player.SetSoulSystem(soulSystem);
-        player.SetSoulSystemAnmator(soulSystemAnimator);
 
-    }
-    public void SetSoulSystem(SoulSystem soulSystem)
+    public void increaseSoul()
     {
-        this.soulSystem = soulSystem;
+        if (soul < 4)
+        {
+            soul++;
+            damage++;
+            GameObject.Find("SoulSystem_UI").GetComponent<SoulSystemUI>().playEffect(soul);
+        }
     }
-    public void  SetSoulSystemAnmator(SoulSystemAnimator soulSystemAnimator)
+    public void removeSoul()
     {
-        this.soulSystemAnimator = soulSystemAnimator;
-        soulSystemAnimator.OnStageChanged += SoulSystemAnimator_OnStageChanged;
-        soulSystemAnimator.OnSoulChanged += SoulSystemAnimator_OnSoulChanged;
-    }
-
-    private void SoulSystemAnimator_OnSoulChanged(object sender, EventArgs e)
-    {
-        // Debug.Log("Soul: " + soulSystem.getSoul());
-    }
-
-    private void SoulSystemAnimator_OnStageChanged(object sender, EventArgs e)
-    {
-        Debug.Log("Stage changed. Current stage: " + soulSystem.getStage());
+        if (soul > 0)
+        {
+            soul--;
+            damage--;
+            GameObject.Find("SoulSystem_UI").GetComponent<SoulSystemUI>().playEffect(soul);
+        }
     }
 
     #endregion
@@ -602,6 +587,7 @@ public class Player : MonoBehaviour
         {
             source.PlayOneShot(beenHit, .5f);
             health -= damage;
+            removeSoul();
             if (health <= 0)
             {
                 isDead = true;
