@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils;
+using UnityEngine.EventSystems;
+
 public class SkillTree_UI : MonoBehaviour
 {
     public int skillPoint;
     public Player player;
     public Text skillPontsText;
+    public GameObject skillTree;
+    public GameObject healthButton;
+
     public void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+        skillTree = GameObject.Find("SkillTree_UI");
         UpdateSkillPoint();
         Debug.Log("test skill ui");
     }
@@ -20,6 +26,14 @@ public class SkillTree_UI : MonoBehaviour
         {
             Debug.Log("Skill Tree Active");
         }
+
+        if(Input.GetButtonDown("SkillsTree"))
+        {
+            skillTree.SetActive(!skillTree.activeSelf);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(healthButton);
+        }
+
     }
     public void HealthUp()
     {

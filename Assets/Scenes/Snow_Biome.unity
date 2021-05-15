@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 185810142}
   - component: {fileID: 185810146}
   - component: {fileID: 185810140}
+  - component: {fileID: 185810143}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -239,6 +240,23 @@ MonoBehaviour:
   challengeMax: 3
   challengeRounds: 2
   challengeTimer: 4000
+--- !u!114 &185810143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185810139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e66a11c6da2e340afb4d58721bed18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillPoint: 0
+  player: {fileID: 0}
+  skillPontsText: {fileID: 828222233}
+  skillTree: {fileID: 0}
+  healthButton: {fileID: 828222232}
 --- !u!114 &185810146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +508,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fdf21145fd9b1c4e88177dda939acef, type: 3}
+--- !u!1 &828222232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 693622594774419473, guid: 6fdf21145fd9b1c4e88177dda939acef,
+    type: 3}
+  m_PrefabInstance: {fileID: 828222231}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &828222233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 693622595421927101, guid: 6fdf21145fd9b1c4e88177dda939acef,
+    type: 3}
+  m_PrefabInstance: {fileID: 828222231}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1094590252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -557,6 +593,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1837472853477806155, guid: 0775117d07f804f42adeecfba0f0474b,
+        type: 3}
+      propertyPath: m_FirstSelected
+      value: 
+      objectReference: {fileID: 828222232}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0775117d07f804f42adeecfba0f0474b, type: 3}
 --- !u!1001 &1440614840

@@ -21,7 +21,7 @@ public class controlScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("k"))
+        if(Input.GetKeyDown("k") || Input.GetButtonDown("Controls"))
         {
             controls.SetActive(!controls.activeSelf);
         }

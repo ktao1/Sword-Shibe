@@ -344,11 +344,7 @@ public class Player : MonoBehaviour
         {
             SkillTree = GameObject.Find("SkillTree_UI");
         }
-
-        if (Input.GetButtonDown("SkillsTree"))
-        {
-            SkillTree.SetActive(!SkillTree.activeSelf);
-        }
+        
     }
 
     public void addHealth()
