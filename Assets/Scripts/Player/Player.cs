@@ -475,23 +475,22 @@ public class Player : MonoBehaviour
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
-
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W) || Input.GetAxisRaw("Vertical") > 0)
             {
                 dir = U_;
                 isMoving = true;
             }
-            else if (Input.GetKey(KeyCode.S))
+            else if (Input.GetKey(KeyCode.S) || Input.GetAxisRaw("Vertical") < 0)
             {
                 dir = D_;
                 isMoving = true;
             }
-            else if (Input.GetKey(KeyCode.A))
+            else if (Input.GetKey(KeyCode.A) || Input.GetAxisRaw("Horizontal") < 0)
             {
                 dir = L_;
                 isMoving = true;
             }
-            else if (Input.GetKey(KeyCode.D))
+            else if (Input.GetKey(KeyCode.D) || Input.GetAxisRaw("Horizontal") > 0)
             {
                 dir = R_;
                 isMoving = true;
@@ -501,7 +500,7 @@ public class Player : MonoBehaviour
 
         if (!isDashing && !isTakeingDamage && !isDead && isMoving && dashCD <= 0f)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.RightControl))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.RightControl) || Input.GetButtonDown("Dash"))
             {
                 isDashing = true;
                 source.PlayOneShot(dash, .5f);
@@ -510,7 +509,7 @@ public class Player : MonoBehaviour
 
         if (!isAttacking && !isDashing && !isTakeingDamage && !isDead && attackCD <= 0f)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetButtonDown("Attack"))
             {
                 // FindObjectOfType<AudioManager>().Play("Player Attack");
                 isAttacking = true;

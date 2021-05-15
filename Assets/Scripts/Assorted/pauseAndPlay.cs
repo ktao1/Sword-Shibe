@@ -18,7 +18,7 @@ public class pauseAndPlay : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown("p"))
+        if(Input.GetKeyDown("p") || Input.GetButtonDown("Pause"))
         {
             callToPause();
         }
