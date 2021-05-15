@@ -52,7 +52,6 @@ public class Player : MonoBehaviour
     private SkillTree_UI skillTree_UI;
     [SerializeField] private GameObject SkillTree;
     */
-    private GameObject SkillTree;
     #endregion
 
     // SoulSystem
@@ -170,8 +169,6 @@ public class Player : MonoBehaviour
         dir = D_;
 
         swordPowerUpReset = swordPowerUpDuration;
-        SkillTree = GameObject.Find("SkillTree_UI");
-        SkillTree.SetActive(false);
         destory = GameObject.Find("DontDestroyOnLoad");
         // LevelSystemStartSetting();
         // soulSystemStartSetting();
@@ -182,7 +179,7 @@ public class Player : MonoBehaviour
     void Update()    //Every frame...
     {
         if (!isDead) {
-            OpenCloseSkillMenu();
+            
             UpdateHealth();
             CheckInput();
             Attack();
@@ -283,7 +280,7 @@ public class Player : MonoBehaviour
             xp -= nextLevel;
             GameObject.Find("LevelSystem_UI").GetComponent<LevelSystemUI>().SetXPBarSize((float)xp / nextLevel);
             GameObject.Find("LevelSystem_UI").GetComponent<LevelSystemUI>().SetLevel(level);
-            SkillTree.GetComponent<SkillTree_UI>().UpdateSkillPoint();
+            GameObject.Find("World").GetComponent<SkillTree_UI>().UpdateSkillPoint();
             effects.Play(LEVEL_UP_EFFECT);
         }
     }
@@ -322,15 +319,6 @@ public class Player : MonoBehaviour
 
     // skill System
     #region SkillSystem
-
-    private void OpenCloseSkillMenu()
-    {
-        if (SkillTree == null)
-        {
-            SkillTree = GameObject.Find("SkillTree_UI");
-        }
-        
-    }
 
     public void addHealth()
     {

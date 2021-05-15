@@ -17,6 +17,7 @@ public class SkillTree_UI : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         skillTree = GameObject.Find("SkillTree_UI");
+        skillTree.SetActive(false);
         UpdateSkillPoint();
         Debug.Log("test skill ui");
     }
