@@ -412,7 +412,7 @@ public class ShirimeAI : MonoBehaviour
         {
             death = true;
             _player.SendMessage("AddXP", XP);
-            _player.SendMessage("increaseSoul");
+            _player.soulSystem.AddSoul(soul);
             ChangeAnimationState("POOF");
             this.GetComponent<BoxCollider2D>().enabled = false;
             Invoke("onDeathComplete", 1f);
