@@ -557,7 +557,7 @@ public class Komainu : MonoBehaviour
         {
             death = true;
             _player.SendMessage("AddXP", XP);
-            _player.soulSystem.AddSoul(soul);
+            _player.SendMessage("increaseSoul");
             ChangeAnimationState("BossPOOF");
             col2d.enabled = false;
             effectCol.enabled = false;

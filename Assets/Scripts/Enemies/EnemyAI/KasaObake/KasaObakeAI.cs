@@ -372,7 +372,7 @@ public class KasaObakeAI : MonoBehaviour
         {
             death = true;
             _player.SendMessage("AddXP", XP);
-            _player.soulSystem.AddSoul(soul);
+            _player.SendMessage("increaseSoul");
             ChangeAnimationState("POOF");
             this.GetComponent<BoxCollider2D>().enabled = false;
             Invoke("onDeathComplete", 1f);

@@ -3394,6 +3394,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec870ace83574a244848c7a1a8a4e84a, type: 3}
+--- !u!1 &1124612889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 693622594179173654, guid: 6fdf21145fd9b1c4e88177dda939acef,
+    type: 3}
+  m_PrefabInstance: {fileID: 6246478374810266930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1124612890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124612889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e66a11c6da2e340afb4d58721bed18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillPoint: 0
+  player: {fileID: 0}
+  skillPontsText: {fileID: 0}
+  skillTree: {fileID: 0}
+  healthButton: {fileID: 0}
 --- !u!4 &1145575105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3601545985372974940, guid: bee93e887dcffac4eaaf1178eb0aa250,
