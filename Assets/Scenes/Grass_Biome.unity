@@ -1021,56 +1021,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1760858702693815568, guid: 74a94c67eeb57994e8957d799c2ccd48,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1760858702693815568, guid: 74a94c67eeb57994e8957d799c2ccd48,
-        type: 3}
-      propertyPath: m_Colors.m_NormalColor.a
-      value: 0.61960787
-      objectReference: {fileID: 0}
-    - target: {fileID: 1760858702693815568, guid: 74a94c67eeb57994e8957d799c2ccd48,
-        type: 3}
-      propertyPath: m_Navigation.m_WrapAround
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1760858702693815568, guid: 74a94c67eeb57994e8957d799c2ccd48,
-        type: 3}
-      propertyPath: m_Colors.m_HighlightedColor.a
-      value: 0.7058824
-      objectReference: {fileID: 0}
-    - target: {fileID: 1760858702693815574, guid: 74a94c67eeb57994e8957d799c2ccd48,
-        type: 3}
-      propertyPath: m_Name
-      value: Back to Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 1760858703349827274, guid: 74a94c67eeb57994e8957d799c2ccd48,
-        type: 3}
-      propertyPath: m_Name
-      value: Resume
-      objectReference: {fileID: 0}
-    - target: {fileID: 1760858703349827316, guid: 74a94c67eeb57994e8957d799c2ccd48,
-        type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1760858703349827316, guid: 74a94c67eeb57994e8957d799c2ccd48,
-        type: 3}
-      propertyPath: m_Colors.m_NormalColor.a
-      value: 0.61960787
-      objectReference: {fileID: 0}
-    - target: {fileID: 1760858703349827316, guid: 74a94c67eeb57994e8957d799c2ccd48,
-        type: 3}
-      propertyPath: m_Navigation.m_WrapAround
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1760858703349827316, guid: 74a94c67eeb57994e8957d799c2ccd48,
-        type: 3}
-      propertyPath: m_Colors.m_HighlightedColor.a
-      value: 0.7058824
-      objectReference: {fileID: 0}
     - target: {fileID: 1760858703503385506, guid: 74a94c67eeb57994e8957d799c2ccd48,
         type: 3}
       propertyPath: m_Pivot.x
