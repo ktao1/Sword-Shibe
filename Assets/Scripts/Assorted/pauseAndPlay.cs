@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class pauseAndPlay : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class pauseAndPlay : MonoBehaviour
         if(Input.GetKeyDown("p") || Input.GetButtonDown("Pause"))
         {
             callToPause();
+            if (pause.activeSelf)
+            {
+                EventSystem.current.firstSelectedGameObject = GameObject.Find("Resume");
+                EventSystem.current.SetSelectedGameObject(GameObject.Find("Resume"));
+            }
         }
     }
 
