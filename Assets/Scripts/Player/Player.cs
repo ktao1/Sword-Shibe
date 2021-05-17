@@ -485,6 +485,14 @@ public class Player : MonoBehaviour
                 source.PlayOneShot(swing);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1)){
+            health = numOfHearts;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2)){
+            skillPoint += 10;
+            GameObject.Find("World").GetComponent<SkillTree_UI>().UpdateSkillPoint();
+        }
     }
     public void Move()
     {
