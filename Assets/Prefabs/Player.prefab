@@ -376,9 +376,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c08dadf92066e4498721668b83ef657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swing: {fileID: 8300000, guid: 37c0193dd2051d14cbc4cfb91e30ffc6, type: 3}
+  swing: {fileID: 8300000, guid: e3d4917cd428f8549b694505c6f2df8f, type: 3}
   dash: {fileID: 8300000, guid: 5c433d503bab87e459599bc757a42f18, type: 3}
-  beenHit: {fileID: 8300000, guid: 6afe6e4f3cd5a6145b9a16e4f63a6c34, type: 3}
+  beenHit: {fileID: 8300000, guid: 6187df0a4b3db0e4b859f9c3b8616614, type: 3}
   animator: {fileID: 4818181438337094617}
   sr: {fileID: 0}
   attackPoint: {fileID: 886026440}
@@ -401,6 +401,7 @@ MonoBehaviour:
   nextLevel: 100
   level: 0
   skillPoint: 0
+  soul: 0
   isInvincible: 1
   moveSpeed: 5
   dashSpeed: 10
