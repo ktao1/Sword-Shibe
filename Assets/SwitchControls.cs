@@ -11,7 +11,7 @@ public class SwitchControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(Input.GetJoystickNames().Length > 0)
+        if(Input.GetJoystickNames().Length > 0 && Input.GetJoystickNames()[0].Length > 0)
         {
             GetComponent<Image>().sprite = controllerLayout;
             GameObject.Find("Menus").SetActive(false);
