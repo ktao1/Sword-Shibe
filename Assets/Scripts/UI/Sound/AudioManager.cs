@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
 
     public Sounds[] sounds;
-
+    public string song;
     private bool isPlay = true; 
 
 
@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Play("Theme");
+        Play(song);
     }
 
     public void Play (string name)

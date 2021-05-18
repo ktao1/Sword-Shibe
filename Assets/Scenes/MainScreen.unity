@@ -270,8 +270,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
         type: 3}
+      propertyPath: song
+      value: SwordShibeOverworld
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[0].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
       propertyPath: sounds.Array.data[1].volume
-      value: 0.522
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 693331528048876754, guid: be491891cffc99549ab7fc949edd2247,
+        type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 693331528048876755, guid: be491891cffc99549ab7fc949edd2247,
         type: 3}
@@ -1472,24 +1492,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &2070368822 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 693331528048876755, guid: be491891cffc99549ab7fc949edd2247,
-    type: 3}
-  m_PrefabInstance: {fileID: 157220700}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2070368826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070368822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4c44b635003bd47b3c62aac75d7543, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2146831889
 GameObject:
   m_ObjectHideFlags: 0

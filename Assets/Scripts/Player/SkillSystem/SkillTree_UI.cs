@@ -23,11 +23,12 @@ public class SkillTree_UI : MonoBehaviour
     }
     public void Update()
     {
+        /*
         if(gameObject.activeSelf)
         {
             Debug.Log("Skill Tree Active");
         }
-
+        */
         if(Input.GetButtonDown("SkillsTree"))
         {
             skillTree.SetActive(!skillTree.activeSelf);

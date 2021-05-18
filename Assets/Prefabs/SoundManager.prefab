@@ -143,13 +143,20 @@ MonoBehaviour:
   sounds:
   - name: SwordShibeOverworld
     clip: {fileID: 8300000, guid: 6457c249ad9e1914d8c47db2c5df67e1, type: 3}
-    volume: 1
+    volume: 0.516
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Theme
-    clip: {fileID: 8300000, guid: 6457c249ad9e1914d8c47db2c5df67e1, type: 3}
-    volume: 1
+  - name: SwordShibeSnow
+    clip: {fileID: 8300000, guid: 0b222d735270a1048a1c140b3d2eb798, type: 3}
+    volume: 0.522
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: SwordShibeVolc
+    clip: {fileID: 8300000, guid: 4d081d91cd047b646a99d9361842442f, type: 3}
+    volume: 0.522
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  song: SwordShibeVolc
