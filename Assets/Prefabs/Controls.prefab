@@ -82,6 +82,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6985517640900883657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +111,7 @@ GameObject:
   - component: {fileID: 6985517642471846119}
   - component: {fileID: 6985517642471846113}
   - component: {fileID: 6985517642471846118}
+  - component: {fileID: 6985517642666316039}
   m_Layer: 5
   m_Name: ControlsBackground
   m_TagString: Untagged
@@ -174,3 +176,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6985517642666316039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6985517642471846116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3a4761589f5f54a8832b865c855eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerLayout: {fileID: 21300000, guid: 7549345a25bc527438c4c86af75dd41d, type: 3}

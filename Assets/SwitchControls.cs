@@ -14,7 +14,8 @@ public class SwitchControls : MonoBehaviour
         if(Input.GetJoystickNames().Length > 0 && Input.GetJoystickNames()[0].Length > 0)
         {
             GetComponent<Image>().sprite = controllerLayout;
-            GameObject.Find("Menus").SetActive(false);
+            if(GameObject.Find("Menus") != null)
+                GameObject.Find("Menus").SetActive(false);
         }
     }
 
