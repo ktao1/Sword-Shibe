@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6538576393171640533}
   - component: {fileID: 8648549752315731908}
   - component: {fileID: 8076974282601270097}
+  - component: {fileID: -4153881493774425520}
   m_Layer: 10
   m_Name: Tanuki
   m_TagString: Enemy
@@ -67,6 +68,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -133,9 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e377d632b434eb4a9ad1c283153801a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 5
-  maxHide: 400
-  maxAttack: 500
+  maxDistance: 7
+  maxHide: 500
+  maxAttack: 800
   XP: 50
   health: 3
   animator: {fileID: 6538576393171640533}
@@ -165,6 +167,31 @@ EdgeCollider2D:
   - {x: -3.5385067, y: -2.0976093}
   - {x: -2.9785252, y: -3.7809472}
   - {x: 3.4133463, y: -3.891436}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!50 &-4153881493774425520
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9003709334094499170}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 7
 --- !u!1001 &2927103839361633159
 PrefabInstance:
   m_ObjectHideFlags: 0
