@@ -82,7 +82,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!114 &6985517640900883657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,3 +188,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerLayout: {fileID: 21300000, guid: 7549345a25bc527438c4c86af75dd41d, type: 3}
+  keyboardLayout: {fileID: 21300000, guid: b72ea85fde3a2aa4fa27c546b05c258f, type: 3}
