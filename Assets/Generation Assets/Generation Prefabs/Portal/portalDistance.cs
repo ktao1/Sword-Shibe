@@ -4,26 +4,12 @@ using UnityEngine;
 
 public class portalDistance : MonoBehaviour
 {
-GameObject player;
 public Animator animator;
-public double viewDistance = 10;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
+            animator.SetBool("playerNear", true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Vector3.Distance(player.transform.position, transform.position)<viewDistance)
-        {
-            animator.SetBool("playerNear", true);
-        }
-        else
-        {
-            animator.SetBool("playerNear", false);
-        }
-    }
 }

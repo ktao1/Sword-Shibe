@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +14,9 @@ GameObject player;
     int timerHide;
     public int health = 3;
     public Animator animator;
+    int timer = 0;
+    int maxTimer = 10000;
+    bool seenPlayer = false;
     Monster monster;
     void Start()
     {
@@ -31,6 +34,14 @@ GameObject player;
             {
                 player.SendMessage("AddXP", XP);
                 Destroy(gameObject);
+            }
+            else if(maxTimer < timer)
+            {
+                Destroy(gameObject);
+            }
+            if(seenPlayer)
+            {
+            timer++;                
             }
             attackPlayer();
         }
@@ -51,6 +62,7 @@ GameObject player;
                 }
             if (distanceFromPlayer < maxDistance)
             {
+                seenPlayer = true;
                 if (visible && attackTimer >= maxAttack)
                 {
                     animator.SetTrigger("Attack");
@@ -97,17 +109,16 @@ GameObject player;
         GameObject playerPosition = new GameObject();
         playerPosition.transform.position = transform.position;
 
-        float newX = playerPosition.transform.position.x + Random.Range(-5, 5) - player.transform.position.x + transform.position.x;
-        float newY = playerPosition.transform.position.y + Random.Range(-5, 5) - player.transform.position.y + transform.position.y;
+        float xMod = Random.Range(-1,1);
+        float yMod = Random.Range(-1,1);
 
-        if (newX < 0)
-        {
-            newX = 0;
-        }
-        if (newY < 0)
-        {
-            newY = 0;
-        }
+        if(xMod>0)  xMod = 1;
+        if(xMod<0)  xMod = -1;
+        if(yMod>0)  yMod = 1;
+        if(yMod<0)  yMod = -1;
+
+        float newX = Random.Range(-5, 5) + xMod * 5 + player.transform.position.x;
+        float newY = Random.Range(-5, 5) + yMod * 5 + player.transform.position.y;
 
         transform.position = new Vector3(newX, newY, transform.position.z);
 
@@ -118,4 +129,5 @@ GameObject player;
     {
         health -= damage;
     }
+
 }
