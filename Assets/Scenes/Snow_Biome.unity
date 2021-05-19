@@ -239,7 +239,7 @@ MonoBehaviour:
   challengeMin: 3
   challengeMax: 3
   challengeRounds: 2
-  challengeTimer: 4000
+  challengeTimer: 2000
 --- !u!114 &185810143
 MonoBehaviour:
   m_ObjectHideFlags: 0
