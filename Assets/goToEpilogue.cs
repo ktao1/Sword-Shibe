@@ -18,6 +18,7 @@ public class goToEpilogue : MonoBehaviour
     {
         if(finalBoss == null)
         {
+            Destroy(GameObject.Find("Player"));
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         }
     }
