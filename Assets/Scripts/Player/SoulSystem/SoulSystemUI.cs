@@ -9,7 +9,7 @@ public class SoulSystemUI : MonoBehaviour
     public Animator soulEffect;
     public Player player;
     public int soul;
-    private string[] effects = { "EXP", "cyanSoul_Animation", "greenSoul_Animation", "redSoul_Animation", "redSoul_Animation" };
+    private string[] effects = { "EXP", "cyanSoul_Animation", "greenSoul_Animation", "yellowSoul_Animation", "redSoul_Animation" };
 
     public void Start()
     {
